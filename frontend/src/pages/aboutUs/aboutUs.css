@@ -1,1 +1,29 @@
-@import url('https://fonts.google.com/specimen/Cormorant+Garamond');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');#521F12
+
+.body {
+    font-family:  'Cormorant Garamond';
+}
+
+.header-caption-custom{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    z-index: 10;
+    width: 80%;
+}
+
+.header-caption-custom h1{
+    font-family: 'Cormorant Garamond', serif !important;
+    color: #4a1f13; /* café oscuro */
+    font-size: 6rem;
+    margin-bottom: 1rem;
+}
+
+.header-caption-custom p{
+    font-family: 'Cormorant Garamond', serif !important;
+    color: #4a1f13;
+    font-size: 2rem;
+}

@@ -1,165 +1,114 @@
-/* ==========================================
-   IMPORTACIÓN DE FUENTES (API de Google Fonts)
-   ========================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+/* Cormorant Garamond */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 
-/* ==========================================
-   RESET Y CONFIGURACIÓN GLOBAL
-   ========================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Cormorant Garamond', serif; 
+/*
+VISION, MISION Y VALORES
+*/
+:root {
+    --fondo-principal-crema: #F1F0E5;
+    --fondo-blanco-calido: #F6EBD9;
+    --texto-principal-cafe-oscuro: #521F12;
+    --boton-principal-acento-fuerte: #4B1D13;
+    --beige-calido-degradado: #f8e1c1;
+    --crema-secundario: #f6ebd9;
+    --cafe-medio: #a0653d;
+    --beige-grisaceo: #D9cdc1;
 }
 
-body {
-    min-height: 100vh;
+.about-section {
+    background-color: var(--fondo-principal-crema);
+    padding: 80px 0;
+    font-family: 'Cormorant Garamond', serif;
 }
 
-/* Comportamiento Flexbox para el contenedor de Bootstrap */
-.container-fluid {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 0; 
-}
-
-/* El elemento <main> se expande para empujar el footer al fondo */
-main {
-    flex: 1;
-}
-
-/* ==========================================
-   ESTILOS DEL FOOTER (Rodrigo - Versión Imagen con Bootstrap Icons)
-   ========================================== */
-.main-footer {
-    background-color: #f8e1c1; /* Color crema base de la captura */
-    padding: 15px 0 10px 0;
-    width: 100%;
-    margin-top: auto; /* Refuerzo de posicionamiento */
-}
-
-/* DE VUELTA A TU ORIGINAL: Distribución en 3 columnas alineadas verticalmente al centro */
-.footer-container {
-    max-width: 1800px;
-    margin: 3px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-    padding: 0 20px;
-    align-items: center; 
-}
-
-/* --- COLUMNA 1: LOGO E ICONOS DE INTEGRANTES --- */
-.logo-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea logo e imágenes a la izquierda */
-    gap: 3px;
-    margin-left: 20px; /* <--- Ajusta este valor si quieres moverlo más a la derecha en escritorio */
-}
-
-.footer-logo {
-    max-width: 290px;
-    height: auto;
-    object-fit: contain;
-}
-
-.team-github-icons {
-    display: flex;
-    gap: 15px; /* Separación horizontal entre cada imagen */
-    margin-top: 5px;
-}
-
-/* Estilos para los iconos de fuente de Bootstrap */
-.member-icon {
-    font-size: 2.0rem;         
-    color: #4a3319;            
-    transition: transform 0.2s ease, color 0.2s ease;
-    display: inline-block;
-}
-
-/* Efecto al pasar el cursor encima de un icono */
-.team-github-icons a:hover .member-icon {
-    transform: translateY(-3px); 
-    color: black;            
-}
-
-/* --- COLUMNA 2: EXPLORA (NAVEGACIÓN) --- */
-.footer-section h3 {
-    color: #4a3319; 
-    font-size: 1.2rem;
-    font-weight: 900;
-    margin-bottom: 5px;
-}
-
-.footer-section h3::after {
-    display: none; 
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5px; 
-}
-
-.footer-section ul li a {
-    color: #4a3319;
-    text-decoration: none;
-    font-size: 1.0rem;
-    transition: color 0.4s ease;
-}
-
-.footer-section ul li a:hover {
-    color: #00adb5;
-}
-
-/* --- COLUMNA 3: ESPACIADOR INVISIBLE --- */
-.spacer-section {
-    display: block;
-}
-
-/* --- PARTE INFERIOR: NUEVA SECCIÓN DE COPYRIGHT --- */
-.footer-bottom {
+.title-container {
+    background-color: var(--fondo-blanco-calido);
+    border: 4px solid var(--color-verde-acento);
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
     text-align: center;
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(74, 51, 25, 0.1); /* Línea divisoria muy sutil */
-    width: 100%;
 }
 
-.footer-bottom p {
-    color: #4a3319;
-    font-size: 1.2rem;
+.about-title {
+    color: var(--texto-principal-cafe-oscuro);
+    font-size: 5rem;
+    font-weight: 700;
     margin: 0;
+    letter-spacing: 1px;
 }
 
-/* ==========================================
-   Ajustes Responsivos para Pantallas Móviles
-   ========================================== */
-@media (max-width: 767px) {
-    .footer-container {
-        grid-template-columns: 1fr; /* Cambia a una sola columna vertical */
-        text-align: center;
-        gap: 25px;
-    }
-
-    /* Centra todos los contenidos en celulares y remueve el margen izquierdo */
-    .logo-section {
-        align-items: center;
-        justify-content: center;
-        margin-left: 0;
-    }
-    
-    .team-github-icons {
-        justify-content: center;
-    }
-
-    /* Oculta la columna espaciadora en celulares para evitar saltos raros */
-    .spacer-section {
-        display: none;
-    }
+/* tarjetas: 365x247 */
+.about-card {
+    background-color: var(--fondo-blanco-calido);
+    padding: 20px 15px;
+    border-radius: 10px;
+    width: 365px;
+    height: 247px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
 }
+.about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* imagenes png */
+.about-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover .about-image {
+    transform: scale(1.05);
+}
+
+.about-card h2 {
+    color: var(--texto-principal-cafe-oscuro);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* linea decorativa con punto */
+.line-divider {
+    width: 100px;
+    height: 2px;
+    background-color: var(--cafe-medio);
+    margin: 0 auto 12px auto;
+    position: relative;
+}
+
+.line-divider::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cafe-medio);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-card p {
+    color: var(--boton-principal-acento-fuerte);
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 80px;
+    padding: 0 5px;
+}
+/*
+FINAL VISION,MISION Y VALORES
+*/

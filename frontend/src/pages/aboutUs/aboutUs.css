@@ -194,65 +194,121 @@ main {
    HEADER - NOSOTROS
    ========================================================================== */
 
-.header {
-  width: 100%;
-  background-color: var(--fondo-principal-crema);
+.header-box{
+    width: 90%;
+    max-width: 1400px;
+    min-height: 400px;
+
+    margin: 2rem auto;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+
+    background-image: url("../../assets/img/BackHeader.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.header-inner {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.header-item {
-  width: 100%;
-}
-
-.header-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
+.header-inner{
+    position: relative;
+    min-height: 400px;
+    width: 100%;
 }
 
 /* Capa suave para mejorar lectura */
-.header-inner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(246, 235, 217, 0.28);
-  z-index: 1;
+.header-inner::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(246,235,217,0.28);
+    z-index: 1;
 }
 
-.header-caption-custom {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
+.header-caption-custom{
+    position: absolute;
+    inset: 0;
+    z-index: 2;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  text-align: center;
-  color: var(--texto-principal-cafe-oscuro);
-  padding: 1rem;
+    text-align: center;
+    padding: 1rem;
 }
 
-.header-caption-custom h1 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 0.7rem;
+.header-caption-custom h1{
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    color: #4b2e1f;
+    margin-bottom: 1rem;
 }
 
-.header-caption-custom p {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  line-height: 1.2;
-  max-width: 650px;
-  margin: 0 auto;
+.header-caption-custom p{
+    font-family: "Cormorant Garamond",serif;
+    font-weight: bold;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    line-height: 1.5;
+    max-width: 700px;
+    color: #4b2e1f;
+}
+/*Responsivo*/
+@media (max-width: 768px){
+    .header-caption-custom h1{
+        font-size: 2.8rem;
+    }
+
+    .header-caption-custom p{
+        font-size: 1rem;
+    }
+}
+
+/*  Descripcion */
+
+.about-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+.about-box{
+    width: 90%;
+    max-width: 1400px;
+    background-color: var(--fondo-blanco-calido);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 8px 18px rgba(82, 31, 18, 0.12);
+    text-align: center;
+    color: var(--texto-principal-cafe-oscuro);
+    margin: auto;
+}
+
+.about-box h2{
+   font-family: "Cormorant Garamond",serif;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.about-box p{
+    font-family: "Cormorant Garamond",serif;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.about-box:hover .about-box-title{
+    transform: scale(1.05);
+}
+
+.about-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
 }
 /* ==========================================================================
    SECCIÓN: VISIÓN, MISIÓN Y VALORES (About Section)
@@ -346,6 +402,7 @@ main {
 .about-card p {
   color: var(--boton-principal-acento-fuerte);
   font-size: 0.8rem;
+  font-weight: bold;
   line-height: 1.3rem;
   margin: 0;
   overflow-y: auto;

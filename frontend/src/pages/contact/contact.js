@@ -1,34 +1,19 @@
 //? Israel: Validación de datos de entrada
-//Escribe tu código aquí
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 //? Rodrigo: Formspree
 // 1. Se define la función de envío asíncrono hacia tu Endpoint de Formspree
 async function enviarAFormspree(form) {
-  const url = "https://formspree.io/f/mjgdbgaw"; 
+  const url = "https://formspree.io/f/mjgdbgaw";
   const formData = new FormData(form);
 
   const response = await fetch(url, {
     method: "POST",
     body: formData,
     headers: {
-      'Accept': 'application/json'
-    }
+      Accept: "application/json",
+    },
   });
 
   if (!response.ok) {
@@ -45,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (event) => {
       // Detenemos el envío inmediato para procesar la promesa de Formspree
       event.preventDefault();
-      
+
       // Intentamos el envío real
       try {
         await enviarAFormspree(form);
@@ -58,13 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-
-
-
-
-
-
 
 /* ==========================================================================
    ?FORMULARIO DE CONTACTO - SWEETALERT: Mafer
@@ -98,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmButtonText: "Aceptar",
       confirmButtonColor: "#4B1D13",
       background: "#F6EBD9",
-      color: "#521F12"
+      color: "#521F12",
     });
   }
 
@@ -107,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
      Esta función queda lista para que después tu compañero la use con validación.
      -------------------------------------------------------------------------- */
   function showContactError(
-    message = "Ocurrió un error al registrar tu mensaje. Inténtalo nuevamente."
+    message = "Ocurrió un error al registrar tu mensaje. Inténtalo nuevamente.",
   ) {
     return Swal.fire({
       icon: "error",
@@ -116,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmButtonText: "Entendido",
       confirmButtonColor: "#4B1D13",
       background: "#F6EBD9",
-      color: "#521F12"
+      color: "#521F12",
     });
   }
 
@@ -139,7 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
        Si no está cargado, usa alert normal como respaldo.
     */
     if (typeof Swal === "undefined") {
-      console.error("SweetAlert2 no está cargado. Revisa el script CDN en tu HTML.");
+      console.error(
+        "SweetAlert2 no está cargado. Revisa el script CDN en tu HTML.",
+      );
       alert("Mensaje enviado correctamente.");
       contactForm.reset();
       return;
@@ -150,7 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
        Si la petición de arriba falló, muestra error. Si no, muestra el éxito de Mafer.
     */
     if (window.formspreeError) {
-      showContactError("Hubo un problema al procesar los datos con Formspree. Inténtalo de nuevo.");
+      showContactError(
+        "Hubo un problema al procesar los datos con Formspree. Inténtalo de nuevo.",
+      );
       window.formspreeError = false; // Resetear bandera de error
       return;
     }

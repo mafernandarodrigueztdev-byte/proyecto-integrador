@@ -5,7 +5,7 @@ let todosLosLibros = [];
 let todasLasSagas = [];
 async function cargarCatalogo(){
 
-    try{const respuesta = await fetch("../public/data/catalog.json");
+    try{const respuesta = await fetch("../data/catalog.json");
         console.log("Respuesta:", respuesta);
         const data = await respuesta.json();
             todosLosLibros = data.libros;

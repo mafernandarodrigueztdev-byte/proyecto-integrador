@@ -1,26 +1,33 @@
 /* ===================================== */
+/* VARIABLES GLOBALES */
+/* ===================================== */
+
+window.todosLosLibros = [];
+window.todasLasSagas = [];
+
+/* ===================================== */
 /* CARGAR JSON */
 /* ===================================== */
-let todosLosLibros = [];
-let todasLasSagas = [];
+
 async function cargarCatalogo() {
-  try {
-    const respuesta = await fetch("../public/data/catalog.json");
-    console.log("Respuesta:", respuesta);
+    try {
+        const respuesta = await fetch("../data/catalog.json");
+        console.log("Respuesta:", respuesta);
 
-    const data = await respuesta.json();
-    todosLosLibros = data.libros;
-    todasLasSagas = data.sagas;
-    console.log("JSON completo:", data);
+        const data = await respuesta.json();
 
-    generarSagas(data.sagas, data.libros);
+        window.todosLosLibros = data.libros;
+        window.todasLasSagas = data.sagas;
 
-    generarCategorias(data.libros);
+        console.log("JSON completo:", data);
 
-    console.log("JSON cargado");
-  } catch (error) {
-    console.error(error);
-  }
+        generarSagas(data.sagas, data.libros);
+        generarCategorias(data.libros);
+
+        console.log("JSON cargado");
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 /* ===================================== */
@@ -28,27 +35,19 @@ async function cargarCatalogo() {
 /* ===================================== */
 
 function generarSagas(sagas, libros) {
-  const contenedor = document.getElementById("contenedor-categorias");
+    const contenedor = document.getElementById("contenedor-categorias");
 
-  const section = document.createElement("section");
+    const section = document.createElement("section");
+    section.classList.add("categoria");
 
-  section.classList.add("categoria");
-
-  section.innerHTML = `
-
-        <h2 class="categoria-titulo">
-            📚 Sagas
-        </h2>
-
+    section.innerHTML = `
+        <h2 class="categoria-titulo">📚 Sagas</h2>
         <div class="carrusel-libros">
-
-            ${sagas.map((saga) => crearCardSaga(saga, libros)).join("")}
-
+            ${sagas.map(saga => crearCardSaga(saga, libros)).join("")}
         </div>
-
     `;
 
-  contenedor.appendChild(section);
+    contenedor.appendChild(section);
 }
 
 /* ===================================== */
@@ -56,118 +55,55 @@ function generarSagas(sagas, libros) {
 /* ===================================== */
 
 function crearCardSaga(saga, libros) {
-  const cantidadLibros = saga.libros.length;
+    const cantidadLibros = saga.libros.length;
 
-  return `
-
-        <div
-            class="
-                card
-                card-libro
-                card-saga
-            "
-        >
-
-            <img
-                src="/frontend/assets/img/sagas/${saga.portada}"
-                alt="${saga.nombre}"
-            >
+    return `
+        <div class="card card-libro card-saga">
+            <img src="${saga.portada}" alt="${saga.nombre}">
 
             <div class="card-body">
+                <h5 class="card-title">${saga.nombre}</h5>
+                <p>${cantidadLibros} libros</p>
+                <p class="precio">$${saga.precioSaga}</p>
 
-                <h5 class="card-title">
-                    ${saga.nombre}
-                </h5>
-
-                <p>
-
-                    ${cantidadLibros}
-                    libros
-
-                </p>
-
-                <p class="precio">
-
-                    $${saga.precioSaga}
-
-                </p>
-
-                <button
-                    class="btn btn-libro"
-                    data-saga="${saga.id}"
-                >
-
+                <button class="btn btn-sagas" data-saga="${saga.id}">
                     Ver más
-
                 </button>
-
             </div>
-
         </div>
-
     `;
 }
 
 /* ===================================== */
-/* CATEGORIAS */
+/* CATEGORÍAS */
 /* ===================================== */
 
 function generarCategorias(libros) {
-  const contenedor = document.getElementById("contenedor-categorias");
+    const contenedor = document.getElementById("contenedor-categorias");
+    const categorias = [...new Set(libros.map(libro => libro.categoria))];
 
-  const categorias = [...new Set(libros.map((libro) => libro.categoria))];
-
-  categorias.forEach((categoria) => {
-    const librosCategoria = libros.filter(
-      (libro) => libro.categoria === categoria,
-    );
-
-    crearCategoria(
-      categoria,
-
-      librosCategoria,
-
-      contenedor,
-    );
-  });
+    categorias.forEach(categoria => {
+        const librosCategoria = libros.filter(libro => libro.categoria === categoria);
+        crearCategoria(categoria, librosCategoria, contenedor);
+    });
 }
 
 /* ===================================== */
-/* CREAR CATEGORIA */
+/* CREAR CATEGORÍA */
 /* ===================================== */
 
-function crearCategoria(
-  categoria,
+function crearCategoria(categoria, libros, contenedor) {
+    const section = document.createElement("section");
+    section.classList.add("categoria");
 
-  libros,
-
-  contenedor,
-) {
-  const section = document.createElement("section");
-
-  section.classList.add("categoria");
-
-  section.innerHTML = `
-
-        <h2
-            class="categoria-titulo"
-        >
-
-            ${categoria}
-
-        </h2>
-
-        <div
-            class="carrusel-libros"
-        >
-
-            ${libros.map((libro) => crearCardLibro(libro)).join("")}
-
+    section.innerHTML = `
+        <h2 class="categoria-titulo">${categoria}</h2>
+        <div class="carrusel-libros">
+            ${libros.map(libro => crearCardLibro(libro)).join("")}
         </div>
-
     `;
 
-  contenedor.appendChild(section);
+    contenedor.appendChild(section);
 }
 
 /* ===================================== */
@@ -175,136 +111,167 @@ function crearCategoria(
 /* ===================================== */
 
 function crearCardLibro(libro) {
-  return `
+    return `
+        <div class="card card-libro">
+            <img src="${libro.portada}" alt="${libro.titulo}">
 
-        <div
-            class="
-                card
-                card-libro
-            "
-        >
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${libro.titulo}</h5>
 
-            <img
+                <p class="dato-libro">
+                    <strong>Autor:</strong> ${libro.autor}
+                </p>
 
-                src="${libro.portada}"
+                <p class="dato-libro">
+                    <strong>Editorial:</strong> ${libro.editorial}
+                </p>
 
-                alt="${libro.titulo}"
+                <div class="precio-container">
+                    <span class="texto-precio">Precio</span>
+                    <p class="precio">$${libro.precio}</p>
+                </div>
 
-            >
-
-            <div
-    class="
-        card-body
-        d-flex
-        flex-column
-    "
->
-
-    <h5 class="card-title">
-
-        ${libro.titulo}
-
-    </h5>
-
-    <p class="dato-libro">
-
-        <strong>Autor:</strong>
-
-        ${libro.autor}
-
-    </p>
-
-    <p class="dato-libro">
-
-        <strong>Editorial:</strong>
-
-        ${libro.editorial}
-
-    </p>
-
-    <div class="precio-container">
-
-        <span class="texto-precio">
-
-            Precio
-
-        </span>
-
-        <p class="precio">
-
-            $${libro.precio}
-
-        </p>
-
-    </div>
-
-    <button
-
-        class="
-            btn
-            btn-libro
-            mt-auto
-        "
-
-        data-id="${libro.id}"
-
-    >
-
-        Ver detalles
-
-    </button>
-
-</div>
+                <button class="btn btn-libro mt-auto" data-id="${libro.id}">
+                    Ver detalles
+                </button>
+            </div>
         </div>
-
     `;
 }
+
 /* ===================================== */
-/* EVENTO VER DETALLES */
+/* EVENTO VER DETALLES LIBRO */
 /* ===================================== */
+
 document.addEventListener("click", function (evento) {
-  if (evento.target.matches(".btn-libro")) {
-    const idLibro = Number(evento.target.dataset.id);
+    const btnLibro = evento.target.closest(".btn-libro");
+
+    if (!btnLibro) return;
+
+    const idLibro = Number(btnLibro.dataset.id);
 
     if (!idLibro) return;
 
-    const libro = todosLosLibros.find((libro) => libro.id === idLibro);
+    const libro = window.todosLosLibros.find(l => l.id === idLibro);
 
     if (libro) {
-      abrirModalLibro(libro);
+        abrirModalLibro(libro);
     }
-  }
 });
+
 /* ===================================== */
-/* ABRIR MODAL */
+/* EVENTO VER DETALLES SAGAS */
+/* ===================================== */
+
+document.addEventListener("click", function (evento) {
+    const btnSagas = evento.target.closest(".btn-sagas");
+
+    if (!btnSagas) return;
+
+    const idSaga = btnSagas.dataset.saga;
+
+    if (!idSaga) return;
+
+    const saga = window.todasLasSagas.find(s => s.id === idSaga);
+
+    if (saga) {
+        abrirModalSagas(saga);
+    }
+});
+
+/* ===================================== */
+/* ABRIR MODAL LIBRO */
 /* ===================================== */
 
 function abrirModalLibro(libro) {
-  document.getElementById("tituloModal").textContent = libro.titulo;
+    document.getElementById("tituloModal").textContent = libro.titulo;
+    document.getElementById("imagenModal").src = libro.portada;
+    document.getElementById("imagenModal").alt = libro.titulo;
+    document.getElementById("autorModal").textContent = libro.autor;
+    document.getElementById("cantidadModal").textContent = libro.saga ? libro.saga : "Libro independiente";
+    document.getElementById("editorialModal").textContent = libro.editorial;
+    document.getElementById("edicionModal").textContent = libro.edicion;
+    document.getElementById("isbnModal").textContent = libro.isbn;
+    document.getElementById("precioModal").textContent = `$${libro.precio}.00`;
+    document.getElementById("sinopsisModal").textContent =
+        libro.sinopsis || "Sinopsis disponible próximamente.";
 
-  document.getElementById("imagenModal").src = libro.portada;
+    const botonCarrito = document.querySelector("#modalLibro .btn-carrito");
 
-  document.getElementById("autorModal").textContent = libro.autor;
+    if (botonCarrito) {
+        botonCarrito.dataset.id = libro.id;
+        botonCarrito.dataset.titulo = libro.titulo;
+        botonCarrito.dataset.precio = libro.precio;
+        botonCarrito.dataset.portada = libro.portada;
+    }
 
-  document.getElementById("sagaModal").textContent = libro.saga
-    ? libro.saga
-    : "Libro independiente";
-
-  document.getElementById("editorialModal").textContent = libro.editorial;
-
-  document.getElementById("edicionModal").textContent = libro.edicion;
-
-  document.getElementById("isbnModal").textContent = libro.isbn;
-
-  document.getElementById("precioModal").textContent = libro.precio;
-
-  document.getElementById("sinopsisModal").textContent =
-    libro.sinopsis || "Sinopsis disponible próximamente.";
-
-  const modal = new bootstrap.Modal(document.getElementById("modalLibro"));
-
-  modal.show();
+    const modal = new bootstrap.Modal(document.getElementById("modalLibro"));
+    modal.show();
 }
+
+/* ===================================== */
+/* ABRIR MODAL SAGAS */
+/* ===================================== */
+
+function abrirModalSagas(saga) {
+    document.getElementById("tituloModals").textContent = saga.nombre;
+    document.getElementById("nombreSagaModal").textContent = saga.nombre;
+    document.getElementById("imagenModals").src = saga.portada || "";
+    document.getElementById("isbnModals").textContent = saga.isbnSaga;
+    document.getElementById("precioModals").textContent = `$${saga.precioSaga}`;
+    document.getElementById("descripcionModals").textContent = saga.descripcion;
+
+    const contenedor = document.getElementById("carruselSaga");
+    contenedor.innerHTML = "";
+
+    const librosDeSaga = window.todosLosLibros.filter(libro =>
+        saga.libros.includes(libro.id)
+    );
+
+    librosDeSaga.forEach(libro => {
+        contenedor.innerHTML += `
+            <div class="card card-libro">
+                <img src="${libro.portada}" alt="${libro.titulo}">
+
+                <div class="card-body">
+                    <h5>${libro.titulo}</h5>
+                    <p>${libro.autor}</p>
+
+                    <div class="d-flex gap-2 mt-2">
+                        <button 
+                            type="button"
+                            class="btn btn-libro btn-sm" 
+                            data-id="${libro.id}"
+                        >
+                            Ver detalles
+                        </button>
+
+                        <button 
+                            type="button"
+                            class="btn btn-carrito"
+                            data-id="${libro.id}"
+                            data-titulo="${libro.titulo}"
+                            data-precio="${libro.precio}"
+                            data-portada="${libro.portada}"
+                        >
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    const botonSagaCarrito = document.querySelector("#modalSagas .btn-carrito-saga");
+
+    if (botonSagaCarrito) {
+        botonSagaCarrito.dataset.saga = saga.id;
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById("modalSagas"));
+    modal.show();
+}
+
 /* ===================================== */
 /* INICIAR */
 /* ===================================== */

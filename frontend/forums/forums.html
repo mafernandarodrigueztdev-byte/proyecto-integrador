@@ -1,495 +1,436 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mundo Entre Libros - Foros</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/src/pages/forums/forums.css">
-  </head>
-  <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg sticky-top" aria-label="Navegación principal">
-            <div class="container">
-        
-                <a class="navbar-brand fw-bold" href="/index.html">
-                <img
-                    src="/src/assets/icons/logo-mel.png"
-                    alt="Logo Mundo Entre Libros"
-                    class="navbar-logo"
-                    loading="lazy"
-                />
-                </a>
 
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Abrir menú"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mundo Entre Libros - Foros</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/src/pages/forums/forums.css">
+  <link rel="stylesheet" href="/src/pages/shoppingCart/shopping.css">
+</head>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/"> Inicio </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/catalog/catalog.html">
-                            Catálogo
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="forums.html">
-                            Foros
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                            class="nav-link"
-                            aria-current="page"
-                            href="/aboutUs/aboutUs.html"
-                            >
-                            Nosotros
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact/contact.html">
-                            Contacto
-                            </a>
-                        </li>
-                        <li class="nav-item">
-            <a class="nav-link" href="/account/account.html">
-                <img
-                src="/src/assets/icons/icono-cuenta-navbar.png"
-                alt="Mi Cuenta"
-                class="navbar-icon"
-                loading="lazy"
-                />
-            </a>
-            </li>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg sticky-top" aria-label="Navegación principal">
+      <div class="container">
 
+        <a class="navbar-brand fw-bold" href="/index.html">
+          <img src="/src/assets/icons/logo-mel.png" alt="Logo Mundo Entre Libros" class="navbar-logo" loading="lazy" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-            <a
-                class="nav-link"
-                href="/shoppingCart/shopping.html"
-            >
-                <img
-                src="/src/assets/icons/icono-carrito-navbar.png"
-                alt="Carrito"
-                class="navbar-icon"
-                loading="lazy"
-                />
-            </a>
+              <a class="nav-link" href="/"> Inicio </a>
             </li>
-                        </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalog/catalog.html">
+                Catálogo
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link active" href="forums.html">
+                Foros
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/aboutUs/aboutUs.html">
+                Nosotros
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact/contact.html">
+                Contacto
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/account/account.html">
+                <img src="/src/assets/icons/icono-cuenta-navbar.png" alt="Mi Cuenta" class="navbar-icon"
+                  loading="lazy" />
+              </a>
+            </li>
 
-                        <form class="search-form d-flex" role="search">
-                        <input
-                            class="form-control me-2"
-                            type="search"
-                            placeholder="Buscar libros..."
-                            aria-label="Buscar libros"
-                        />
-                        <button class="btn btn-outline-light" type="submit">
-                            Buscar
-                        </button>
-                        </form>
-                </div>
-            </div>
-        </nav>
-        
-        <!-- MAIN -->
-        <main class="forums-page">
+            <!----Carrito  modal----->
 
-        <!-- VISTA PRINCIPAL DE FOROS -->
-        <section class="forums-home-view" id="forumsHomeView">
-            <header class="forums-hero">
-            <span class="forums-eyebrow">Comunidad lectora</span>
+                        <li class="nav-item contenedor-carrito-offcanvas">
+                            <a class="nav-link" href="/shoppingCart/shopping.html" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
 
-            <h1>Foros y comunidades</h1>
+                                <div class="caja-icono-carrito">
+                                    <img src="/src/assets/icons/icono-carrito-navbar.png" alt="Carrito"
+                                        class="navbar-icon">
+                                    <span id="contador-carrito">0</span>
+                                </div>
+                            </a>
+                        </li>
 
-            <p>
-                Explora nuestros foros por género y únete a conversaciones con lectores
-                que comparten tu pasión por los libros.
-            </p>
-            </header>
+          </ul>
 
-            <section class="forums-list-section" aria-labelledby="forumsListTitle">
-            <h2 id="forumsListTitle">Elige un género literario</h2>
+          <form class="search-form d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar libros..." aria-label="Buscar libros" />
+            <button class="btn btn-outline-light" type="submit">
+              Buscar
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-            <div id="foros-lista" class="forums-grid">
-                <!-- Aquí se renderizan las cards desde forums.json -->
-            </div>
-            </section>
+    <!-- MAIN -->
+    <main class="forums-page">
+
+      <!-- VISTA PRINCIPAL DE FOROS -->
+      <section class="forums-home-view" id="forumsHomeView">
+        <header class="forums-hero">
+          <span class="forums-eyebrow">Comunidad lectora</span>
+
+          <h1>Foros y comunidades</h1>
+
+          <p>
+            Explora nuestros foros por género y únete a conversaciones con lectores
+            que comparten tu pasión por los libros.
+          </p>
+        </header>
+
+        <section class="forums-list-section" aria-labelledby="forumsListTitle">
+          <h2 id="forumsListTitle">Elige un género literario</h2>
+
+          <div id="foros-lista" class="forums-grid">
+            <!-- Aquí se renderizan las cards desde forums.json -->
+          </div>
         </section>
+      </section>
 
-        <!-- VISTA INTERNA DEL FORO -->
-        <section class="forum-detail-view is-hidden" id="forumDetailView">
+      <!-- VISTA INTERNA DEL FORO -->
+      <section class="forum-detail-view is-hidden" id="forumDetailView">
 
-            <!-- SIDEBAR IZQUIERDO -->
-            <aside class="forum-sidebar" aria-label="Géneros disponibles">
-            <div class="forum-sidebar-card">
-                <h2>Géneros</h2>
+        <!-- SIDEBAR IZQUIERDO -->
+        <aside class="forum-sidebar" aria-label="Géneros disponibles">
+          <div class="forum-sidebar-card">
+            <h2>Géneros</h2>
 
-                <div id="genreMenu" class="genre-menu">
-                <!-- Aquí se renderizan los géneros desde JSON -->
+            <div id="genreMenu" class="genre-menu">
+              <!-- Aquí se renderizan los géneros desde JSON -->
+            </div>
+          </div>
+
+          <div class="community-card">
+            <span>👥</span>
+            <h3>Únete a la comunidad</h3>
+            <p>Conoce lectores que comparten tu pasión por los libros.</p>
+          </div>
+        </aside>
+
+        <!-- CONTENIDO CENTRAL -->
+        <section class="forum-content">
+          <button class="back-to-forums" id="backToForumsBtn" type="button">
+            ← Volver a foros
+          </button>
+
+          <header class="forum-detail-header">
+            <div class="forum-detail-icon" id="forumDetailIcon">📚</div>
+
+            <div>
+              <h1 id="forumDetailTitle">Foro de género</h1>
+              <p id="forumDetailDescription">
+                Descripción del foro seleccionado.
+              </p>
+            </div>
+          </header>
+
+          <!-- CREAR PUBLICACIÓN -->
+          <section class="create-post-card" aria-labelledby="createPostTitle">
+            <h2 id="createPostTitle">Crear publicación</h2>
+
+            <form class="forum-post-form" id="forumPostForm">
+              <input type="text" id="postTitle" name="postTitle" placeholder="Título" />
+
+              <div id="postCommentEditor" class="rich-editor" contenteditable="true" role="textbox"
+                aria-label="Escribe tu comentario" data-placeholder="Escribe tu comentario..."></div>
+
+              <div class="post-form-toolbar">
+                <div class="editor-toolbar" data-editor-target="postCommentEditor">
+                  <button type="button" data-command="bold" aria-label="Negritas">
+                    <strong>B</strong>
+                  </button>
+
+                  <button type="button" data-command="italic" aria-label="Cursiva">
+                    <em>I</em>
+                  </button>
+
+                  <button type="button" data-command="underline" aria-label="Subrayado">
+                    <u>U</u>
+                  </button>
+
+                  <button type="button" data-command="insertUnorderedList">
+                    • Lista
+                  </button>
+
+                  <button type="button" data-command="insertOrderedList">
+                    1. Lista
+                  </button>
+
+                  <button type="button" data-command="createLink" aria-label="Agregar enlace">
+                    🔗
+                  </button>
+
+                  <button type="button" data-command="insertImage" data-input-id="postImageInput"
+                    aria-label="Agregar imagen">
+                    🖼️
+                  </button>
                 </div>
+
+                <input type="file" id="postImageInput" accept="image/*" hidden />
+
+                <button type="submit" class="publish-button">
+                  Publicar
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- PUBLICACIONES RECIENTES -->
+          <section class="recent-posts-section" aria-labelledby="recentPostsTitle">
+            <h2 id="recentPostsTitle">Publicaciones recientes</h2>
+
+            <div id="recentPostsList" class="recent-posts-list">
+              <!-- Aquí se renderizan las publicaciones -->
             </div>
 
-            <div class="community-card">
-                <span>👥</span>
-                <h3>Únete a la comunidad</h3>
-                <p>Conoce lectores que comparten tu pasión por los libros.</p>
-            </div>
-            </aside>
+            <button class="load-more-posts" type="button">
+              Ver más publicaciones ↓
+            </button>
+          </section>
 
-            <!-- CONTENIDO CENTRAL -->
-            <section class="forum-content">
-            <button class="back-to-forums" id="backToForumsBtn" type="button">
-                ← Volver a foros
+          <!-- PANEL COMPLETO DE PUBLICACIÓN Y RESPUESTAS -->
+          <section class="post-detail-panel is-hidden" id="postDetailPanel">
+            <button class="back-to-posts" id="backToPostsBtn" type="button">
+              ← Volver a publicaciones
             </button>
 
-            <header class="forum-detail-header">
-                <div class="forum-detail-icon" id="forumDetailIcon">📚</div>
+            <article class="post-detail-card">
+              <div class="post-detail-header">
+                <div class="post-avatar" id="postDetailAvatar">📚</div>
 
                 <div>
-                <h1 id="forumDetailTitle">Foro de género</h1>
-                <p id="forumDetailDescription">
-                    Descripción del foro seleccionado.
-                </p>
+                  <h2 id="postDetailTitle">Título de la publicación</h2>
+                  <p id="postDetailMeta">Autor · Fecha</p>
                 </div>
-            </header>
+              </div>
 
-            <!-- CREAR PUBLICACIÓN -->
-            <section class="create-post-card" aria-labelledby="createPostTitle">
-                <h2 id="createPostTitle">Crear publicación</h2>
+              <div class="post-detail-body" id="postDetailBody">
+                <!-- Aquí se carga la publicación completa -->
+              </div>
+            </article>
 
-                <form class="forum-post-form" id="forumPostForm">
-                <input
-                    type="text"
-                    id="postTitle"
-                    name="postTitle"
-                    placeholder="Título"
-                />
+            <section class="replies-section">
+              <h2>Respuestas</h2>
 
-                <div
-                    id="postCommentEditor"
-                    class="rich-editor"
-                    contenteditable="true"
-                    role="textbox"
-                    aria-label="Escribe tu comentario"
-                    data-placeholder="Escribe tu comentario..."
-                ></div>
+              <div class="replies-list" id="repliesList">
+                <!-- Aquí se renderizan las respuestas -->
+              </div>
+            </section>
+
+            <section class="reply-form-card">
+              <h2>Responder publicación</h2>
+
+              <form id="replyForm" class="reply-form">
+                <div id="replyEditor" class="rich-editor" contenteditable="true" role="textbox"
+                  aria-label="Escribe tu respuesta" data-placeholder="Escribe tu respuesta..."></div>
 
                 <div class="post-form-toolbar">
-                    <div class="editor-toolbar" data-editor-target="postCommentEditor">
+                  <div class="editor-toolbar" data-editor-target="replyEditor">
                     <button type="button" data-command="bold" aria-label="Negritas">
-                        <strong>B</strong>
+                      <strong>B</strong>
                     </button>
 
                     <button type="button" data-command="italic" aria-label="Cursiva">
-                        <em>I</em>
+                      <em>I</em>
                     </button>
 
                     <button type="button" data-command="underline" aria-label="Subrayado">
-                        <u>U</u>
+                      <u>U</u>
                     </button>
 
                     <button type="button" data-command="insertUnorderedList">
-                        • Lista
+                      • Lista
                     </button>
 
                     <button type="button" data-command="insertOrderedList">
-                        1. Lista
+                      1. Lista
                     </button>
 
                     <button type="button" data-command="createLink" aria-label="Agregar enlace">
-                        🔗
+                      🔗
                     </button>
 
-                    <button
-                        type="button"
-                        data-command="insertImage"
-                        data-input-id="postImageInput"
-                        aria-label="Agregar imagen"
-                    >
-                        🖼️
+                    <button type="button" data-command="insertImage" data-input-id="replyImageInput"
+                      aria-label="Agregar imagen">
+                      🖼️
                     </button>
-                    </div>
+                  </div>
 
-                    <input
-                    type="file"
-                    id="postImageInput"
-                    accept="image/*"
-                    hidden
-                    />
+                  <input type="file" id="replyImageInput" accept="image/*" hidden />
 
-                    <button type="submit" class="publish-button">
-                    Publicar
-                    </button>
+                  <button type="submit" class="publish-button">
+                    Responder
+                  </button>
                 </div>
-                </form>
+              </form>
             </section>
-
-            <!-- PUBLICACIONES RECIENTES -->
-            <section class="recent-posts-section" aria-labelledby="recentPostsTitle">
-                <h2 id="recentPostsTitle">Publicaciones recientes</h2>
-
-                <div id="recentPostsList" class="recent-posts-list">
-                <!-- Aquí se renderizan las publicaciones -->
-                </div>
-
-                <button class="load-more-posts" type="button">
-                Ver más publicaciones ↓
-                </button>
-            </section>
-
-            <!-- PANEL COMPLETO DE PUBLICACIÓN Y RESPUESTAS -->
-            <section class="post-detail-panel is-hidden" id="postDetailPanel">
-                <button class="back-to-posts" id="backToPostsBtn" type="button">
-                ← Volver a publicaciones
-                </button>
-
-                <article class="post-detail-card">
-                <div class="post-detail-header">
-                    <div class="post-avatar" id="postDetailAvatar">📚</div>
-
-                    <div>
-                    <h2 id="postDetailTitle">Título de la publicación</h2>
-                    <p id="postDetailMeta">Autor · Fecha</p>
-                    </div>
-                </div>
-
-                <div class="post-detail-body" id="postDetailBody">
-                    <!-- Aquí se carga la publicación completa -->
-                </div>
-                </article>
-
-                <section class="replies-section">
-                <h2>Respuestas</h2>
-
-                <div class="replies-list" id="repliesList">
-                    <!-- Aquí se renderizan las respuestas -->
-                </div>
-                </section>
-
-                <section class="reply-form-card">
-                <h2>Responder publicación</h2>
-
-                <form id="replyForm" class="reply-form">
-                    <div
-                    id="replyEditor"
-                    class="rich-editor"
-                    contenteditable="true"
-                    role="textbox"
-                    aria-label="Escribe tu respuesta"
-                    data-placeholder="Escribe tu respuesta..."
-                    ></div>
-
-                    <div class="post-form-toolbar">
-                    <div class="editor-toolbar" data-editor-target="replyEditor">
-                        <button type="button" data-command="bold" aria-label="Negritas">
-                        <strong>B</strong>
-                        </button>
-
-                        <button type="button" data-command="italic" aria-label="Cursiva">
-                        <em>I</em>
-                        </button>
-
-                        <button type="button" data-command="underline" aria-label="Subrayado">
-                        <u>U</u>
-                        </button>
-
-                        <button type="button" data-command="insertUnorderedList">
-                        • Lista
-                        </button>
-
-                        <button type="button" data-command="insertOrderedList">
-                        1. Lista
-                        </button>
-
-                        <button type="button" data-command="createLink" aria-label="Agregar enlace">
-                        🔗
-                        </button>
-
-                        <button
-                        type="button"
-                        data-command="insertImage"
-                        data-input-id="replyImageInput"
-                        aria-label="Agregar imagen"
-                        >
-                        🖼️
-                        </button>
-                    </div>
-
-                    <input
-                        type="file"
-                        id="replyImageInput"
-                        accept="image/*"
-                        hidden
-                    />
-
-                    <button type="submit" class="publish-button">
-                        Responder
-                    </button>
-                    </div>
-                </form>
-                </section>
-            </section>
-            </section>
-
-            <!-- PANEL DERECHO -->
-            <aside class="forum-info-panel">
-            <section class="forum-summary-card">
-                <h2>Resumen del foro</h2>
-
-                <button class="subscribe-forum-button" id="subscribeForumBtn" type="button">
-                Suscribirme al foro
-                </button>
-
-                <div class="summary-row">
-                <span>👥 Miembros activos</span>
-                <strong id="summaryMembers">0</strong>
-                </div>
-
-                <div class="summary-row">
-                <span>💬 Temas</span>
-                <strong id="summaryTopics">0</strong>
-                </div>
-
-                <div class="summary-row">
-                <span>⭐ Mis puntos en este foro</span>
-                <strong id="summaryPoints">0</strong>
-                </div>
-            </section>
-
-            <section class="points-card">
-                <h2>🏆 Gana puntos</h2>
-
-                <div class="summary-row">
-                <span>Crear publicación</span>
-                <strong>+10</strong>
-                </div>
-
-                <div class="summary-row">
-                <span>Responder publicación</span>
-                <strong>+5</strong>
-                </div>
-
-                <p>Debes estar suscrita al foro para acumular puntos.</p>
-            </section>
-            </aside>
+          </section>
         </section>
-        </main>
 
-        <!--? Footer: Rodrigo-->
-        <footer class="main-footer">
-            <div class="footer-container">
-                
-                <div class="footer-section logo-section">
-                    <img src="/src/assets/icons/logo-mel-horizontal.png" alt="Mundo Entre Libros" class="img-fluid footer-logo">
-                </div>
+        <!-- PANEL DERECHO -->
+        <aside class="forum-info-panel">
+          <section class="forum-summary-card">
+            <h2>Resumen del foro</h2>
 
-                <div class="footer-section links-section">
-                    <h3>Explora</h3>
-                    <ul>
-                        <li><a href="/index.html">Inicio</a></li>
-                        <li><a href="/catalog/catalog.html">Catálogo</a></li>
-                        <li><a href="/forums.html">Foros</a></li>
-                        <li><a href="/aboutUs/aboutUs.html">Nosotros</a></li>
-                        <li><a href="/contact/contact.html">Contacto</a></li>
-                    </ul>
-                </div>
+            <button class="subscribe-forum-button" id="subscribeForumBtn" type="button">
+              Suscribirme al foro
+            </button>
 
-                <div class="footer-section pixel-section">
-                    <p class="pixel-interaction-title">¡Pasa a saludarnos!</p>
-                    <div class="pixel-team">
-                        <!--Mafer-->
-                        <a 
-                            href="https://github.com/mafernandarodrigueztdev-byte" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-mafer" 
-                            title="GitHub de María Fernanda Rodríguez Trinidad"
-                            aria-label="Ir al perfil de GitHub de María Fernanda Rodríguez Trinidad">
-                        </a>
-
-                        <!--Adri-->
-                        <a 
-                            href="https://github.com/iladricg14-lab" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-ilse" 
-                            title="GitHub de Ilse Adriana Careo Galicia"
-                            aria-label="Ir al perfil de GitHub de Ilse Adriana Careo Galicia">
-                        </a>
-
-                        <!--Rodrigo-->
-                        <a 
-                            href="https://github.com/Rock2612" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-rodrigo" 
-                            title="GitHub de Rodrigo González Pastrana"
-                            aria-label="Ir al perfil de GitHub de Rodrigo González Pastrana">
-                        </a>
-
-                        <!--Israel-->
-                        <a 
-                            href="https://github.com/IsraelMRQ" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-israel" 
-                            title="GitHub de José Israel Manrique Roque"
-                            aria-label="Ir al perfil de GitHub de José Israel Manrique Roque">
-                        </a>
-
-                        <!--Miguel-->
-                        <a 
-                            href="https://github.com/Miguel02mg" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-miguel" 
-                            title="GitHub de Miguel Ángel Martínez Garduño"
-                            aria-label="Ir al perfil de GitHub de Miguel Ángel Martínez Garduño">
-                        </a>
-
-                        <!--Carlos-->
-                        <a 
-                            href="https://github.com/Carlos-Software-Engineer-1999" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-carlos" 
-                            title="GitHub de Carlos Navarrete Tapia"
-                            aria-label="Ir al perfil de GitHub de Carlos Navarrete Tapia">
-                        </a>
-
-                        <!--Tonantzin-->
-                        <a 
-                            href="https://github.com/Tonantzinap" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="pixel-member pixel-tonantzin" 
-                            title="GitHub de Tonantzin Alquisira Palma"
-                            aria-label="Ir al perfil de GitHub de Tonantzin Alquisira Palma">
-                        </a>
-                    </div>
-                </div>
+            <div class="summary-row">
+              <span>👥 Miembros activos</span>
+              <strong id="summaryMembers">0</strong>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; Mundo Entre Libros - 2026</p>
+            <div class="summary-row">
+              <span>💬 Temas</span>
+              <strong id="summaryTopics">0</strong>
             </div>
-        </footer>
+
+            <div class="summary-row">
+              <span>⭐ Mis puntos en este foro</span>
+              <strong id="summaryPoints">0</strong>
+            </div>
+          </section>
+
+          <section class="points-card">
+            <h2>🏆 Gana puntos</h2>
+
+            <div class="summary-row">
+              <span>Crear publicación</span>
+              <strong>+10</strong>
+            </div>
+
+            <div class="summary-row">
+              <span>Responder publicación</span>
+              <strong>+5</strong>
+            </div>
+
+            <p>Debes estar suscrita al foro para acumular puntos.</p>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <!--? Footer: Rodrigo-->
+    <footer class="main-footer">
+      <div class="footer-container">
+
+        <div class="footer-section logo-section">
+          <img src="/src/assets/icons/logo-mel-horizontal.png" alt="Mundo Entre Libros" class="img-fluid footer-logo">
+        </div>
+
+        <div class="footer-section links-section">
+          <h3>Explora</h3>
+          <ul>
+            <li><a href="/index.html">Inicio</a></li>
+            <li><a href="/catalog/catalog.html">Catálogo</a></li>
+            <li><a href="/forums.html">Foros</a></li>
+            <li><a href="/aboutUs/aboutUs.html">Nosotros</a></li>
+            <li><a href="/contact/contact.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section pixel-section">
+          <p class="pixel-interaction-title">¡Pasa a saludarnos!</p>
+          <div class="pixel-team">
+            <!--Mafer-->
+            <a href="https://github.com/mafernandarodrigueztdev-byte" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-mafer" title="GitHub de María Fernanda Rodríguez Trinidad"
+              aria-label="Ir al perfil de GitHub de María Fernanda Rodríguez Trinidad">
+            </a>
+
+            <!--Adri-->
+            <a href="https://github.com/iladricg14-lab" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-ilse" title="GitHub de Ilse Adriana Careo Galicia"
+              aria-label="Ir al perfil de GitHub de Ilse Adriana Careo Galicia">
+            </a>
+
+            <!--Rodrigo-->
+            <a href="https://github.com/Rock2612" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-rodrigo" title="GitHub de Rodrigo González Pastrana"
+              aria-label="Ir al perfil de GitHub de Rodrigo González Pastrana">
+            </a>
+
+            <!--Israel-->
+            <a href="https://github.com/IsraelMRQ" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-israel" title="GitHub de José Israel Manrique Roque"
+              aria-label="Ir al perfil de GitHub de José Israel Manrique Roque">
+            </a>
+
+            <!--Miguel-->
+            <a href="https://github.com/Miguel02mg" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-miguel" title="GitHub de Miguel Ángel Martínez Garduño"
+              aria-label="Ir al perfil de GitHub de Miguel Ángel Martínez Garduño">
+            </a>
+
+            <!--Carlos-->
+            <a href="https://github.com/Carlos-Software-Engineer-1999" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-carlos" title="GitHub de Carlos Navarrete Tapia"
+              aria-label="Ir al perfil de GitHub de Carlos Navarrete Tapia">
+            </a>
+
+            <!--Tonantzin-->
+            <a href="https://github.com/Tonantzinap" target="_blank" rel="noopener noreferrer"
+              class="pixel-member pixel-tonantzin" title="GitHub de Tonantzin Alquisira Palma"
+              aria-label="Ir al perfil de GitHub de Tonantzin Alquisira Palma">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; Mundo Entre Libros - 2026</p>
+      </div>
+    </footer>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold" id="offcanvasCarritoLabel">Tu Carrito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <div class="offcanvas-body d-flex flex-column justify-content-between">
+        <div class="carrito-productos-lista">
+          <p class="text-muted text-center my-5">Tu carrito está vacío actualmente.</p>
+        </div>
+
+        <div class="carrito-offcanvas-footer border-top pt-3">
+          <div class="d-flex justify-content-between mb-3 fw-bold fs-5">
+            <span>Total:</span>
+            <span>$0.00</span>
+          </div>
+          <a href="/shoppingCart/shopping.html" class="btn w-100 py-2 fw-bold">Ver Carrito Completo</a>
+        </div>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="../src/pages/forums/forums.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="../src/pages/forums/forums.js"></script>
+  <script src="/src/carrito.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

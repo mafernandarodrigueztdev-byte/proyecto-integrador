@@ -145,6 +145,47 @@ main {
   color: var(--fondo-principal-crema);
 }
 
+
+/* ==========================================================================
+   OFFCANVAS: PANEL LATERAL DEL CARRITO
+   ========================================================================== */
+
+/* Contenedor principal del panel */
+#offcanvasCarrito {
+  background-color: var(--fondo-principal-crema);
+  border-left: 2px solid var(--texto-principal-cafe-oscuro);
+  width: 380px; /* Ancho ideal para portadas y títulos de libros */
+}
+
+/* Título superior "Tu Carrito" */
+#offcanvasCarrito .offcanvas-title {
+  color: var(--texto-principal-cafe-oscuro);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+}
+
+/* Remueve el contorno azul por defecto de Bootstrap al cerrar */
+#offcanvasCarrito .btn-close:focus {
+  box-shadow: none;
+}
+
+/* Botón inferior de "Ver Carrito Completo" */
+#offcanvasCarrito .carrito-offcanvas-footer .btn {
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border: none;
+  transition: background-color var(--transicion);
+}
+
+#offcanvasCarrito .carrito-offcanvas-footer .btn:hover {
+  background-color: var(--texto-principal-cafe-oscuro);
+}
+
+/* Suavizar la animación de transición del Offcanvas */
+#offcanvasCarrito.offcanvas {
+  transition: transform 0.4s ease-in-out !important;
+}
+
 /* ==========================================================================
    ICONOS NAVBAR
    ========================================================================== */
@@ -622,501 +663,638 @@ main {
 /* SECCIONES */
 /* ================================= */
 
-.categoria {
-  margin-bottom: 60px;
+.categoria{
+    margin-bottom: 60px;
 }
 
-.categoria-titulo {
-  font-family: "Cormorant Garamond";
-  color: var(--texto-principal-cafe-oscuro);
-  font-size: 2.2rem;
-  margin-bottom: 25px;
+.categoria-titulo{
+    font-family: "Cormorant Garamond";
+    color: var(--texto-principal-cafe-oscuro);
+    font-size: 2.2rem;
+    margin-bottom: 25px;
 }
 
 /* ================================= */
 /* CARRUSEL */
 /* ================================= */
 
-.carrusel-libros {
-  display: flex;
+.carrusel-libros{
 
-  align-items: stretch;
+    display:flex;
 
-  gap: 20px;
+    align-items:stretch;
 
-  overflow-x: auto;
+    gap:20px;
 
-  scroll-behavior: smooth;
+    overflow-x:auto;
 
-  padding-bottom: 10px;
+    scroll-behavior:smooth;
+
+    padding-bottom:10px;
+
 }
 
-.carrusel-libros::-webkit-scrollbar {
-  height: 8px;
+.carrusel-libros::-webkit-scrollbar{
+    height:8px;
 }
 
-.carrusel-libros::-webkit-scrollbar-thumb {
-  background: var(--cafe-medio);
-  border-radius: 10px;
+.carrusel-libros::-webkit-scrollbar-thumb{
+    background:var(--cafe-medio);
+    border-radius:10px;
 }
-
 /* ================================= */
 /* CARD LIBRO */
 /* ================================= */
 
-.card-libro {
-  min-width: 250px;
-  max-width: 250px;
+.card-libro{
 
-  height: 480px;
+    min-width:250px;
+    max-width:250px;
 
-  border: none;
+    height:480px;
 
-  border-radius: 16px;
+    border:none;
 
-  overflow: hidden;
+    border-radius:16px;
 
-  background: var(--fondo-blanco-calido);
+    overflow:hidden;
 
-  box-shadow: var(--sombra-suave);
+    background:var(--fondo-blanco-calido);
 
-  transition: var(--transicion);
+    box-shadow:var(--sombra-suave);
 
-  display: flex;
+    transition:var(--transicion);
 
-  flex-direction: column;
+    display:flex;
+
+    flex-direction:column;
+
 }
 
-.card-libro:hover {
-  transform: translateY(-5px);
+.card-libro:hover{
 
-  box-shadow: var(--sombra-media);
+    transform:translateY(-5px);
+
+    box-shadow:var(--sombra-media);
+
 }
 
-.card-libro img {
-  width: 100%;
+.card-libro img{
 
-  height: 200px;
+    width:100%;
 
-  object-fit: contain;
+    height:200px;
 
-  background: white;
+    object-fit:contain;
 
-  padding: 10px;
+    background:white;
+
+    padding:10px;
+
 }
 
 /* BODY CARD */
 
-.card-libro .card-body {
-  flex: 1;
+.card-libro .card-body{
 
-  display: flex;
+    flex:1;
 
-  flex-direction: column;
+    display:flex;
 
-  padding: 15px;
+    flex-direction:column;
+
+    padding:15px;
+
 }
 
 /* TITULO */
 
-.card-title {
-  min-height: 60px;
+.card-title{
 
-  display: flex;
+    min-height:60px;
 
-  align-items: center;
+    display:flex;
 
-  color: var(--texto-principal-cafe-oscuro);
+    align-items:center;
 
-  font-family: "Cormorant Garamond";
+    color:var(--texto-principal-cafe-oscuro);
 
-  font-size: 1.25rem;
+    font-family:"Cormorant Garamond";
 
-  font-weight: 700;
+    font-size:1.25rem;
 
-  margin-bottom: 12px;
+    font-weight:700;
+
+    margin-bottom:12px;
+
 }
 
 /* DATOS */
 
-.dato-libro {
-  margin-bottom: 8px;
+.dato-libro{
 
-  color: var(--cafe-medio);
+    margin-bottom:8px;
 
-  font-size: 0.9rem;
+    color:var(--cafe-medio);
 
-  line-height: 1.4;
+    font-size:.9rem;
+
+    line-height:1.4;
+
 }
 
 /* PRECIO */
 
-.precio-container {
-  margin-top: 10px;
+.precio-container{
 
-  margin-bottom: 15px;
+    margin-top:10px;
+
+    margin-bottom:15px;
+
 }
 
-.texto-precio {
-  display: block;
+.texto-precio{
 
-  font-size: 0.85rem;
+    display:block;
 
-  color: var(--cafe-medio);
+    font-size:.85rem;
+
+    color:var(--cafe-medio);
+
 }
 
-.precio {
-  font-size: 1.8rem;
+.precio{
 
-  font-weight: 700;
+    font-size:1.8rem;
 
-  color: var(--color-verde-acento);
+    font-weight:700;
 
-  margin: 0;
+    color:var(--color-verde-acento);
+
+    margin:0;
+
 }
 
 /* BOTON */
 
-.btn-libro {
-  margin-top: auto;
+.btn-libro{
 
-  background: var(--boton-principal-acento-fuerte);
+    margin-top:auto;
 
-  color: white;
+    background:var(--boton-principal-acento-fuerte);
 
-  border: none;
+    color:white;
+
+    border:none;
+
 }
 
-.btn-libro:hover {
-  background: var(--cafe-medio);
+.btn-libro:hover{
 
-  color: white;
+    background:var(--cafe-medio);
+
+    color:white;
+
 }
+.btn-sagas{
+
+    margin-top:auto;
+
+    background:var(--boton-principal-acento-fuerte);
+
+    color:white;
+
+    border:none;
+
+}
+
+.btn-sagas:hover{
+
+    background:var(--cafe-medio);
+
+    color:white;
+
+}
+
 
 /* ================================= */
 /* CARD SAGA */
 /* ================================= */
 
-.card-saga {
-  min-width: 320px;
-  max-width: 320px;
+.card-saga{
+
+   min-width:250px;
+    max-width:250px;
+
+    height:480px;
 }
 
-.card-saga img {
-  height: 220px;
-  object-fit: cover;
+.card-saga img{
+
+  width:100%;
+
+    height:200px;
+
+    object-fit:contain;
+
+    background:white;
+
+    padding:10px;
+
 }
 /* ================================= */
 /* DATOS DEL LIBRO */
 /* ================================= */
 
-.dato-libro {
-  margin-bottom: 6px;
+.dato-libro{
 
-  color: var(--cafe-medio);
+    margin-bottom:6px;
 
-  font-size: 0.9rem;
+    color:var(--cafe-medio);
 
-  line-height: 1.3;
+    font-size:.9rem;
+
+    line-height:1.3;
+
 }
 
-.precio-container {
-  margin-top: 10px;
+.precio-container{
 
-  margin-bottom: 15px;
+    margin-top:10px;
+
+    margin-bottom:15px;
+
 }
 
-.texto-precio {
-  display: block;
+.texto-precio{
 
-  font-size: 0.85rem;
+    display:block;
 
-  color: var(--cafe-medio);
+    font-size:.85rem;
+
+    color:var(--cafe-medio);
+
 }
 
-.precio {
-  font-size: 1.8rem;
+.precio{
 
-  font-weight: 700;
+    font-size:1.8rem;
 
-  color: var(--color-verde-acento);
+    font-weight:700;
 
-  margin: 0;
+    color:var(--color-verde-acento);
+
+    margin:0;
+
 }
 /* ================================= */
 /* MODAL LIBRO PREMIUM */
 /* ================================= */
 
-.modal-dialog {
-  max-width: 950px;
+.modal-dialog{
+
+    max-width:950px;
+
 }
 
-.modal-content {
-  border: none;
+.modal-content{
 
-  border-radius: 24px;
+    border:none;
 
-  overflow: hidden;
+    border-radius:24px;
 
-  background: var(--fondo-blanco-calido);
+    overflow:hidden;
 
-  box-shadow: var(--sombra-media);
+    background:var(--fondo-blanco-calido);
+
+    box-shadow:var(--sombra-media);
+
 }
 
 /* ================================= */
 /* HEADER */
 /* ================================= */
 
-.modal-header {
-  position: relative;
+.modal-header{
 
-  justify-content: center;
+    position:relative;
 
-  padding: 25px 40px;
+    justify-content:center;
 
-  border-bottom: 1px solid var(--beige-grisaceo);
+    padding:25px 40px;
+
+    border-bottom:1px solid var(--beige-grisaceo);
+
 }
 
-.modal-header .btn-close {
-  position: absolute;
+.modal-header .btn-close{
 
-  right: 30px;
+    position:absolute;
+
+    right:30px;
+
 }
 
-.modal-title {
-  width: 100%;
+.modal-title{
 
-  text-align: center;
+    width:100%;
 
-  font-family: "Cormorant Garamond";
+    text-align:center;
 
-  font-size: 2.8rem;
+    font-family:"Cormorant Garamond";
 
-  font-weight: 700;
+    font-size:2.8rem;
 
-  color: var(--texto-principal-cafe-oscuro);
+    font-weight:700;
+
+    color:var(--texto-principal-cafe-oscuro);
+
 }
 
 /* ================================= */
 /* BODY */
 /* ================================= */
 
-.modal-body {
-  padding: 18px 22px;
+.modal-body{
+
+    padding:18px 22px;
+
 }
 
 /* ================================= */
 /* CONTENEDOR PRINCIPAL */
 /* ================================= */
 
-.contenedor-info-libro {
-  background: #fdfbf8;
-  border: 2px solid #e7d9ca;
-  border-radius: 24px;
-  padding: 20px;
-  margin-bottom: 15px;
+.contenedor-info-libro{
+    background:#fdfbf8;
+    border:2px solid #e7d9ca;
+    border-radius:24px;
+    padding:20px;
+    margin-bottom:15px;
+
 }
 
 /* ================================= */
 /* PORTADA */
 /* ================================= */
 
-.portada-container {
-  display: flex;
+.portada-container{
 
-  justify-content: center;
+    display:flex;
 
-  align-items: center;
+    justify-content:center;
+
+    align-items:center;
+
 }
 
-#imagenModal {
-  width: 190px;
+#imagenModal{
 
-  max-width: 100%;
+    width:190px;
 
-  max-height: 280px;
+    max-width:100%;
 
-  object-fit: cover;
+    max-height:280px;
 
-  border-radius: 16px;
+    object-fit:cover;
 
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    border-radius:16px;
 
-  transition: 0.3s ease;
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+    transition:.3s ease;
+
 }
 
-#imagenModal:hover {
-  transform: scale(1.03);
+#imagenModal:hover{
+
+    transform:scale(1.03);
+
 }
 
 /* ================================= */
 /* GRID DATOS */
 /* ================================= */
 
-.datos-grid {
-  display: grid;
+.datos-grid{
 
-  grid-template-columns: 1fr 1fr;
+    display:grid;
 
-  gap: 8px;
+    grid-template-columns:1fr 1fr;
 
-  height: 100%;
+    gap:8px;
 
-  align-content: center;
+    height:100%;
+
+    align-content:center;
+
 }
 
 /* ================================= */
 /* TARJETAS DATOS */
 /* ================================= */
 
-.dato-card {
-  padding: 15px 10px;
+.dato-card{
 
-  border-bottom: 1px solid #ece1d7;
+    padding:15px 10px;
 
-  display: flex;
+    border-bottom:1px solid #ece1d7;
 
-  flex-direction: column;
+    display:flex;
 
-  justify-content: center;
+    flex-direction:column;
+
+    justify-content:center;
+
 }
 
-.dato-label {
-  font-family: "Cormorant Garamond";
+.dato-label{
 
-  font-size: 1.2rem;
+    font-family:"Cormorant Garamond";
 
-  font-weight: 700;
+    font-size:1.2rem;
 
-  color: var(--texto-principal-cafe-oscuro);
+    font-weight:700;
 
-  margin-bottom: 6px;
+    color:var(--texto-principal-cafe-oscuro);
+
+    margin-bottom:6px;
+
 }
 
-.dato-valor {
-  font-size: 1.05rem;
+.dato-valor{
 
-  color: var(--cafe-medio);
+    font-size:1.05rem;
+
+    color:var(--cafe-medio);
+
 }
 
 /* ================================= */
 /* PRECIO */
 /* ================================= */
 
-.precio-card {
-  justify-content: center;
+.precio-card{
 
-  align-items: center;
+    justify-content:center;
 
-  text-align: center;
+    align-items:center;
+
+    text-align:center;
+
 }
 
-.precio-texto {
-  font-size: 1.1rem;
+.precio-texto{
 
-  color: var(--cafe-medio);
+    font-size:1.1rem;
 
-  margin-bottom: 5px;
+    color:var(--cafe-medio);
+
+    margin-bottom:5px;
+
 }
 
-.precio-modal {
-  font-size: 2.2rem;
+.precio-modal{
 
-  font-weight: 800;
+    font-size:2.2rem;
 
-  color: var(--color-verde-acento);
+    font-weight:800;
 
-  margin: 0;
+    color:var(--color-verde-acento);
 
-  padding: 0;
+    margin:0;
 
-  border: none;
+    padding:0;
+
+    border:none;
+
 }
 
 /* ================================= */
 /* SINOPSIS */
 /* ================================= */
 
-.titulo-sinopsis {
-  font-family: "Cormorant Garamond";
+.titulo-sinopsis{
 
-  font-size: 2.2rem;
+    font-family:"Cormorant Garamond";
 
-  color: var(--texto-principal-cafe-oscuro);
+    font-size:2.2rem;
 
-  margin-bottom: 15px;
+    color:var(--texto-principal-cafe-oscuro);
+
+    margin-bottom:15px;
+
 }
 
-#sinopsisModal {
-  background: #fdfbf8;
-  border: 2px solid #e7d9ca;
-  border-radius: 20px;
-  padding: 18px;
-  line-height: 1.6;
-  text-align: justify;
-  line-height: 1.9;
-  font-size: 1.08rem;
-  color: var(--texto-principal-cafe-oscuro);
+#sinopsisModal{
+    background:#fdfbf8;
+    border:2px solid #e7d9ca;
+    border-radius:20px;
+    padding:18px;
+    line-height:1.6;
+    text-align:justify;
+    line-height:1.9;
+    font-size:1.08rem;
+    color:var(--texto-principal-cafe-oscuro);
+
 }
 
 /* ================================= */
 /* FOOTER */
 /* ================================= */
 
-.modal-footer {
-  justify-content: center;
+.modal-footer{
 
-  gap: 20px;
+    justify-content:center;
 
-  padding: 25px;
+    gap:20px;
 
-  border-top: 1px solid var(--beige-grisaceo);
+    padding:25px;
+
+    border-top:1px solid var(--beige-grisaceo);
+
 }
 
-.btn-carrito {
-  background: var(--color-verde-acento);
+.btn-carrito{
 
-  color: white;
+    background:var(--color-verde-acento);
 
-  border: none;
+    color:white;
 
-  border-radius: 10px;
+    border:none;
 
-  padding: 12px 28px;
+    border-radius:10px;
 
-  font-weight: 600;
+    padding:12px 28px;
+
+    font-weight:600;
+
 }
 
-.btn-carrito:hover {
-  opacity: 0.9;
+.btn-carrito:hover{
 
-  color: white;
+    opacity:.9;
+
+    color:white;
+
 }
 
 /* ================================= */
 /* RESPONSIVE */
 /* ================================= */
 
-@media (max-width: 768px) {
-  .modal-title {
-    font-size: 2.2rem;
-  }
+@media(max-width:768px){
 
-  .datos-grid {
-    grid-template-columns: 1fr;
+    .modal-title{
 
-    margin-top: 25px;
-  }
+        font-size:2.2rem;
 
-  .dato-label {
-    font-size: 1.3rem;
-  }
+    }
 
-  .precio-modal {
-    font-size: 2.4rem;
-  }
+    .datos-grid{
 
-  #imagenModal {
-    width: 200px;
-  }
+        grid-template-columns:1fr;
+
+        margin-top:25px;
+
+    }
+
+    .dato-label{
+
+        font-size:1.3rem;
+
+    }
+
+    .precio-modal{
+
+        font-size:2.4rem;
+
+    }
+
+    #imagenModal{
+
+        width:200px;
+
+    }
+
+}
+/*Modal sagas*/ 
+#imagenSagaModal{
+
+    width:220px;
+
+    max-height:320px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    box-shadow:var(--sombra-media);
+
+}
+
+#librosSagaModal{
+
+    margin-top:20px;
+
 }

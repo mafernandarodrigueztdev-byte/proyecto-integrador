@@ -787,7 +787,7 @@
       "edicion": "1.ª edición en español",
       "isbn": "9786075694122",
       "precio": 320,
-      "portada": "/src/assets/libros/desarrolloPersonal/Habitos_atomicos.jpg",
+      "portada": "/src/assets/libros/desPersonal/Habitos_atomicos.jpg",
       "sinopsis": "Una guía práctica para construir buenos hábitos, eliminar los malos y lograr mejoras constantes mediante pequeños cambios diarios."
     },
     {
@@ -800,7 +800,7 @@
       "edicion": "30.º aniversario, revisada y actualizada",
       "isbn": "9786075695594",
       "precio": 434,
-      "portada": "/src/assets/libros/desarrolloPersonal/Los_7_habitos_de_la_gente_altamente_efectiva.jpg",
+      "portada": "/src/assets/libros/desPersonal/Los_7_habitos_de_la_gente_altamente_efectiva.jpg",
       "sinopsis": "Un clásico del desarrollo personal que enseña principios para alcanzar la efectividad tanto en la vida profesional como personal."
     },
     {
@@ -813,7 +813,7 @@
       "edicion": "Edición revisada",
       "isbn": "9789500732802",
       "precio": 230,
-      "portada": "/src/assets/libros/desarrolloPersonal/Como_ganar_amigos_e_influir_sobre_las_personas.jpg",
+      "portada": "/src/assets/libros/desPersonal/Como_ganar_amigos_e_influir_sobre_las_personas.jpg",
       "sinopsis": "Consejos atemporales para mejorar las relaciones humanas, la comunicación y la capacidad de liderazgo."
     },
     {
@@ -826,7 +826,7 @@
       "edicion": "Edición de bolsillo",
       "isbn": "9788495787315",
       "precio": 240,
-      "portada": "/src/assets/libros/desarrolloPersonal/Quien_se_ha_llevado_mi_queso.jpg",
+      "portada": "/src/assets/libros/desPersonal/Quien_se_ha_llevado_mi_queso.jpg",
       "sinopsis": "Una fábula sencilla que muestra cómo adaptarse a los cambios inevitables de la vida."
     },
     {
@@ -839,7 +839,7 @@
       "edicion": "Edición actualizada",
       "isbn": "9788479532536",
       "precio": 300,
-      "portada": "/src/assets/libros/desarrolloPersonal/Los_cuatro_acuerdos.jpg",
+      "portada": "/src/assets/libros/desPersonal/Los_cuatro_acuerdos.jpg",
       "sinopsis": "Basado en la sabiduría tolteca, propone cuatro principios para vivir con mayor libertad y plenitud."
     },
     {
@@ -852,7 +852,7 @@
       "edicion": "Edición actualizada",
       "isbn": "9788416997602",
       "precio": 375,
-      "portada": "/src/assets/libros/desarrolloPersonal/El_poder_de_los_habitos.jpg",
+      "portada": "/src/assets/libros/desPersonal/El_poder_de_los_habitos.jpg",
       "sinopsis": "Explica cómo funcionan los hábitos y cómo pueden transformarse para mejorar el desempeño personal y profesional."
     },
     {
@@ -865,7 +865,7 @@
       "edicion": "Edición especial 10 aniversario",
       "isbn": "9788416997572",
       "precio": 340,
-      "portada": "/src/assets/libros/desarrolloPersonal/Esencialismo.jpg",
+      "portada": "/src/assets/libros/desPersonal/Esencialismo.jpg",
       "sinopsis": "Una filosofía de vida enfocada en identificar lo verdaderamente importante y eliminar lo innecesario."
     },
     {
@@ -878,7 +878,7 @@
       "edicion": "Edición estándar",
       "isbn": "9786070793837",
       "precio": 325,
-      "portada": "/src/assets/libros/desarrolloPersonal/Despierta_tu_heroe_interior.jpg",
+      "portada": "/src/assets/libros/desPersonal/Despierta_tu_heroe_interior.jpg",
       "sinopsis": "Una invitación a desarrollar el potencial personal y descubrir la mejor versión de uno mismo."
     },
     {
@@ -891,7 +891,7 @@
       "edicion": "Tercera edición",
       "isbn": "9786075576121",
       "precio": 450,
-      "portada": "/src/assets/libros/desarrolloPersonal/Las_48_leyes_del_poder_3e.jpg",
+      "portada": "/src/assets/libros/desPersonal/Las_48_leyes_del_poder_3e.jpg",
       "sinopsis": "Analiza estrategias de influencia, liderazgo y poder a través de ejemplos históricos y contemporáneos."
     },
     {
@@ -904,7 +904,7 @@
       "edicion": "Edición del 25 aniversario",
       "isbn": "9788416583942",
       "precio": 400,
-      "portada": "/src/assets/libros/desarrolloPersonal/Las_21_Leyes_Irrefutables_del_Liderazgo.jpg",
+      "portada": "/src/assets/libros/desPersonal/Las_21_Leyes_Irrefutables_del_Liderazgo.jpg",
       "sinopsis": "Una obra enfocada en desarrollar habilidades de liderazgo efectivas aplicables a cualquier ámbito."
     },
     {
@@ -1047,7 +1047,7 @@
       "edicion": "2021",
       "isbn": "9786073198097",
       "precio": 369,
-      "portada": "/src/assets/libros/educacionFinanciera/Pequeño_Cerdo_Capitalista.jpeg",
+      "portada": "/src/assets/libros/edFinanciera/Pequeño_Cerdo_Capitalista.jpeg",
       "sinopsis": "Una guía práctica para aprender a administrar el dinero, ahorrar, invertir y tomar mejores decisiones financieras desde una perspectiva accesible."
     },
     {
@@ -1060,7 +1060,7 @@
       "edicion": "2021",
       "isbn": "9786073861946",
       "precio": 489,
-      "portada": "/src/assets/libros/educacionFinanciera/Padre_Rico_Padre_Pobre.jpeg",
+      "portada": "/src/assets/libros/edFinanciera/Padre_Rico,_Padre_Pobre.jpeg",
       "sinopsis": "Un clásico sobre educación financiera que compara dos formas distintas de entender el dinero, los activos y la libertad financiera."
     },
     {
@@ -1073,7 +1073,7 @@
       "edicion": "2025-2026",
       "isbn": "9788491115700",
       "precio": 249,
-      "portada": "/src/assets/libros/educacionFinanciera/El_Hombre_Más_Rico_de_Babilonia.jpeg",
+      "portada": "/src/assets/libros/edFinanciera/El_Hombre_Más_Rico_de_Babilonia.jpeg",
       "sinopsis": "A través de parábolas ambientadas en la antigua Babilonia, enseña principios fundamentales para generar riqueza y prosperidad."
     },
     {
@@ -1086,7 +1086,7 @@
       "edicion": "2025",
       "isbn": "9788408309789",
       "precio": 480,
-      "portada": "/src/assets/libros/educacionFinanciera/La_Psicología_del_Dinero.jpeg",
+      "portada": "/src/assets/libros/edFinanciera/La_Psicología_del_Dinero.jpeg",
       "sinopsis": "Explora cómo las emociones, experiencias y comportamientos personales influyen en nuestras decisiones financieras."
     },
     {
@@ -1099,7 +1099,7 @@
       "edicion": "2025",
       "isbn": "9788423439348",
       "precio": 505,
-      "portada": "/src/assets/libros/educacionFinanciera/El_Inversor_Inteligente.jpg",
+      "portada": "/src/assets/libros/edFinanciera/El_Inversor_Inteligente.jpg",
       "sinopsis": "Considerado uno de los libros más importantes sobre inversión, enseña estrategias para invertir con disciplina y visión a largo plazo."
     },
     {
@@ -1112,7 +1112,7 @@
       "edicion": "2012",
       "isbn": "9788478086085",
       "precio": 375,
-      "portada": "/src/assets/libros/educacionFinanciera/Los_Secretos_de_la_Mente_Millonaria.jpg",
+      "portada": "/src/assets/libros/edFinanciera/Los_Secretos_de_la_Mente_Millonaria.jpg",
       "sinopsis": "Analiza los patrones mentales relacionados con el dinero y propone hábitos para desarrollar una mentalidad orientada a la riqueza."
     },
     {
@@ -1125,7 +1125,7 @@
       "edicion": "2018",
       "isbn": "9786073198455",
       "precio": 349,
-      "portada": "/src/assets/libros/educacionFinanciera/Piense_y_Hágase_Rico.jpg",
+      "portada": "/src/assets/libros/edFinanciera/Piense_y_Hágase_Rico.jpg",
       "sinopsis": "Uno de los libros más influyentes sobre éxito personal y financiero, basado en las experiencias de empresarios exitosos."
     },
     {
@@ -1138,7 +1138,7 @@
       "edicion": "2007",
       "isbn": "9788490567470",
       "precio": 399,
-      "portada": "/src/assets/libros/educacionFinanciera/La_Semana_Laboral_de_4_Horas.jpg",
+      "portada": "/src/assets/libros/edFinanciera/La_Semana_Laboral_de_4_Horas.jpg",
       "sinopsis": "Presenta estrategias para aumentar la productividad, automatizar ingresos y diseñar un estilo de vida más flexible."
     },
     {
@@ -1151,7 +1151,7 @@
       "edicion": "2020",
       "isbn": "9788491110194",
       "precio": 670,
-      "portada": "/src/assets/libros/educacionFinanciera/El_Millonario_de_la_Puerta_de_Al_Lado.jpg",
+      "portada": "/src/assets/libros/edFinanciera/El_Millonario_de_la_Puerta_de_Al_Lado.jpg",
       "sinopsis": "Un estudio sobre los hábitos y comportamientos de personas que han acumulado riqueza de forma sostenible."
     },
     {
@@ -1164,7 +1164,7 @@
       "edicion": "2020",
       "isbn": "9788412192131",
       "precio": 340,
-      "portada": "/src/assets/libros/educacionFinanciera/Sabiduría_Financiera_El_Dinero_se_hace_en_la_Mente.jpg",
+      "portada": "/src/assets/libros/edFinanciera/Sabiduría_Financiera_El_Dinero_se_hace_en_la_Mente.jpg",
       "sinopsis": "Explica cómo la mentalidad, las creencias y la educación financiera influyen en la generación de riqueza."
     },
     {
@@ -1305,7 +1305,7 @@
       "nombre": "Los Juegos del Hambre",
       "isbnSaga": "9786077351054",
       "precioSaga": 995,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_juegos_hambre.jpg",
       "descripcion": "La saga completa que revolucionó la literatura juvenil distópica.",
       "libros": [1, 2, 3, 4, 5]
     },
@@ -1314,7 +1314,7 @@
       "nombre": "Crepúsculo",
       "isbnSaga": "9788420453651",
       "precioSaga": 2399,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_crepusculo.jpeg",
       "descripcion": "La historia de amor sobrenatural entre Bella Swan y Edward Cullen.",
       "libros": [6, 7, 8, 9, 10]
     },
@@ -1323,7 +1323,7 @@
       "nombre": "Culpables",
       "isbnSaga": "9788410050884",
       "precioSaga": 1299,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_culpable.jpg",
       "descripcion": "Romance juvenil lleno de emociones, conflictos y segundas oportunidades.",
       "libros": [14, 15, 16, 17]
     },
@@ -1332,7 +1332,7 @@
       "nombre": "Hush Hush",
       "isbnSaga": "9781416989417",
       "precioSaga": 1085,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_silencio.jpeg",
       "descripcion": "Ángeles caídos, secretos y romance paranormal.",
       "libros": [18, 19, 20, 21]
     },
@@ -1341,7 +1341,7 @@
       "nombre": "Harry Potter",
       "isbnSaga": "7503028747214",
       "precioSaga": 1879,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_harry.jpg",
       "descripcion": "La colección completa del mago más famoso del mundo.",
       "libros": [25, 26, 27, 28, 29, 30, 31]
     },
@@ -1350,7 +1350,7 @@
       "nombre": "Percy Jackson",
       "isbnSaga": "9788418173721",
       "precioSaga": 1225,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_percy.jpg",
       "descripcion": "Mitología griega, aventuras y héroes modernos.",
       "libros": [32, 33, 34, 35, 36]
     },
@@ -1359,7 +1359,7 @@
       "nombre": "El Señor de los Anillos",
       "isbnSaga": "9788445018248",
       "precioSaga": 978,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_señor.jpg",
       "descripcion": "La épica aventura de la Tierra Media creada por Tolkien.",
       "libros": [37, 38, 39]
     },
@@ -1368,7 +1368,7 @@
       "nombre": "Canción de Hielo y Fuego",
       "isbnSaga": "9786073155731",
       "precioSaga": 989,
-      "portada": "",
+      "portada": "/src/assets/libros/sagas/Saga_Canción.jpg",
       "descripcion": "Intrigas políticas, guerras y dragones en Poniente.",
       "libros": [41, 42, 43, 44]
     }

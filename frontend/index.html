@@ -8,6 +8,7 @@
     <title>Mundo Entre Libros - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="/src/pages/shoppingCart/shopping.css">
 </head>
 
 <body>
@@ -57,16 +58,20 @@
                             </a>
                         </li>
 
-                       <li class="nav-item contenedor-carrito-offcanvas">
-    <a class="nav-link" href="/shoppingCart/shopping.html" 
-       data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
-        
-        <div class="caja-icono-carrito">
-            <img src="/src/assets/icons/icono-carrito-navbar.png" alt="Carrito" class="navbar-icon" loading="lazy" />
-        </div>
+                    <!----Carrito  modal----->
 
-    </a>
-</li>
+                        <li class="nav-item contenedor-carrito-offcanvas">
+                            <a class="nav-link" href="/shoppingCart/shopping.html" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+
+                                <div class="caja-icono-carrito">
+                                    <img src="/src/assets/icons/icono-carrito-navbar.png" alt="Carrito"
+                                        class="navbar-icon">
+                                    <span id="contador-carrito">0</span>
+                                </div>
+                            </a>
+                        </li>
+
                     </ul>
 
                     <form class="search-form d-flex" role="search">
@@ -81,247 +86,200 @@
         </nav>
         <!--? Header / Carrusel: Mafer -->
         <header class="home-header" aria-label="Carrusel principal de Mundo Entre Libros">
-        <div
-            id="homeHeroCarousel"
-            class="carousel slide home-hero-carousel"
-            data-bs-ride="carousel"
-            data-bs-interval="5000"
-        >
-            <!-- Indicadores inferiores -->
-            <div class="carousel-indicators">
-            <button
-                type="button"
-                data-bs-target="#homeHeroCarousel"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Bienvenida"
-            ></button>
+            <div id="homeHeroCarousel" class="carousel slide home-hero-carousel" data-bs-ride="carousel"
+                data-bs-interval="5000">
+                <!-- Indicadores inferiores -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Bienvenida"></button>
 
-            <button
-                type="button"
-                data-bs-target="#homeHeroCarousel"
-                data-bs-slide-to="1"
-                aria-label="Libros más vendidos"
-            ></button>
+                    <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="1"
+                        aria-label="Libros más vendidos"></button>
 
-            <button
-                type="button"
-                data-bs-target="#homeHeroCarousel"
-                data-bs-slide-to="2"
-                aria-label="Foros de lectores"
-            ></button>
-            </div>
+                    <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="2"
+                        aria-label="Foros de lectores"></button>
+                </div>
 
-            <div class="carousel-inner">
+                <div class="carousel-inner">
 
-            <!-- Slide 1: Bienvenida -->
-            <div class="carousel-item active">
-                <section class="home-hero-slide">
-                <img
-                    src="/src/assets/img/BackHeader.png"
-                    alt="Espacio cálido de lectura"
-                    class="home-hero-bg"
-                />
+                    <!-- Slide 1: Bienvenida -->
+                    <div class="carousel-item active">
+                        <section class="home-hero-slide">
+                            <img src="/src/assets/img/BackHeader.png" alt="Espacio cálido de lectura"
+                                class="home-hero-bg" />
 
-                <div class="home-hero-content">
-                    <span class="home-hero-label">Librería digital</span>
+                            <div class="home-hero-content">
+                                <span class="home-hero-label">Librería digital</span>
 
-                    <h1>Bienvenido a Mundo Entre Libros</h1>
+                                <h1>Bienvenido a Mundo Entre Libros</h1>
 
-                    <p>
-                    Descubre historias, autores y comunidades lectoras creadas para acompañarte
-                    en cada nueva aventura literaria.
-                    </p>
+                                <p>
+                                    Descubre historias, autores y comunidades lectoras creadas para acompañarte
+                                    en cada nueva aventura literaria.
+                                </p>
 
-                    <div class="home-hero-actions">
-                    <a href="/catalog/catalog.html" class="home-hero-btn primary">
-                        Explorar catálogo
-                    </a>
+                                <div class="home-hero-actions">
+                                    <a href="/catalog/catalog.html" class="home-hero-btn primary">
+                                        Explorar catálogo
+                                    </a>
 
-                    <a href="/aboutUs/aboutUs.html" class="home-hero-btn secondary">
-                        Conócenos
-                    </a>
+                                    <a href="/aboutUs/aboutUs.html" class="home-hero-btn secondary">
+                                        Conócenos
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                </div>
-                </section>
-            </div>
 
-            <!-- Slide 2: Libros más vendidos -->
-            <div class="carousel-item">
-                <section class="home-hero-slide">
-                <img
-                    src="/src/assets/img/home-libros-vendidos.jpg"
-                    alt="Libros destacados y más vendidos"
-                    class="home-hero-bg"
-                />
+                    <!-- Slide 2: Libros más vendidos -->
+                    <div class="carousel-item">
+                        <section class="home-hero-slide">
+                            <img src="/src/assets/img/home-libros-vendidos.jpg" alt="Libros destacados y más vendidos"
+                                class="home-hero-bg" />
 
-                <div class="home-hero-content">
-                    <span class="home-hero-label">Más vendidos</span>
+                            <div class="home-hero-content">
+                                <span class="home-hero-label">Más vendidos</span>
 
-                    <h2>Historias que todos están leyendo</h2>
+                                <h2>Historias que todos están leyendo</h2>
 
-                    <p>
-                    Explora nuestros libros destacados y encuentra tu próxima lectura favorita.
-                    </p>
+                                <p>
+                                    Explora nuestros libros destacados y encuentra tu próxima lectura favorita.
+                                </p>
 
-                    <div class="home-hero-actions">
-                    <a href="/catalog/catalog.html" class="home-hero-btn primary">
-                        Ver libros
-                    </a>
+                                <div class="home-hero-actions">
+                                    <a href="/catalog/catalog.html" class="home-hero-btn primary">
+                                        Ver libros
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="home-hero-books-preview" aria-label="Libros destacados">
+                                <img src="/src/assets/libros/HP_Piedra_Filosofal.webp"
+                                    alt="Harry Potter y la piedra filosofal" loading="lazy" />
+
+                                <img src="/src/assets/libros/9788419599216.jpg" alt="Orgullo y prejuicio"
+                                    loading="lazy" />
+
+                                <img src="/src/assets/libros/It.webp" alt="It" loading="lazy" />
+                            </div>
+                        </section>
                     </div>
-                </div>
 
-                <div class="home-hero-books-preview" aria-label="Libros destacados">
-                    <img
-                    src="/src/assets/libros/HP_Piedra_Filosofal.webp"
-                    alt="Harry Potter y la piedra filosofal"
-                    loading="lazy"
-                    />
+                    <!-- Slide 3: Foros -->
+                    <div class="carousel-item">
+                        <section class="home-hero-slide">
+                            <img src="/src/assets/img/home-foros.jpg" alt="Biblioteca cálida para comunidad lectora"
+                                class="home-hero-bg" />
 
-                    <img
-                    src="/src/assets/libros/9788419599216.jpg"
-                    alt="Orgullo y prejuicio"
-                    loading="lazy"
-                    />
+                            <div class="home-hero-content">
+                                <span class="home-hero-label">Comunidad lectora</span>
 
-                    <img
-                    src="/src/assets/libros/It.webp"
-                    alt="It"
-                    loading="lazy"
-                    />
-                </div>
-                </section>
-            </div>
+                                <h2>Comparte tus lecturas en nuestros foros</h2>
 
-            <!-- Slide 3: Foros -->
-            <div class="carousel-item">
-                <section class="home-hero-slide">
-                <img
-                    src="/src/assets/img/home-foros.jpg"
-                    alt="Biblioteca cálida para comunidad lectora"
-                    class="home-hero-bg"
-                />
+                                <p>
+                                    Únete a conversaciones por género, recomienda libros y conecta con otros
+                                    lectores que comparten tus gustos.
+                                </p>
 
-                <div class="home-hero-content">
-                    <span class="home-hero-label">Comunidad lectora</span>
+                                <div class="home-hero-actions">
+                                    <a href="/forums/forums.html" class="home-hero-btn primary">
+                                        Ir a foros
+                                    </a>
+                                </div>
+                            </div>
 
-                    <h2>Comparte tus lecturas en nuestros foros</h2>
-
-                    <p>
-                    Únete a conversaciones por género, recomienda libros y conecta con otros
-                    lectores que comparten tus gustos.
-                    </p>
-
-                    <div class="home-hero-actions">
-                    <a href="/forums/forums.html" class="home-hero-btn primary">
-                        Ir a foros
-                    </a>
+                            <div class="home-hero-forum-tags" aria-label="Géneros de foros">
+                                <span>📚 Novela Juvenil</span>
+                                <span>🐉 Fantasía</span>
+                                <span>👻 Terror</span>
+                                <span>🚀 Ciencia Ficción</span>
+                                <span>🧠 Psicología</span>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="home-hero-forum-tags" aria-label="Géneros de foros">
-                    <span>📚 Novela Juvenil</span>
-                    <span>🐉 Fantasía</span>
-                    <span>👻 Terror</span>
-                    <span>🚀 Ciencia Ficción</span>
-                    <span>🧠 Psicología</span>
-                </div>
-                </section>
-            </div>
-            </div>
+                <!-- Flecha izquierda -->
+                <button class="carousel-control-prev home-hero-control" type="button" data-bs-target="#homeHeroCarousel"
+                    data-bs-slide="prev" aria-label="Slide anterior">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
 
-            <!-- Flecha izquierda -->
-            <button
-            class="carousel-control-prev home-hero-control"
-            type="button"
-            data-bs-target="#homeHeroCarousel"
-            data-bs-slide="prev"
-            aria-label="Slide anterior"
-            >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-
-            <!-- Flecha derecha -->
-            <button
-            class="carousel-control-next home-hero-control"
-            type="button"
-            data-bs-target="#homeHeroCarousel"
-            data-bs-slide="next"
-            aria-label="Siguiente slide"
-            >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </div>
+                <!-- Flecha derecha -->
+                <button class="carousel-control-next home-hero-control" type="button" data-bs-target="#homeHeroCarousel"
+                    data-bs-slide="next" aria-label="Siguiente slide">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
         </header>
         <main>
             <!--? Sección foros: Miguel-->
-                <section class="foros-contenedor">
-                    <h2 class="titulo-foros">FOROS</h2>
+            <section class="foros-contenedor">
+                <h2 class="titulo-foros">FOROS</h2>
 
-                    <div id="foros-populares" class="foros-lista"></div>
+                <div id="foros-populares" class="foros-lista"></div>
 
-                    <a href="/forums/forums.html" class="btn-ver-mas">
-                        Ver más →
-                    </a>
-                </section>
-             
+                <a href="/forums/forums.html" class="btn-ver-mas">
+                    Ver más →
+                </a>
+            </section>
+
             <!--? Sección libros destacados: Adri-->
-    
-                <section class="libros-destacados">
-                    <h2>LIBROS DESTACADOS</h2>
-                    <div class="libros-carousel">
-                        <button class="flecha-libros" id="btnLibroPrev">←</button>
-                        <div class="libros-ventana">
-                            <div class="libros-track" id="librosTrack">
-                                <div class="libro-card">
-                                    <img src="/src/assets/libros/HP_Piedra_Filosofal.webp" alt="Harry Potter"
-                                        class="libro-img">
-                                    <div class="libro-info">
-                                        <h4>Harry Potter</h4>
-                                        <p>J. K. Rowling</p>
-                                        <div class="libro-precio">$300.00</div>
-                                    </div>
-                                    <button class="btn-agregar-carrito">Agregar al carrito</button>
-                                </div>
 
-                                <div class="libro-card">
-                                    <img src="./src/assets/libros/9788419599216.jpg"  alt="Orgullo y prejuicio"
-                                        class="libro-img">
-                                    <div class="libro-info">
-                                        <h4>Orgullo y prejuicio</h4>
-                                        <p>Jane Austen</p>
-                                        <div class="libro-precio">$599.00</div>
-                                    </div>
-                                    <button class="btn-agregar-carrito">Agregar al carrito</button>
+            <section class="libros-destacados">
+                <h2>LIBROS DESTACADOS</h2>
+                <div class="libros-carousel">
+                    <button class="flecha-libros" id="btnLibroPrev">←</button>
+                    <div class="libros-ventana">
+                        <div class="libros-track" id="librosTrack">
+                            <div class="libro-card">
+                                <img src="/src/assets/libros/HP_Piedra_Filosofal.webp" alt="Harry Potter"
+                                    class="libro-img">
+                                <div class="libro-info">
+                                    <h4>Harry Potter</h4>
+                                    <p>J. K. Rowling</p>
+                                    <div class="libro-precio">$300.00</div>
                                 </div>
-
-                                <div class="libro-card">
-                                    <img src="./src/assets/libros/It.webp" alt="1984" class="libro-img">
-                                    <div class="libro-info">
-                                        <h4>It (Eso)</h4>
-                                        <p>Stephen King</p>
-                                        <div class="libro-precio">659.00</div>
-                                    </div>
-                                    <button class="btn-agregar-carrito">Agregar al carrito</button>
-                                </div>
-
-                                <div class="libro-card">
-                                    <img src="./src/assets/libros/Dune.jpg" alt="El principito" class="libro-img">
-                                    <div class="libro-info">
-                                        <h4>Dune</h4>
-                                        <p>Frank Herbert</p>
-                                        <div class="libro-precio">$400.00</div>
-                                    </div>
-                                    <button class="btn-agregar-carrito">Agregar al carrito</button>
-                                </div>
-
+                                <button class="btn-agregar-carrito">Agregar al carrito</button>
                             </div>
-                        </div>
 
-                        <button class="flecha-libros" id="btnLibroNext">→</button>
+                            <div class="libro-card">
+                                <img src="./src/assets/libros/9788419599216.jpg" alt="Orgullo y prejuicio"
+                                    class="libro-img">
+                                <div class="libro-info">
+                                    <h4>Orgullo y prejuicio</h4>
+                                    <p>Jane Austen</p>
+                                    <div class="libro-precio">$599.00</div>
+                                </div>
+                                <button class="btn-agregar-carrito">Agregar al carrito</button>
+                            </div>
+
+                            <div class="libro-card">
+                                <img src="./src/assets/libros/It.webp" alt="1984" class="libro-img">
+                                <div class="libro-info">
+                                    <h4>It (Eso)</h4>
+                                    <p>Stephen King</p>
+                                    <div class="libro-precio">659.00</div>
+                                </div>
+                                <button class="btn-agregar-carrito">Agregar al carrito</button>
+                            </div>
+
+                            <div class="libro-card">
+                                <img src="./src/assets/libros/Dune.jpg" alt="El principito" class="libro-img">
+                                <div class="libro-info">
+                                    <h4>Dune</h4>
+                                    <p>Frank Herbert</p>
+                                    <div class="libro-precio">$400.00</div>
+                                </div>
+                                <button class="btn-agregar-carrito">Agregar al carrito</button>
+                            </div>
+
+                        </div>
                     </div>
-                </section>
+
+                    <button class="flecha-libros" id="btnLibroNext">→</button>
+                </div>
+            </section>
         </main>
         <!--? Footer: Rodrigo-->
         <footer class="main-footer">
@@ -401,23 +359,29 @@
         </footer>
     </div>
 
+
+    <<!-------Carrito Modal------>
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title fw-bold" id="offcanvasCarritoLabel">Tu Carrito</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
         </div>
-        
+
         <div class="offcanvas-body d-flex flex-column justify-content-between">
             <div class="carrito-productos-lista">
                 <p class="text-muted text-center my-5">Tu carrito está vacío actualmente.</p>
             </div>
-            
+
             <div class="carrito-offcanvas-footer border-top pt-3">
                 <div class="d-flex justify-content-between mb-3 fw-bold fs-5">
                     <span>Total:</span>
-                    <span>$0.00</span>
+                    <span id="total-offcanvas">$0.00</span>
                 </div>
-                <a href="/shoppingCart/shopping.html" class="btn w-100 py-2 fw-bold">Ver Carrito Completo</a>
+
+                <a href="/shoppingCart/shopping.html" class="btn w-100 py-2 fw-bold">
+                    Ver Carrito Completo
+                </a>
             </div>
         </div>
     </div>

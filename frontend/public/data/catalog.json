@@ -1,5 +1,6 @@
 {
-  "categorias": [
+  "//": "No cambiar el puerto sin avisar al equipo",
+  // "categorias": [
     "novela-juvenil",
     "fantasia",
     "terror",

@@ -72,7 +72,7 @@
       "edicion": "Edición Especial Cantos Pintados",
       "isbn": "9786073866170",
       "precio": 599,
-      "portada": "/src/assets/libros/novelaJuvenil/Amanecer_en_la_casecha.jpg",
+      "portada": "/src/assets/libros/novelaJuvenil/Amanecer_en_la_cosecha.jpg",
       "sinopsis": "Una nueva historia ambientada en Panem que explora eventos cruciales previos a la saga principal."
     },
     {
@@ -657,7 +657,7 @@
       "edicion": "Edición clásica",
       "isbn": "9788497593793",
       "precio": 349,
-      "portada": "/src/assets/libros/terror/It.webp",
+      "portada": "/src/assets/libros/terror/It.jpg",
       "sinopsis": "Un grupo de amigos enfrenta una entidad maligna capaz de adoptar la forma de los peores miedos de sus víctimas."
     },
     {

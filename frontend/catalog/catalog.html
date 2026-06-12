@@ -19,6 +19,7 @@
                     <img src="/src/assets/icons/logo-mel.png" alt="Logo Mundo Entre Libros" class="navbar-logo"
                         loading="lazy" />
                 </a>
+              </li>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
@@ -190,7 +191,7 @@ Agregar al carrito
                             </div>
                         </div>
                         <div class="modal-footer">
-                           <button class="btn btn-carrito-saga">
+                           <button class="btn-carrito btn-carrito-saga">
     Agregar saga al carrito
 </button>
                             <button class="btn btn-secondary" data-bs-dismiss="modal">
@@ -209,16 +210,49 @@ Agregar al carrito
                         class="img-fluid footer-logo" />
                 </div>
 
-                <div class="footer-section links-section">
-                    <h3>Explora</h3>
-                    <ul>
-                        <li><a href="/index.html">Inicio</a></li>
-                        <li><a href="/catalog/catalog.html">Catálogo</a></li>
-                        <li><a href="/forums/forums.html">Foros</a></li>
-                        <li><a href="/aboutUs/aboutUs.html">Nosotros</a></li>
-                        <li><a href="/contact/contact.html">Contacto</a></li>
-                    </ul>
-                </div>
+        <div
+          class="modal fade"
+          id="modalLibro"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title" id="tituloModal"></h2>
+
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <div class="modal-body">
+                <div class="row align-items-center g-5 contenedor-info-libro">
+                  <!-- PORTADA -->
+
+                  <div class="col-md-4 text-center portada-container">
+                    <img id="imagenModal" class="img-fluid rounded" alt="" />
+                  </div>
+
+                  <!-- DATOS -->
+                  <div class="col-md-8">
+                    <div class="datos-grid">
+                      <div class="dato-card">
+                        <span class="dato-label"> Autor </span>
+
+                        <span class="dato-valor" id="autorModal"></span>
+                      </div>
+
+                      <div class="dato-card">
+                        <span class="dato-label"> Saga </span>
+
+                        <span class="dato-valor" id="sagaModal"></span>
+                      </div>
+
+                      <div class="dato-card">
+                        <span class="dato-label"> Editorial </span>
 
                 <div class="footer-section pixel-section">
                     <p class="pixel-interaction-title">¡Pasa a saludarnos!</p>
@@ -267,13 +301,138 @@ Agregar al carrito
                             aria-label="Ir al perfil de GitHub de Tonantzin Alquisira Palma">
                         </a>
                     </div>
+                  </div>
                 </div>
-            </div>
 
-            <div class="footer-bottom">
-                <p>&copy; Mundo Entre Libros - 2026</p>
+                <hr />
+
+                <h4 class="titulo-sinopsis">Sinopsis</h4>
+
+                <p id="sinopsisModal"></p>
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-carrito" id="btnCarrito">
+                  Agregar al carrito
+                </button>
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+              </div>
             </div>
-        </footer>
+          </div>
+        </div>
+      </body>
+      <!--? Footer: Rodrigo-->
+      <footer class="main-footer">
+        <div class="footer-container">
+          <div class="footer-section logo-section">
+            <img
+              src="/src/assets/icons/logo-mel-horizontal.png"
+              alt="Mundo Entre Libros"
+              class="img-fluid footer-logo"
+            />
+          </div>
+
+          <div class="footer-section links-section">
+            <h3>Explora</h3>
+            <ul>
+              <li><a href="/index.html">Inicio</a></li>
+              <li><a href="/catalog/catalog.html">Catálogo</a></li>
+              <li><a href="/forums/forums.html">Foros</a></li>
+              <li><a href="/aboutUs/aboutUs.html">Nosotros</a></li>
+              <li><a href="/contact/contact.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section pixel-section">
+            <p class="pixel-interaction-title">¡Pasa a saludarnos!</p>
+            <div class="pixel-team">
+              <!--Mafer-->
+              <a
+                href="https://github.com/mafernandarodrigueztdev-byte"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-mafer"
+                title="GitHub de María Fernanda Rodríguez Trinidad"
+                aria-label="Ir al perfil de GitHub de María Fernanda Rodríguez Trinidad"
+              >
+              </a>
+
+              <!--Adri-->
+              <a
+                href="https://github.com/iladricg14-lab"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-ilse"
+                title="GitHub de Ilse Adriana Careo Galicia"
+                aria-label="Ir al perfil de GitHub de Ilse Adriana Careo Galicia"
+              >
+              </a>
+
+              <!--Rodrigo-->
+              <a
+                href="https://github.com/Rock2612"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-rodrigo"
+                title="GitHub de Rodrigo González Pastrana"
+                aria-label="Ir al perfil de GitHub de Rodrigo González Pastrana"
+              >
+              </a>
+
+              <!--Israel-->
+              <a
+                href="https://github.com/IsraelMRQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-israel"
+                title="GitHub de José Israel Manrique Roque"
+                aria-label="Ir al perfil de GitHub de José Israel Manrique Roque"
+              >
+              </a>
+
+              <!--Miguel-->
+              <a
+                href="https://github.com/Miguel02mg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-miguel"
+                title="GitHub de Miguel Ángel Martínez Garduño"
+                aria-label="Ir al perfil de GitHub de Miguel Ángel Martínez Garduño"
+              >
+              </a>
+
+              <!--Carlos-->
+              <a
+                href="https://github.com/Carlos-Software-Engineer-1999"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-carlos"
+                title="GitHub de Carlos Navarrete Tapia"
+                aria-label="Ir al perfil de GitHub de Carlos Navarrete Tapia"
+              >
+              </a>
+
+              <!--Tonantzin-->
+              <a
+                href="https://github.com/Tonantzinap"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pixel-member pixel-tonantzin"
+                title="GitHub de Tonantzin Alquisira Palma"
+                aria-label="Ir al perfil de GitHub de Tonantzin Alquisira Palma"
+              >
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; Mundo Entre Libros - 2026</p>
+        </div>
+      </footer>
     </div>
 
     <!-------Carrito Modal------>

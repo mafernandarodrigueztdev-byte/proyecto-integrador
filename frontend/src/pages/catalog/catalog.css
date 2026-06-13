@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ==========================================================================
    IMPORTACIÓN DE FUENTES (API de Google Fonts)
    ========================================================================== */
@@ -1641,4 +1642,1092 @@ main {
 }
 #librosSagaModal {
   margin-top: 20px;
+=======
+/* ==========================================================================
+   IMPORTACIÓN DE FUENTES (API de Google Fonts)
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap");
+
+/* ==========================================================================
+   RESET, CONFIGURACIÓN GLOBAL Y VARIABLES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cormorant Garamond", serif;
+}
+
+:root {
+  --fondo-principal-crema: #f1f0e5;
+  --fondo-blanco-calido: #f6ebd9;
+  --texto-principal-cafe-oscuro: #521f12;
+  --boton-principal-acento-fuerte: #4b1d13;
+  --beige-calido-degradado: #f8e1c1;
+  --crema-secundario: #f6ebd9;
+  --cafe-medio: #a0653d;
+  --beige-grisaceo: #d9cdc1;
+  --color-verde-acento: #2e5a44;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--fondo-principal-crema);
+  overflow-x: hidden;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+
+.navbar {
+  background-color: var(--beige-calido-degradado);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 0.5rem 0;
+  box-shadow: var(--sombra);
+}
+
+.navbar .container {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: 90px;
+  max-width: 90px;
+  height: auto;
+  object-fit: contain;
+  transform: none;
+}
+
+.nav-link {
+  position: relative;
+  color: var(--texto-principal-cafe-oscuro) !important;
+  padding: 0.5rem 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cafe-medio) !important;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--cafe-medio);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+.navbar-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.search-form input {
+  font-size: 1rem;
+}
+
+.search-form .btn {
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border: none;
+  font-size: 1rem;
+  padding: 0.45rem 1rem;
+}
+
+.search-form .btn:hover {
+  background-color: var(--texto-principal-cafe-oscuro);
+  color: var(--fondo-principal-crema);
+}
+
+/* ==========================================================================
+   OFFCANVAS CARRITO
+   ========================================================================== */
+
+#offcanvasCarrito {
+  background-color: var(--fondo-principal-crema);
+  border-left: 2px solid var(--texto-principal-cafe-oscuro);
+  width: 380px;
+}
+
+#offcanvasCarrito .offcanvas-title {
+  color: var(--texto-principal-cafe-oscuro);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+}
+
+#offcanvasCarrito .btn-close:focus {
+  box-shadow: none;
+}
+
+#offcanvasCarrito .carrito-offcanvas-footer .btn {
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border: none;
+  transition: background-color var(--transicion);
+}
+
+#offcanvasCarrito .carrito-offcanvas-footer .btn:hover {
+  background-color: var(--texto-principal-cafe-oscuro);
+}
+
+#offcanvasCarrito.offcanvas {
+  transition: transform 0.4s ease-in-out !important;
+}
+
+/* ==========================================================================
+   ICONOS NAVBAR
+   ========================================================================== */
+
+.navbar-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  transition: transform var(--transicion);
+}
+
+.nav-link:hover .navbar-icon {
+  transform: scale(1.1);
+  transform: translateY(-2px);
+}
+
+.navbar-nav {
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-item:nth-last-child(2) {
+  margin-left: 20px;
+}
+
+.nav-item:last-child {
+  margin-left: 10px;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.btn {
+  background-color: var(--boton-principal-acento-fuerte);
+  font-weight: 800;
+  transition: 0.1s ease;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.main-footer {
+  background-color: #f8e1c1;
+  padding: 15px 0 10px 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1800px;
+  margin: 3px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-left: 20px;
+}
+
+.footer-logo {
+  max-width: 290px;
+  height: auto;
+  object-fit: contain;
+}
+
+.team-github-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.member-icon {
+  font-size: 2rem;
+  color: #4a3319;
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+.team-github-icons a:hover .member-icon {
+  transform: translateY(-3px);
+  color: black;
+}
+
+.footer-container {
+  max-width: 1800px;
+  margin: 3px auto;
+  display: grid;
+  grid-template-columns: 1fr 0.55fr 1.7fr;
+  gap: 24px;
+  padding: 0 40px;
+  align-items: center;
+}
+
+.footer-section h3 {
+  color: #4a3319;
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+.footer-section h3::after {
+  display: none;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5px;
+}
+
+.footer-section ul li a {
+  color: var(--texto-principal-cafe-oscuro);
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: color 0.4s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--cafe-medio);
+}
+
+.spacer-section {
+  display: block;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(74, 51, 25, 0.1);
+  width: 100%;
+}
+
+.footer-bottom p {
+  color: #4a3319;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* ==========================================================================
+   SPRITES 8 BIT
+   ========================================================================== */
+
+.pixel-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  padding-right: 0;
+}
+
+.pixel-interaction-title {
+  width: 100%;
+  text-align: center;
+  color: var(--texto-principal-cafe-oscuro);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 0 0 2px 0;
+  letter-spacing: 0.5px;
+}
+
+.pixel-interaction-title::after {
+  content: "";
+  display: block;
+  width: 95px;
+  height: 2px;
+  background-color: var(--cafe-medio);
+  margin: 4px auto 0;
+  border-radius: 999px;
+}
+
+.pixel-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0;
+}
+
+.pixel-message {
+  text-align: right;
+  color: var(--texto-principal-cafe-oscuro);
+  display: none;
+}
+
+.pixel-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cafe-medio);
+  margin: 0;
+}
+
+.pixel-description {
+  font-size: 0.95rem;
+  color: var(--texto-principal-cafe-oscuro);
+  margin: 0;
+  max-width: 360px;
+  line-height: 1.1rem;
+}
+
+.pixel-team {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.pixel-member {
+  --sprite-size: clamp(58px, 4vw, 82px);
+  width: var(--sprite-size);
+  height: var(--sprite-size);
+  background-image: var(--sprite);
+  background-repeat: no-repeat;
+  background-size: calc(var(--sprite-size) * var(--frames)) var(--sprite-size);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  animation: pixel-animation var(--speed, 1s) steps(var(--frames)) infinite;
+  transform-origin: bottom center;
+  transition: transform 0.25s ease;
+  flex: 0 0 var(--sprite-size);
+}
+
+.pixel-member:hover {
+  transform: translateY(-6px) scale(1.08);
+}
+
+@keyframes pixel-animation {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--sprite-size) * var(--frames) * -1);
+  }
+}
+
+.pixel-mafer {
+  --sprite: url("../../assets/sprites/maf1-9.png.png");
+  --frame-width: 96px;
+  --frame-height: 96px;
+  --sheet-width: 864px;
+  --frames: 9;
+  --speed: 1s;
+}
+.pixel-ilse {
+  --sprite: url("../../assets/sprites/adr1.png");
+  --frames: 9;
+  --speed: 1.05s;
+}
+.pixel-rodrigo {
+  --sprite: url("../../assets/sprites/rod1.png");
+  --frames: 9;
+  --speed: 0.95s;
+}
+.pixel-israel {
+  --sprite: url("../../assets/sprites/isr1.png");
+  --frames: 9;
+  --speed: 1.1s;
+}
+.pixel-miguel {
+  --sprite: url("../../assets/sprites/mig1.png");
+  --frames: 9;
+  --speed: 1s;
+}
+.pixel-carlos {
+  --sprite: url("../../assets/sprites/car1.png");
+  --frames: 9;
+  --speed: 0.98s;
+}
+.pixel-tonantzin {
+  --sprite: url("../../assets/sprites/ton1.png");
+  --frames: 9;
+  --speed: 1.08s;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1030px) {
+  .navbar {
+    padding: 8px 0;
+  }
+  .navbar-logo {
+    width: 95px;
+    max-width: 95px;
+  }
+  .nav-link {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar {
+    padding: 0.4rem 1rem;
+  }
+  .navbar .container {
+    min-height: 90px;
+    max-width: 100%;
+  }
+  .navbar-logo {
+    width: 95px;
+    max-width: 95px;
+  }
+  .navbar-toggler {
+    border: none;
+    padding: 0.25rem;
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  .navbar-collapse {
+    background-color: var(--beige-calido-degradado);
+    padding: 1rem 0;
+    text-align: center;
+  }
+  .navbar-nav {
+    gap: 0.4rem;
+  }
+  .nav-link {
+    font-size: 1.4rem;
+    padding: 0.4rem 0;
+  }
+  .nav-link:hover {
+    transform: none;
+  }
+  .navbar-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 25px;
+  }
+  .logo-section {
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+  }
+  .pixel-section {
+    align-items: center;
+    gap: 8px;
+  }
+  .pixel-interaction-title {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+  .pixel-interaction-title::after {
+    width: 75px;
+  }
+  .pixel-section {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+    gap: 10px;
+  }
+  .pixel-message {
+    text-align: center;
+  }
+  .pixel-description {
+    max-width: 280px;
+    font-size: 0.85rem;
+  }
+  .pixel-team {
+    justify-content: center;
+    gap: 4px;
+  }
+  .pixel-member {
+    transform: scale(0.75);
+    margin: -10px;
+  }
+  .pixel-member:hover {
+    transform: scale(0.8) translateY(-4px);
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .container {
+    min-height: 78px;
+  }
+  .navbar-logo {
+    width: 78px;
+    max-width: 78px;
+  }
+}
+
+/* ===================================== */
+/* SECCIONES */
+/* ===================================== */
+
+.categoria {
+  margin-bottom: 60px;
+}
+
+.categoria-titulo {
+  font-family: "Cormorant Garamond";
+  color: var(--texto-principal-cafe-oscuro);
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+}
+
+/* ================================= */
+/* CARRUSEL PRINCIPAL (SAGAS Y CATEGORÍAS) */
+/* ================================= */
+
+.carrusel-libros {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.carrusel-libros::-webkit-scrollbar {
+  display: none;
+}
+
+.carrusel-contenedor {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #4b1d13;
+  color: #f1f0e5;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.carrusel-btn:hover {
+  background-color: #a0653d;
+  transform: translateY(-50%) scale(1.05);
+}
+.carrusel-btn-izq {
+  left: -20px;
+}
+.carrusel-btn-der {
+  right: -20px;
+}
+
+@media (max-width: 768px) {
+  .carrusel-btn {
+    display: none;
+  }
+  .carrusel-contenedor {
+    margin-bottom: 0;
+  }
+}
+
+/* ================================= */
+/* TARJETAS (general) */
+/* ================================= */
+
+.card-libro {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 480px;
+  height: auto;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--fondo-blanco-calido);
+  box-shadow: var(--sombra-suave);
+  transition: var(--transicion);
+  display: flex;
+  flex-direction: column;
+}
+.card-libro:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-media);
+}
+.card-libro img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+}
+.card-libro .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+.card-title {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  color: var(--texto-principal-cafe-oscuro);
+  font-family: "Cormorant Garamond";
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.dato-libro {
+  margin-bottom: 8px;
+  color: var(--cafe-medio);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.precio-container {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.texto-precio {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--texto-principal-cafe-oscuro);
+}
+.precio {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #85BB65;
+  margin: 0;
+}
+.btn-libro {
+  margin-top: auto;
+  background: var(--boton-principal-acento-fuerte);
+  color: white;
+  border: none;
+}
+.btn-libro:hover {
+  background: var(--cafe-medio);
+  color: white;
+}
+.btn-sagas {
+  margin-top: auto;
+  background: var(--boton-principal-acento-fuerte);
+  color: white;
+  border: none;
+}
+.btn-sagas:hover {
+  background: var(--cafe-medio);
+  color: white;
+}
+.card-saga {
+  min-width: 250px;
+  max-width: 250px;
+  height: 480px;
+}
+.card-saga img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+}
+
+/* ================================= */
+/* BOTONES AGREGAR AL CARRITO (VERDE DÓLAR, TEXTO BLANCO) */
+/* ================================= */
+
+/* General */
+.btn-carrito {
+  background-color: #85BB65 !important;
+  color: white !important;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-weight: 600;
+}
+.btn-carrito:hover {
+  background-color: #6b9e4a !important;
+  color: white !important;
+}
+
+/* Dentro del footer del modal de libro */
+.modal-footer .btn-carrito {
+  background-color: #85BB65 !important;
+  color: white !important;
+}
+.modal-footer .btn-carrito:hover {
+  background-color: #6b9e4a !important;
+}
+
+/* Dentro del carrusel de libros del modal de saga */
+#modalSagas .btn-carrito {
+  background-color: #85BB65 !important;
+  color: white !important;
+}
+#modalSagas .btn-carrito:hover {
+  background-color: #6b9e4a !important;
+}
+
+/* Botón "Agregar saga al carrito" (footer del modal de saga) */
+#modalSagas .btn-carrito-saga {
+  background-color: #85BB65 !important;
+  color: white !important;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-weight: 600;
+}
+#modalSagas .btn-carrito-saga:hover {
+  background-color: #6b9e4a !important;
+}
+
+/* ================================= */
+/* MODALES GENERALES (libro y saga) */
+/* ================================= */
+
+.precio-modal {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #85BB65;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.modal-footer .btn {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+.modal-footer .btn-secondary {
+  background-color: #ff0f0f;
+  color: white;
+  border: none;
+}
+.modal-footer .btn-secondary:hover {
+  background-color: #cc0000;
+}
+
+/* ================================= */
+/* CARRUSEL DE LIBROS DENTRO DEL MODAL DE SAGA */
+/* ================================= */
+
+/* Asegurar que el contenedor tenga flechas y sin barra */
+#modalSagas .carrusel-contenedor {
+  position: relative;
+  margin-bottom: 2rem;
+}
+#modalSagas .carrusel-libros {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#modalSagas .carrusel-libros::-webkit-scrollbar {
+  display: none;
+}
+#modalSagas .carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #4b1d13;
+  color: #f1f0e5;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#modalSagas .carrusel-btn:hover {
+  background-color: #a0653d;
+  transform: translateY(-50%) scale(1.05);
+}
+#modalSagas .carrusel-btn-izq {
+  left: -20px;
+}
+#modalSagas .carrusel-btn-der {
+  right: -20px;
+}
+@media (max-width: 768px) {
+  #modalSagas .carrusel-btn {
+    display: none;
+  }
+}
+
+/* Expansión de tarjetas para títulos largos (sin scroll interno) */
+#modalSagas .card-libro {
+  max-width: none !important;
+  width: auto !important;
+  min-width: 250px;
+}
+#modalSagas .card-title {
+  white-space: normal !important;
+  overflow: visible !important;
+  word-break: break-word;
+}
+#modalSagas .d-flex.gap-2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+#modalSagas .d-flex.gap-2 .btn {
+  flex: 1 1 auto;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0.5rem 0.8rem;
+}
+@media (max-width: 576px) {
+  #modalSagas .d-flex.gap-2 .btn {
+    white-space: normal;
+  }
+}
+
+/* ================================= */
+/* OTROS ESTILOS DEL MODAL SAGA */
+/* ================================= */
+
+#descripcionModals {
+  color: var(--cafe-medio);
+}
+#modalSagas .precio-texto {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--texto-principal-cafe-oscuro);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ================================= */
+/* RESTO DE ESTILOS MODALES (sin cambios) */
+/* ================================= */
+
+.modal-dialog {
+  max-width: 950px;
+}
+.modal-content {
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--fondo-blanco-calido);
+  box-shadow: var(--sombra-media);
+}
+.modal-header {
+  position: relative;
+  justify-content: center;
+  padding: 25px 40px;
+  border-bottom: 1px solid var(--beige-grisaceo);
+}
+.modal-header .btn-close {
+  position: absolute;
+  right: 30px;
+}
+.modal-title {
+  width: 100%;
+  text-align: center;
+  font-family: "Cormorant Garamond";
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--texto-principal-cafe-oscuro);
+}
+.modal-body {
+  padding: 18px 22px;
+}
+.contenedor-info-libro {
+  background: #fdfbf8;
+  border: 2px solid #e7d9ca;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+.portada-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#imagenModal {
+  width: 190px;
+  max-width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  transition: 0.3s ease;
+}
+#imagenModal:hover {
+  transform: scale(1.03);
+}
+.datos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  height: 100%;
+  align-content: center;
+}
+.dato-card {
+  padding: 15px 10px;
+  border-bottom: 1px solid #ece1d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dato-label {
+  font-family: "Cormorant Garamond";
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--texto-principal-cafe-oscuro);
+  margin-bottom: 6px;
+}
+.dato-valor {
+  font-size: 1.05rem;
+  color: var(--cafe-medio);
+}
+.precio-card {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.precio-texto {
+  font-size: 1.1rem;
+  color: var(--texto-principal-cafe-oscuro);
+  margin-bottom: 5px;
+}
+.titulo-sinopsis {
+  font-family: "Cormorant Garamond";
+  font-size: 2.2rem;
+  color: var(--texto-principal-cafe-oscuro);
+  margin-bottom: 15px;
+}
+#sinopsisModal {
+  background: #fdfbf8;
+  border: 2px solid #e7d9ca;
+  border-radius: 20px;
+  padding: 18px;
+  line-height: 1.6;
+  text-align: justify;
+  line-height: 1.9;
+  font-size: 1.08rem;
+  color: var(--texto-principal-cafe-oscuro);
+}
+.modal-footer {
+  justify-content: center;
+  gap: 20px;
+  padding: 25px;
+  border-top: 1px solid var(--beige-grisaceo);
+}
+
+@media (max-width: 768px) {
+  .modal-title {
+    font-size: 2.2rem;
+  }
+  .datos-grid {
+    grid-template-columns: 1fr;
+    margin-top: 25px;
+  }
+  .dato-label {
+    font-size: 1.3rem;
+  }
+  .precio-modal {
+    font-size: 2.4rem;
+  }
+  #imagenModal {
+    width: 200px;
+  }
+}
+
+/*Modal sagas*/
+#imagenSagaModal {
+  width: 220px;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: var(--sombra-media);
+}
+#librosSagaModal {
+  margin-top: 20px;
+>>>>>>> 100e74fd9a552c2d1084de9486a875e39f07a9a3
 }

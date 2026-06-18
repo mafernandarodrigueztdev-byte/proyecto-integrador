@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../src/pages/catalog/catalog.css" />
       <link rel="stylesheet" href="/src/pages/shoppingCart/shopping.css">
 </head>
-
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg sticky-top" aria-label="Navegación principal">
@@ -19,6 +18,7 @@
                     <img src="/src/assets/icons/logo-mel.png" alt="Logo Mundo Entre Libros" class="navbar-logo"
                         loading="lazy" />
                 </a>
+              </li>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
@@ -76,8 +76,8 @@
                 </div>
             </div>
         </nav>
-
-        <body>
+</body>
+<body>
             <!-- categorias contenedor -->
             <main class="container py-4">
                 <div id="contenedor-categorias"></div>
@@ -137,10 +137,13 @@
                         </div>
                         <div class="modal-footer">
                            <button class="btn-carrito">
-Agregar al carrito
-</button>
+                            Agregar al carrito
+                            </button>
                             <button class="btn btn-secondary" data-bs-dismiss="modal">
                                 Cerrar
+                            </button>
+                            <button class="btn-wishlit" data-bs-dismiss="modal">
+                                Wishlist
                             </button>
                         </div>
                     </div>
@@ -169,6 +172,14 @@ Agregar al carrito
                                             <span class="dato-label">Nombre de la saga</span>
                                             <span class="dato-valor" id="nombreSagaModal"></span>
                                         </div>
+                                         <div class="dato-card">
+                                            <span class="dato-label"> Autor </span>
+                                            <span class="dato-valor" id="autorModals"></span>
+                                        </div>
+                                        <div class="dato-card">
+                                            <span class="dato-label"> Editorial </span>
+                                            <span class="dato-valor" id="editorialModals"> </span>
+                                        </div>
                                         <div class="dato-card">
                                             <span class="dato-label">ISBN</span>
                                             <span class="dato-valor" id="isbnModals"></span>
@@ -190,18 +201,21 @@ Agregar al carrito
                             </div>
                         </div>
                         <div class="modal-footer">
-                           <button class="btn btn-carrito-saga">
-    Agregar saga al carrito
-</button>
+                           <button class="btn-carrito btn-carrito-saga">
+                            Agregar saga al carrito
+                            </button>
                             <button class="btn btn-secondary" data-bs-dismiss="modal">
                                 Cerrar
+                            </button>
+                            <button class="btn-wishlit" data-bs-dismiss="modal">
+                                Wishlist
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </body>
-        <!--? Footer: Rodrigo-->
+</body>
+<!--? Footer: Rodrigo-->
         <footer class="main-footer">
             <div class="footer-container">
                 <div class="footer-section logo-section">

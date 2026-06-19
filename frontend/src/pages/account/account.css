@@ -232,6 +232,90 @@ main {
 
 
 
+/*! Formulario de registro*/
+
+h1{
+  color: var(--boton-principal-acento-fuerte);
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-shadow: 0 10px 10px rgba(160, 101, 61, 1);
+  padding-top: 10px;
+}
+
+.form-register{
+  /* width: 400px; */
+  width: 50vw;
+  min-width: 320px;
+  max-width: 600px;
+  background-color: var(--beige-calido-degradado);
+  padding: 30px;
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 80px;
+  border-radius: 12px;
+  border: 1px solid var(--cafe-medio);
+  box-shadow: 7px 13px 37px rgba(160, 101, 61, 1.0);
+  font-family: 'Comorant Garamond';
+  color: var(--boton-principal-acento-fuerte);
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.form-register h4 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.regis-form-data{
+  width: 100%;
+  background-color: var(--beige-grisaceo);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid var(--cafe-medio);
+  color: var(--boton-principal-acento-fuerte)
+}
+
+.form-register p{
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 20px;
+}
+
+.form-register a:hover{
+  color: var(--boton-principal-acento-fuerte);
+  text-decoration: underline var(--cafe-medio);
+}
+
+.btn-register{
+  width: 75%;
+  letter-spacing: 1px;
+  background: var(--boton-principal-acento-fuerte);
+  padding: 12px;
+  color: white;
+  display: block;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+.btn-register:hover{
+  background: var(--cafe-medio);
+}
+
+/*! Warnings*/
+.warnings{
+  width: 200px;
+  text-align: center;
+  margin: auto;
+  color: var(--beige-calido-degradado);
+  padding-top: 20px;
+}
 
 
 

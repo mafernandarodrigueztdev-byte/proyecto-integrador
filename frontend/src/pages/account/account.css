@@ -669,3 +669,262 @@ main {
     max-width: 78px;
   }
 }
+
+/* ==========================================================================
+   MI CUENTA - PUNTOS ACUMULADOS
+   ========================================================================== */
+
+.account-points-section {
+  width: 100%;
+  max-width: 1250px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.5rem;
+  color: var(--texto-principal-cafe-oscuro);
+}
+
+.points-hero-card,
+.points-detail-card {
+  background-color: var(--fondo-blanco-calido);
+  border: 1px solid rgba(82, 31, 18, 0.14);
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(82, 31, 18, 0.08);
+}
+
+.points-eyebrow {
+  display: inline-block;
+  color: var(--cafe-medio);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.points-hero-card h2,
+.points-detail-card h3 {
+  color: var(--texto-principal-cafe-oscuro);
+  font-weight: 700;
+  margin: 0;
+}
+
+.points-hero-card h2 {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.points-hero-card p {
+  color: var(--texto-principal-cafe-oscuro);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.points-total-box {
+  background-color: var(--beige-calido-degradado);
+  border: 1px solid rgba(82, 31, 18, 0.14);
+  border-radius: 18px;
+  padding: 1.7rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.points-total-box span {
+  display: block;
+  color: var(--boton-principal-acento-fuerte);
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.points-total-box small {
+  color: var(--cafe-medio);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.points-rules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.points-rules div {
+  background-color: var(--fondo-principal-crema);
+  border: 1px solid rgba(82, 31, 18, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.points-rules strong {
+  display: block;
+  color: var(--boton-principal-acento-fuerte);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.points-rules span {
+  color: var(--cafe-medio);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.points-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.points-detail-card h3 {
+  font-size: 2rem;
+}
+
+.points-forums-link {
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  white-space: nowrap;
+}
+
+.points-forums-link:hover {
+  background-color: var(--texto-principal-cafe-oscuro);
+  color: var(--fondo-principal-crema);
+  transform: translateY(-2px);
+}
+
+.forum-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.forum-points-item {
+  background-color: var(--fondo-principal-crema);
+  border: 1px solid rgba(82, 31, 18, 0.12);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.forum-points-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(82, 31, 18, 0.1);
+}
+
+.forum-points-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--fondo-blanco-calido);
+  border: 1px solid rgba(82, 31, 18, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+}
+
+.forum-points-info h4 {
+  margin: 0;
+  color: var(--texto-principal-cafe-oscuro);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.forum-points-info p {
+  margin: 0.2rem 0 0;
+  color: var(--cafe-medio);
+  font-size: 1rem;
+}
+
+.forum-points-value {
+  text-align: right;
+  color: var(--boton-principal-acento-fuerte);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.forum-points-value small {
+  display: block;
+  color: var(--cafe-medio);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.empty-points-message {
+  background-color: var(--fondo-principal-crema);
+  border: 1px solid rgba(82, 31, 18, 0.12);
+  border-radius: 16px;
+  padding: 1.3rem;
+  color: var(--cafe-medio);
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* ==========================================================================
+   MI CUENTA - PUNTOS RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .account-points-section {
+    max-width: 900px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .account-points-section {
+    margin: 2rem auto;
+    padding: 0 1.2rem;
+  }
+
+  .points-hero-card,
+  .points-detail-card {
+    padding: 1.5rem;
+  }
+
+  .points-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .points-forums-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .points-rules {
+    grid-template-columns: 1fr;
+  }
+
+  .forum-points-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .forum-points-icon {
+    margin: 0 auto;
+  }
+
+  .forum-points-value {
+    text-align: center;
+  }
+}

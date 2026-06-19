@@ -104,7 +104,6 @@
                 </div>
             </div>
         </nav>
-        <h1>Prueba: Título Cuenta</h1>
         <main>
             <!--? Registro de usuario-->
             <section>
@@ -126,9 +125,53 @@
             <section>
                 <!--Escribe tu código aquí ESCRITORIO-->
             </section>
-            <!--? Puntos-->
-            <section>
-                <!--Escribe tu código aquí ESCRITORIO-->
+            <!--? Puntos acumulados: Mafer -->
+            <section class="account-points-section" aria-labelledby="accountPointsTitle">
+                <div class="points-hero-card">
+                    <span class="points-eyebrow">Participación lectora</span>
+
+                    <h2 id="accountPointsTitle">Mis puntos acumulados</h2>
+
+                    <p>
+                        Aquí puedes consultar los puntos que has ganado al participar en los foros de
+                        Mundo Entre Libros. Recuerda que ganas puntos al publicar y responder dentro
+                        de los foros a los que estás suscrita.
+                    </p>
+
+                    <div class="points-total-box">
+                        <span id="totalUserPoints">0</span>
+                        <small>puntos totales</small>
+                    </div>
+
+                    <div class="points-rules">
+                        <div>
+                            <strong>+10</strong>
+                            <span>por crear publicación</span>
+                        </div>
+
+                        <div>
+                            <strong>+5</strong>
+                            <span>por responder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="points-detail-card">
+                    <div class="points-detail-header">
+                        <div>
+                            <span class="points-eyebrow">Foros activos</span>
+                            <h3>Mis puntos por foro</h3>
+                        </div>
+
+                        <a href="/forums/forums.html" class="points-forums-link">
+                            Ir a foros →
+                        </a>
+                    </div>
+
+                    <div id="userForumPointsList" class="forum-points-list">
+                        <!-- Aquí se renderizan los puntos desde account.js -->
+                    </div>
+                </div>
             </section>
             <!--? Wishlist-->
             <section>

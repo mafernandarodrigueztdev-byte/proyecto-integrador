@@ -58,19 +58,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            saga.libros.forEach(idLibro => {
-                const libro = window.todosLosLibros?.find(l => l.id === idLibro);
+            const cantidadLibros = Array.isArray(saga.libros) ? saga.libros.length : 0;
 
-                if (libro) {
-                    agregarProducto({
-                        id: String(libro.id),
-                        titulo: libro.titulo,
-                        precio: Number(libro.precio),
-                        portada: libro.portada,
-                        cantidad: 1
-                    });
-                }
-            });
+            const productoSaga = {
+                id: `saga-${saga.id}`,
+                titulo: `Saga: ${saga.nombre} (${cantidadLibros} libros)`,
+                precio: Number(saga.precioSaga),
+                portada: saga.portada,
+                cantidad: 1
+            };
+
+            if (
+                !productoSaga.id ||
+                !productoSaga.titulo ||
+                isNaN(productoSaga.precio) ||
+                !productoSaga.portada
+            ) {
+                console.error("Saga incompleta:", productoSaga);
+                return;
+            }
+
+            agregarProducto(productoSaga);
         }
 
         const botonEliminar = e.target.closest(".btn-eliminar-producto");

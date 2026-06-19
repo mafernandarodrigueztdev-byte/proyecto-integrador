@@ -1086,6 +1086,10 @@ main {
   border-radius: 16px;
   box-shadow: var(--sombra-media);
 }
+/* HEAD*/
+#librosSagaModal {
+  margin-top: 20px;
+}
 
 .carrusel-libros::-webkit-scrollbar{
     height:8px;
@@ -1690,4 +1694,125 @@ main {
 
     margin-top:20px;
 
+}
+
+/* ==========================================================================
+   CATÁLOGO - SAGAS Y BOTONES
+   ========================================================================== */
+
+.card-saga {
+  background-color: var(--fondo-blanco-calido);
+}
+
+.btn-sagas,
+.btn-carrito,
+.btn-carrito-saga {
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.btn-sagas:hover,
+.btn-carrito:hover,
+.btn-carrito-saga:hover {
+  background-color: var(--texto-principal-cafe-oscuro);
+  color: var(--fondo-principal-crema);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   CATÁLOGO - MODAL SAGAS
+   ========================================================================== */
+
+#modalSagas #imagenModals {
+  width: 220px;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 18px rgba(82, 31, 18, 0.15);
+}
+
+#modalSagas #descripcionModals {
+  color: var(--texto-principal-cafe-oscuro);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+#modalSagas .carrusel-contenedor {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#modalSagas .carrusel-libros {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#modalSagas .carrusel-libros::-webkit-scrollbar {
+  display: none;
+}
+
+#modalSagas .card-libro {
+  min-width: 220px;
+  max-width: 220px;
+}
+
+#modalSagas .card-libro img {
+  height: 260px;
+  object-fit: cover;
+}
+
+#modalSagas .carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modalSagas .carrusel-btn:hover {
+  background-color: var(--cafe-medio);
+}
+
+#modalSagas .carrusel-btn-izq {
+  left: -20px;
+}
+
+#modalSagas .carrusel-btn-der {
+  right: -20px;
+}
+
+@media (max-width: 768px) {
+  #modalSagas .carrusel-btn {
+    display: none;
+  }
+
+  #modalSagas .card-libro {
+    min-width: 190px;
+    max-width: 190px;
+  }
+
+  #modalSagas .card-libro img {
+    height: 230px;
+  }
 }

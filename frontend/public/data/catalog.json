@@ -1297,7 +1297,7 @@
       "portada": "/src/assets/libros/psicologia/La_inteligencia_emocional.jpg",
       "sinopsis": "Explica cómo la capacidad de reconocer, comprender y gestionar las emociones influye en el éxito personal y profesional."
     }
-  ],
+    ],
 
   "sagas": [
     {
@@ -1374,3 +1374,4 @@
     }
   ]
 }
+

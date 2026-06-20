@@ -534,6 +534,7 @@ main {
     align-items: center;
     gap: 8px;
   }
+
   .pixel-interaction-title {
     font-size: 1.25rem;
     margin-bottom: 4px;
@@ -1085,10 +1086,6 @@ main {
   object-fit: cover;
   border-radius: 16px;
   box-shadow: var(--sombra-media);
-}
-/* HEAD*/
-#librosSagaModal {
-  margin-top: 20px;
 }
 
 .carrusel-libros::-webkit-scrollbar{
@@ -1815,4 +1812,26 @@ main {
   #modalSagas .card-libro img {
     height: 230px;
   }
+}
+
+/* ================================= 
+Boton Wishlist
+ ================================= */
+
+.btn-wishlist{
+    background: transparent;
+    border: none;
+    color:  var(--boton-principal-acento-fuerte);
+    font-size: 3rem;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.btn-wishlist:hover{
+    transform: scale(1.2);
+}
+
+.btn-wishlist.activo{
+    color:  var(--boton-principal-acento-fuerte);;
 }

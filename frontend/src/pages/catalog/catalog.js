@@ -392,17 +392,16 @@ function abrirModalLibro(libro) {
    ===================================== */
 
 function abrirModalSagas(saga) {
+  // ✅ IDs correctos con "s" al final
   document.getElementById("tituloModals").textContent = saga.nombre;
   document.getElementById("nombreSagaModal").textContent = saga.nombre;
   document.getElementById("imagenModals").src = saga.portada || "";
   document.getElementById("imagenModals").alt = saga.nombre;
   document.getElementById("isbnModals").textContent = saga.isbnSaga;
   document.getElementById("precioModals").textContent = formatearPrecio(saga.precioSaga);
-  document.getElementById("descripcionModals").textContent =
-    saga.descripcion || "Descripción disponible próximamente.";
+  document.getElementById("descripcionModals").textContent = saga.descripcion || "Descripción disponible próximamente.";
 
   const contenedor = document.getElementById("carruselSaga");
-
   if (!contenedor) return;
 
   contenedor.innerHTML = "";
@@ -433,8 +432,15 @@ function abrirModalSagas(saga) {
   btnDer.innerHTML = "&gt;";
   btnDer.setAttribute("aria-label", "Ver más libros de la saga");
 
-  btnIzq.addEventListener("click", () => moverCarrusel(carruselDiv, "izq"));
-  btnDer.addEventListener("click", () => moverCarrusel(carruselDiv, "der"));
+  // ✅ Eventos con console.log para depurar (opcional)
+  btnIzq.addEventListener("click", () => {
+    console.log("Flecha izquierda clickeada");
+    moverCarrusel(carruselDiv, "izq");
+  });
+  btnDer.addEventListener("click", () => {
+    console.log("Flecha derecha clickeada");
+    moverCarrusel(carruselDiv, "der");
+  });
 
   wrapper.appendChild(carruselDiv);
   wrapper.appendChild(btnIzq);
@@ -443,7 +449,6 @@ function abrirModalSagas(saga) {
   contenedor.appendChild(wrapper);
 
   const botonSagaCarrito = document.getElementById("btnAgregarSagaCarrito");
-
   if (botonSagaCarrito) {
     botonSagaCarrito.dataset.saga = saga.id;
   }

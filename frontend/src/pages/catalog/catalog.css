@@ -690,30 +690,61 @@ main {
 /* CARRUSEL */
 /* ================================= */
 
-.carrusel-libros{
-
-    display:flex;
-
-    align-items:stretch;
-
-    gap:20px;
-
-    overflow-x:auto;
-
-    scroll-behavior:smooth;
-
-    padding-bottom:10px;
-
+.carrusel-libros {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+.carrusel-libros::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
-.carrusel-libros::-webkit-scrollbar{
-    height:8px;
+.carrusel-contenedor {
+    position: relative;
+    margin-bottom: 2rem;
 }
 
-.carrusel-libros::-webkit-scrollbar-thumb{
-    background:var(--cafe-medio);
-    border-radius:10px;
+/* =========================================== */
+/* FLECHAS DEL CARRUSEL (GENERAL) */
+/* =========================================== */
+
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #4b1d13;
+  color: #f1f0e5;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+.carrusel-btn:hover {
+  background-color: #a0653d;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carrusel-btn-izq {
+  left: -20px;
+}
+.carrusel-btn-der {
+  right: -20px;
+}
+
 /* ================================= */
 /* CARD LIBRO */
 /* ================================= */
@@ -1357,28 +1388,44 @@ main {
   line-height: 1.5;
 }
 
+/* Contenedor principal del carrusel en el modal */
 #modalSagas .carrusel-contenedor {
-  position: relative;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  position: relative !important;
+  margin: 1rem 0 2rem 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
+/* El carrusel en sí */
 #modalSagas .carrusel-libros {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 20px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-behavior: smooth !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding: 10px 0 !important;
+  width: calc(3 * 200px + 2 * 20px) !important; /* 640px */
+  max-width: 100% !important;
+  flex-shrink: 0 !important;
+  margin: 0 auto !important; /* Asegura centrado en caso de fallo */
 }
 
 #modalSagas .carrusel-libros::-webkit-scrollbar {
-  display: none;
+  display: none !important;
 }
 
 #modalSagas .card-libro {
-  min-width: 220px;
-  max-width: 220px;
+  flex: 0 0 200px; /* ← Fuerza ancho fijo */
+  min-width: 200px;
+  max-width: 200px;
 }
 
 #modalSagas .card-libro img {
@@ -1390,8 +1437,8 @@ main {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: var(--boton-principal-acento-fuerte);
-  color: var(--fondo-principal-crema);
+  background-color: #4b1d13; /* Café fijo (no uses variable) */
+  color: #f1f0e5;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -1399,10 +1446,15 @@ main {
   font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer;
-  z-index: 10;
+  z-index: 9999 !important; /* ← Por encima de todo */
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+#modalSagas .carrusel-btn:hover {
+  background-color: #a0653d;
 }
 
 #modalSagas .carrusel-btn:hover {
@@ -1410,24 +1462,25 @@ main {
 }
 
 #modalSagas .carrusel-btn-izq {
-  left: -20px;
+  left: 5px;
 }
-
 #modalSagas .carrusel-btn-der {
-  right: -20px;
+  right: 5px;
 }
 
 @media (max-width: 768px) {
+  /* OCULTAR TODAS LAS FLECHAS EN MÓVILES (scroll táctil) */
+  .carrusel-btn,
   #modalSagas .carrusel-btn {
-    display: none;
+    display: none !important;
   }
 
+  /* Ajustes de tarjetas en el modal */
   #modalSagas .card-libro {
-    min-width: 190px;
-    max-width: 190px;
+    min-width: 160px;
+    max-width: 160px;
   }
-
   #modalSagas .card-libro img {
-    height: 230px;
+    height: 200px;
   }
 }

@@ -22,7 +22,7 @@
   --crema-secundario: #f6ebd9;
   --cafe-medio: #a0653d;
   --beige-grisaceo: #d9cdc1;
-  --color-verde-acento: #2e5a44;
+  --color-verde-acento: #85BB65;
 }
 
 body {
@@ -722,7 +722,7 @@ main {
 .precio {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #85BB65;
+  color: #521f12;
   margin: 0;
 }
 .btn-libro {
@@ -764,7 +764,7 @@ main {
 
 /* General */
 .btn-carrito {
-  background-color: #85BB65 !important;
+  background-color: #521f12 !important;
   color: white !important;
   border: none;
   border-radius: 10px;
@@ -772,31 +772,31 @@ main {
   font-weight: 600;
 }
 .btn-carrito:hover {
-  background-color: #6b9e4a !important;
+  background-color: #4b1d13 !important;
   color: white !important;
 }
 
 /* Dentro del footer del modal de libro */
 .modal-footer .btn-carrito {
-  background-color: #85BB65 !important;
+  background-color: #521f12 !important;
   color: white !important;
 }
 .modal-footer .btn-carrito:hover {
-  background-color: #6b9e4a !important;
+  background-color: #4b1d13 !important;
 }
 
 /* Dentro del carrusel de libros del modal de saga */
 #modalSagas .btn-carrito {
-  background-color: #85BB65 !important;
+  background-color: #521f12 !important;
   color: white !important;
 }
 #modalSagas .btn-carrito:hover {
-  background-color: #6b9e4a !important;
+  background-color: #4b1d13 !important;
 }
 
 /* Botón "Agregar saga al carrito" (footer del modal de saga) */
 #modalSagas .btn-carrito-saga {
-  background-color: #85BB65 !important;
+  background-color: #521f12 !important;
   color: white !important;
   border: none;
   border-radius: 10px;
@@ -804,7 +804,7 @@ main {
   font-weight: 600;
 }
 #modalSagas .btn-carrito-saga:hover {
-  background-color: #6b9e4a !important;
+  background-color: #4b1d13 !important;
 }
 
 /* ================================= */
@@ -814,7 +814,7 @@ main {
 .precio-modal {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #85BB65;
+  color: #521f12;
   margin: 0;
   padding: 0;
   border: none;
@@ -830,12 +830,12 @@ main {
   line-height: 1.2;
 }
 .modal-footer .btn-secondary {
-  background-color: #ff0f0f;
+  background-color: #521f12;
   color: white;
   border: none;
 }
 .modal-footer .btn-secondary:hover {
-  background-color: #cc0000;
+  background-color: #4b1d13;
 }
 
 /* ================================= */
@@ -1089,14 +1089,47 @@ main {
   box-shadow: var(--sombra-media);
 }
 
-.carrusel-libros::-webkit-scrollbar{
-    height:8px;
+.carrusel-contenedor {
+    position: relative;
+    margin-bottom: 2rem;
 }
 
-.carrusel-libros::-webkit-scrollbar-thumb{
-    background:var(--cafe-medio);
-    border-radius:10px;
+/* =========================================== */
+/* FLECHAS DEL CARRUSEL (GENERAL) */
+/* =========================================== */
+
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #4b1d13;
+  color: #f1f0e5;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+.carrusel-btn:hover {
+  background-color: #a0653d;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carrusel-btn-izq {
+  left: -20px;
+}
+.carrusel-btn-der {
+  right: -20px;
+}
+
 /* ================================= */
 /* CARD LIBRO */
 /* ================================= */
@@ -1740,28 +1773,44 @@ main {
   line-height: 1.5;
 }
 
+/* Contenedor principal del carrusel en el modal */
 #modalSagas .carrusel-contenedor {
-  position: relative;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  position: relative !important;
+  margin: 1rem 0 2rem 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
+/* El carrusel en sí */
 #modalSagas .carrusel-libros {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 20px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-behavior: smooth !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding: 10px 0 !important;
+  width: calc(3 * 200px + 2 * 20px) !important; /* 640px */
+  max-width: 100% !important;
+  flex-shrink: 0 !important;
+  margin: 0 auto !important; /* Asegura centrado en caso de fallo */
 }
 
 #modalSagas .carrusel-libros::-webkit-scrollbar {
-  display: none;
+  display: none !important;
 }
 
 #modalSagas .card-libro {
-  min-width: 220px;
-  max-width: 220px;
+  flex: 0 0 200px; /* ← Fuerza ancho fijo */
+  min-width: 200px;
+  max-width: 200px;
 }
 
 #modalSagas .card-libro img {
@@ -1773,8 +1822,8 @@ main {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: var(--boton-principal-acento-fuerte);
-  color: var(--fondo-principal-crema);
+  background-color: #4b1d13; /* Café fijo (no uses variable) */
+  color: #f1f0e5;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -1782,10 +1831,15 @@ main {
   font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer;
-  z-index: 10;
+  z-index: 9999 !important; /* ← Por encima de todo */
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+#modalSagas .carrusel-btn:hover {
+  background-color: #a0653d;
 }
 
 #modalSagas .carrusel-btn:hover {
@@ -1793,25 +1847,26 @@ main {
 }
 
 #modalSagas .carrusel-btn-izq {
-  left: -20px;
+  left: 5px;
 }
-
 #modalSagas .carrusel-btn-der {
-  right: -20px;
+  right: 5px;
 }
 
 @media (max-width: 768px) {
+  /* OCULTAR TODAS LAS FLECHAS EN MÓVILES (scroll táctil) */
+  .carrusel-btn,
   #modalSagas .carrusel-btn {
-    display: none;
+    display: none !important;
   }
 
+  /* Ajustes de tarjetas en el modal */
   #modalSagas .card-libro {
-    min-width: 190px;
-    max-width: 190px;
+    min-width: 160px;
+    max-width: 160px;
   }
-
   #modalSagas .card-libro img {
-    height: 230px;
+    height: 200px;
   }
 }
 

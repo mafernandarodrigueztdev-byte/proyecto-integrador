@@ -313,3 +313,233 @@ document.addEventListener("DOMContentLoaded", () => {
     btnWishlistSaga.title = "Saga guardada en wishlist";
   });
 });
+
+/* ==========================================================================
+   MI CUENTA - LOG IN
+   ========================================================================== */
+
+   document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  if (!loginForm) return;
+
+  // 1. Inyección de Estilos Avanzados (Mantiene account.css intacto)
+  const style = document.createElement("style");
+  style.innerHTML = `
+        .is-invalid-login-js { border-color: #b22222 !important; box-shadow: 0 0 0 3px rgba(178, 34, 34, 0.15) !important; }
+        .is-valid-login-js { border-color: #2e5a44 !important; box-shadow: 0 0 0 3px rgba(46, 90, 68, 0.15) !important; }
+        .toggle-password-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #521f12;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            z-index: 10;
+        }
+        .toggle-password-icon:hover { opacity: 1; }
+        .caps-warning-message {
+            display: block;
+            color: #a0653d;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 4px;
+            transition: all 0.2s ease;
+        }
+    `;
+  document.head.appendChild(style);
+
+  // Selector de elementos
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const emailError = document.getElementById("emailError");
+  const passwordError = document.getElementById("passwordError");
+  const capsLockWarning = document.getElementById("capsLockWarning");
+  const togglePasswordBtn = document.getElementById("togglePassword");
+  const loginSuccess = document.getElementById("loginSuccess");
+  const submitBtn = loginForm.querySelector(".login-btn");
+
+  const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // 2. PLUS: Alternar visibilidad de contraseña
+  if (togglePasswordBtn && passwordInput) {
+    togglePasswordBtn.addEventListener("click", () => {
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+      togglePasswordBtn.textContent = isPassword ? "👁" : "👁";
+      togglePasswordBtn.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
+    });
+  }
+
+  // 3. PLUS: Detección nativa de Caps Lock (Bloqueo de Mayúsculas)
+  if (passwordInput && capsLockWarning) {
+    passwordInput.addEventListener("keyup", (event) => {
+      if (event.getModifierState && event.getModifierState("CapsLock")) {
+        capsLockWarning.style.display = "block";
+      } else {
+        capsLockWarning.style.display = "none";
+      }
+    });
+    
+    // Asegurar que se oculte si el usuario sale del input
+    passwordInput.addEventListener("blur", () => {
+      capsLockWarning.style.display = "none";
+    });
+  }
+
+  // 4. Algoritmo de Entropía Estructural y Análisis de Patrones Vulnerables
+  function evaluarSeguridadPassword(password) {
+    if (password.length === 0) return { isValid: false, msg: "La contraseña es obligatoria." };
+    if (password.length < 8) return { isValid: false, msg: "La contraseña debe tener una longitud mínima de 8 caracteres." };
+    if (password.length > 128) return { isValid: false, msg: "La contraseña excede el límite seguro permitido." };
+
+    // Lista negra: Palabras de diccionarios comunes o contextos predecibles de la app
+    const blacklist = ["12345678", "password", "contraseña", "admin1234", "mundoentrelibros", "libros2026"];
+    if (blacklist.includes(password.toLowerCase())) {
+      return { isValid: false, msg: "Contraseña extremadamente común y peligrosa. Utiliza una combinación más impredecible." };
+    }
+
+    // Detección de repeticiones continuas de un mismo carácter (ej: aaaaaa, 111111)
+    if (/(\w)\1{3,}/.test(password)) {
+      return { isValid: false, msg: "Evita usar caracteres o números repetidos consecutivamente." };
+    }
+
+    // Detección de secuencias lineales comunes de teclado (Keyboard walks)
+    const keyboardPatterns = ["qwerty", "asdfgh", "zxcvbn", "12345", "54321"];
+    const lowerPass = password.toLowerCase();
+    const tienePatronTeclado = keyboardPatterns.some(pattern => lowerPass.includes(pattern));
+    if (tienePatronTeclado) {
+      return { isValid: false, msg: "La contraseña contiene patrones secuenciales de teclado fáciles de adivinar." };
+    }
+
+    return { isValid: true, msg: "" };
+  }
+
+  // 5. Validadores individuales integrados
+  const checarEmail = () => {
+    if (!emailInput || !emailError) return true;
+    const value = emailInput.value.trim();
+    let isValid = true;
+    let mensaje = "";
+
+    if (value.length === 0) {
+      mensaje = "El correo electrónico es obligatorio.";
+      isValid = false;
+    } else if (!regexEmail.test(value)) {
+      mensaje = "Por favor, ingresa un correo electrónico válido (ej. mail@example.com).";
+      isValid = false;
+    }
+
+    if (isValid) {
+      emailError.textContent = "";
+      emailInput.classList.remove("is-invalid-login-js", "input-error");
+      emailInput.classList.add("is-valid-login-js");
+    } else {
+      emailError.textContent = mensaje;
+      emailInput.classList.remove("is-valid-login-js");
+      emailInput.classList.add("is-invalid-login-js");
+    }
+    return isValid;
+  };
+
+  const checarPassword = () => {
+    if (!passwordInput || !passwordError) return true;
+    
+    // Evaluamos la contraseña mediante el analizador heurístico
+    const analisis = evaluarSeguridadPassword(passwordInput.value);
+
+    if (analisis.isValid) {
+      passwordError.textContent = "";
+      passwordInput.classList.remove("is-invalid-login-js");
+      passwordInput.classList.add("is-valid-login-js");
+    } else {
+      passwordError.textContent = analisis.msg;
+      passwordInput.classList.remove("is-valid-login-js");
+      passwordInput.classList.add("is-invalid-login-js");
+    }
+    return analisis.isValid;
+  };
+
+  // Escuchas en tiempo real
+  if (emailInput) emailInput.addEventListener("input", checarEmail);
+  if (passwordInput) passwordInput.addEventListener("input", checarPassword);
+
+  // 6. Control del Formulario con SweetAlert2 integrado
+  loginForm.addEventListener("submit", (event) => {
+    const isEmailValid = checarEmail();
+    const isPasswordValid = checarPassword();
+
+    if (!isEmailValid || !isPasswordValid) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (!isEmailValid) {
+        emailInput.focus();
+      } else if (!isPasswordValid) {
+        passwordInput.focus();
+      }
+
+      // Despliegue de la alerta con los estilos corporativos exactos aportados por la imagen
+      if (typeof Swal !== "undefined") {
+        Swal.fire({
+          icon: "warning",
+          title: "Datos incorrectos",
+          text: "Por favor, corrige los campos marcados antes de enviar. Asegúrate de usar una contraseña con estructura segura y sin patrones predecibles.",
+          confirmButtonText: "Corregir",
+          confirmButtonColor: "#4B1D13",
+          background: "#F6EBD9",
+          color: "#521F12",
+        });
+      } else {
+        alert("Por favor, corrige los campos marcados en rojo antes de continuar.");
+      }
+      return;
+    }
+
+    // 7. Generación del Modelo JSON Premium ante éxito total
+    event.preventDefault();
+    
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Autenticando de forma segura...";
+
+    const usuarioLogin = {
+      email: emailInput.value.trim(),
+      password: passwordInput.value,
+      rememberMe: false,
+      timestamp: new Date().toISOString(),
+      deviceContext: {
+        screenResolution: `${window.innerWidth}x${window.innerHeight}`,
+        isMobile: window.innerWidth <= 991
+      },
+      securityMetrics: {
+        passLength: passwordInput.value.length,
+        isHighEntropy: true
+      }
+    };
+
+    const usuarioJSON = JSON.stringify(usuarioLogin, null, 2);
+    console.log("Transmisión de JSON estructurada con métricas de seguridad:", usuarioJSON);
+
+    if (loginSuccess) {
+      loginSuccess.textContent = "¡Credenciales verificadas con éxito! Redirigiendo...";
+    }
+
+    setTimeout(() => {
+      loginForm.reset();
+      emailInput.classList.remove("is-valid-login-js");
+      passwordInput.classList.remove("is-valid-login-js");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      if (loginSuccess) loginSuccess.textContent = "";
+    }, 5000);
+  });
+});

@@ -1,3 +1,31 @@
+/*============================================================================
+              SPA: Control de vistas
+=============================================================================*/
+const vistas = document.querySelectorAll(".vista");
+
+function mostrarVista(id) {
+  vistas.forEach(v => v.classList.remove("activa"));
+  document.getElementById(id).classList.add("activa");
+}
+
+// Mostrar login por defecto
+mostrarVista("vista-login");
+
+// Links de navegación entre vistas
+document.getElementById("ir-a-registro")
+  .addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarVista("vista-registro");
+  });
+
+document.getElementById("ir-a-login")
+  .addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarVista("vista-login");
+  });
+
+
+
 /* ==========================================================================
    MI CUENTA - PUNTOS ACUMULADOS
    ========================================================================== */
@@ -164,13 +192,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 /*==========================================================================*/
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formregister");
-    const warnings = document.getElementById("warnings");
 
     form.addEventListener("submit", (e) => {
-        // Evitamos que el formulario se envíe automáticamente y recargue la página
+        // Evita que el formulario se envíe automáticamente y recargue la página
         e.preventDefault(); 
         
-        // Capturamos los valores actuales de los inputs eliminando espacios vacíos al inicio/final
+        // Captura los valores actuales de los inputs eliminando espacios vacíos al inicio/final
         const nombre = document.getElementById("regisNombres").value.trim();
         const apellidos = document.getElementById("regisApellidos").value.trim();
         const phone = document.getElementById("regisphone").value.trim();
@@ -180,62 +207,65 @@ document.addEventListener("DOMContentLoaded", () => {
         const passwordconf = document.getElementById("regisPasswordconf").value.trim();
 
         let errores = [];
-        warnings.innerHTML = ""; // Limpiamos la pantalla de errores previos
 
-        // 1. Validar campos vacíos
+        // 1. Valida campos vacíos
         if (!nombre || !apellidos || !phone || !email || !emailconf || !password || !passwordconf) {
             errores.push("Todos los campos son obligatorios.");
         }
 
-        // 2. Validar formato de Email
+        // 2. Valida formato de Email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email && !emailRegex.test(email)) {
             errores.push("Ingresa un correo válido.");
         }
 
-        // 3. Validar coincidencia de correos
+        // 3. Valida coincidencia de correos
         if (email !== emailconf) {
             errores.push("Los correos no coinciden.");
         }
 
-        // 4. Validar longitud de la contraseña
+        // 4. Valida longitud de la contraseña
         if (password && password.length < 8) {
             errores.push("La contraseña debe tener al menos 8 caracteres.");
         }
 
-        // 5. Validar coincidencia de contraseñas
+        // 5. Valida coincidencia de contraseñas
         if (password !== passwordconf) {
             errores.push("Las contraseñas no coinciden.");
         }
 
-        // 6. Evaluar resultados
+        // 6. Evalua resultados
         if (errores.length > 0) {
           // Unir errores con salto de linea de HTML para el cuerpo de la alerta
           const mensajeErrores = errores.join("<br>");
 
           Swal.fire({
                 title: 'Error de registro',
-                html: mensajeErrores, // Usamos 'html' en lugar de 'text' para que interprete los <br>
+                html: mensajeErrores, // Se usa 'html' en lugar de 'text' para que interprete los <br>
                 icon: 'error',
                 confirmButtonText: 'Entendido',
                 background: "#F6EBD9",
-                confirmButtonColor: '#4b1d13' // Opcional: un color rojo para el botón de error
-            });
-            // Mostramos todos los errores acumulados separados por un salto de línea
-            warnings.innerHTML = errores.join("<br>");
-            warnings.style.color = "red"; 
+                confirmButtonColor: '#4b1d13'
+            }); 
         } else {
-            // Si pasa todas las validaciones
-            warnings.innerHTML = "¡Registro exitoso! Procesando datos...";
-            warnings.style.color = "green";
 
+          //Construcción de modelo de usuario
+            const nuevoUsuario = {
+            nombre:         nombre,
+            apellidos:      apellidos,
+            telefono:       phone,
+            email:          email,
+            password:       password,
+            rol:            "usuario",
+            activo:         true,
+          };
             Swal.fire({
                 title: '¡Registro Exitoso!',
                 text: 'Tu cuenta ha sido creada correctamente.',
                 icon: 'success',
                 confirmButtonText: 'Continuar',
-                background: "#F6EBD9",         // Mismo fondo crema
-                confirmButtonColor: '#4b1d13'   // Mismo color café oscuro
+                background: "#F6EBD9",
+                confirmButtonColor: '#4b1d13'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Si el usuario da clic en 'Continuar', el formulario se envía de verdad
@@ -253,9 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-  //       }
-  //   });
-  // });
 
 /* ==========================================================================
    MI CUENTA - WISHLIST

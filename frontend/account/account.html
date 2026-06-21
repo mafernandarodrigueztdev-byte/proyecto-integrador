@@ -104,10 +104,9 @@
                 </div>
             </div>
         </nav>
-        <br>
-        <h1>Sé parte de nuestra comunidad</h1>
         <main>
             <!--? Registro de usuario: Tonantzin-->
+    <section id="vista-registro" class="vista">
         <form class="form-register" id="formregister" novalidate>
             <h4>Crea tu cuenta</h4>
             <label class="regislabel" for="regisNombres">Ingresa tu nombre/s</label>
@@ -127,14 +126,14 @@
                 <input class="regis-form-data" type="password" name="regisPassword" id="regisPassword" placeholder="8 caracteres mínimo">
             <label class="regislabel" for="regisPasswordconf">Confirma tu contraseña</label>
                 <input class="regis-form-data" type="password" name="regisPasswordconf" id="regisPasswordconf" placeholder="8 caracteres mínimo">
-            <p class="warnings" id="warnings"></p>
             <input class="btn-register" type="submit" value="Registrarse">
             <br>
-            <p><a href="#">Ya tengo una Cuenta</a></p>
+            <p><a href="#" id="ir-a-login">Ya tengo una Cuenta</a></p>
         </form>
-
+    </section>
 
             <!--? Log in Israel-->
+        <section id="vista-login" class="vista">
             <section class="login-section">
                     <div class="login-banner">
                         <h2>¡Qué bueno que regresaste, te extrañamos!</h2></div>
@@ -199,10 +198,11 @@
             <button type="submit" 
             class="login-btn">Ingresar</button>
             <p id="loginSuccess" class="success-message"></p>
-            <p><a href="#">¿No tienes una cuenta? ¡Regístrate!</a></p>
+            <p><a href="#" id="ir-a-registro">¿No tienes una cuenta? ¡Regístrate!</a></p>
         </form>
     </div>
             </section>
+        </section>
             <!--? panel de navegacion-->
             <section>
                 <!--Escribe tu código aquí ESCRITORIO-->

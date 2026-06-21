@@ -1,7 +1,34 @@
 /* ==========================================================================
+   SISTEMA GLOBAL - NAVEGACIÓN LATERAL (SIDEBAR)
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButtons = document.querySelectorAll(".menu-btn");
+  const contentSections = document.querySelectorAll(".content-section");
+
+  if (menuButtons.length > 0 && contentSections.length > 0) {
+    menuButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // 1. Remover estado activo de los botones del menú
+        menuButtons.forEach(b => b.classList.remove("active"));
+        // 2. Ocultar todas las secciones de contenido de la derecha
+        contentSections.forEach(sec => sec.classList.remove("active"));
+        
+        // 3. Activar el botón presionado
+        btn.classList.add("active");
+        // 4. Mostrar la sección de contenido asociada
+        const target = btn.getAttribute("data-target");
+        const targetSection = document.getElementById(`sec-${target}`);
+        if (targetSection) {
+          targetSection.classList.add("active");
+        }
+      });
+    });
+  }
+});
+
+/* ==========================================================================
    MI CUENTA - PUNTOS ACUMULADOS
    ========================================================================== */
-
 document.addEventListener("DOMContentLoaded", async () => {
   const totalUserPoints = document.querySelector("#totalUserPoints");
   const userForumPointsList = document.querySelector("#userForumPointsList");
@@ -11,9 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function getLoggedUser() {
     const storedUser = localStorage.getItem(USER_STORAGE_KEY);
-
     if (!storedUser) return null;
-
     try {
       return JSON.parse(storedUser);
     } catch (error) {
@@ -24,9 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function getAllMemberships() {
     const storedMemberships = localStorage.getItem(MEMBERSHIPS_STORAGE_KEY);
-
     if (!storedMemberships) return {};
-
     try {
       return JSON.parse(storedMemberships);
     } catch (error) {
@@ -41,7 +64,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function formatDate(dateString) {
     if (!dateString) return "fecha no disponible";
-
     return new Date(dateString).toLocaleDateString("es-MX", {
       day: "numeric",
       month: "short",
@@ -52,11 +74,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function getForumsData() {
     try {
       const response = await fetch("/data/forums.json");
-
       if (!response.ok) {
         throw new Error(`Error al cargar forums.json: ${response.status}`);
       }
-
       return await response.json();
     } catch (error) {
       console.error("Error cargando foros:", error);
@@ -72,7 +92,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (totalUserPoints) {
       totalUserPoints.textContent = "0";
     }
-
     if (userForumPointsList) {
       userForumPointsList.innerHTML = `
         <p class="empty-points-message">
@@ -110,9 +129,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const forums = await getForumsData();
-
     const sortedMemberships = sortMembershipsByPoints(userForumMemberships);
-
     const totalPoints = sortedMemberships.reduce((total, membership) => {
       return total + Number(membership.points || 0);
     }, 0);
@@ -126,7 +143,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     userForumPointsList.innerHTML = sortedMemberships
       .map((membership) => {
         const forum = findForumById(forums, membership.forumId);
-
         const forumName = forum?.nombre || "Foro desconocido";
         const forumIcon = forum?.icono || "📚";
         const joinedAt = formatDate(membership.joinedAt);
@@ -137,12 +153,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="forum-points-icon">
               ${forumIcon}
             </div>
-
             <div class="forum-points-info">
               <h4>${forumName}</h4>
               <p>Te uniste el ${joinedAt}</p>
             </div>
-
             <div class="forum-points-value">
               ${formatNumber(points)}
               <small>puntos</small>
@@ -159,7 +173,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 /* ==========================================================================
    MI CUENTA - WISHLIST
    ========================================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
   const wishlistContainer = document.querySelector("#wishlist-container");
   const wishlistVacia = document.querySelector("#wishlist-vacia");
@@ -198,20 +211,16 @@ document.addEventListener("DOMContentLoaded", () => {
           alt="${libro.titulo}" 
           class="wishlist-img"
         >
-
         <div class="wishlist-info">
           <div>
             <h3>${libro.titulo}</h3>
-
             <p>
               ${libro.descripcion || "Sin descripción disponible."}
             </p>
-
             <p class="wishlist-precio">
               $${formatearPrecio(libro.precio)}
             </p>
           </div>
-
           <div class="wishlist-actions">
             <button
               class="btn-carrito-wishlist"
@@ -221,7 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
               data-portada="${libro.imagen}">
               Agregar al carrito
             </button>
-
             <button
               class="btn-eliminar-wishlist"
               data-id="${libro.id}">
@@ -230,7 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
       `;
-
       wishlistContainer.appendChild(card);
     });
   }
@@ -241,13 +248,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (botonEliminar) {
       const id = botonEliminar.dataset.id;
-
       wishlist = wishlist.filter((libro) => String(libro.id) !== String(id));
-
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
       renderWishlist();
-
       return;
     }
 
@@ -261,7 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
       const existe = carrito.find(
         (item) => String(item.id) === String(producto.id)
       );
@@ -273,9 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem("carrito", JSON.stringify(carrito));
-
       botonCarrito.textContent = "Agregado";
-
       return;
     }
   });
@@ -285,7 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnWishlistSaga = document.getElementById("btnWishlistSaga");
-
   if (!btnWishlistSaga) return;
 
   btnWishlistSaga.addEventListener("click", () => {
@@ -299,7 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
     const existe = wishlist.some(
       item => String(item.id) === String(sagaWishlist.id)
     );
@@ -317,12 +315,11 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==========================================================================
    MI CUENTA - LOG IN
    ========================================================================== */
-
-   document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) return;
 
-  // 1. Inyección de Estilos Avanzados (Mantiene account.css intacto)
+  // Inyección de Estilos Avanzados
   const style = document.createElement("style");
   style.innerHTML = `
         .is-invalid-login-js { border-color: #b22222 !important; box-shadow: 0 0 0 3px rgba(178, 34, 34, 0.15) !important; }
@@ -357,7 +354,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   document.head.appendChild(style);
 
-  // Selector de elementos
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const emailError = document.getElementById("emailError");
@@ -369,17 +365,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  // 2. PLUS: Alternar visibilidad de contraseña
   if (togglePasswordBtn && passwordInput) {
     togglePasswordBtn.addEventListener("click", () => {
       const isPassword = passwordInput.type === "password";
       passwordInput.type = isPassword ? "text" : "password";
-      togglePasswordBtn.textContent = isPassword ? "👁" : "👁";
       togglePasswordBtn.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
     });
   }
 
-  // 3. PLUS: Detección nativa de Caps Lock (Bloqueo de Mayúsculas)
   if (passwordInput && capsLockWarning) {
     passwordInput.addEventListener("keyup", (event) => {
       if (event.getModifierState && event.getModifierState("CapsLock")) {
@@ -389,30 +382,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     
-    // Asegurar que se oculte si el usuario sale del input
     passwordInput.addEventListener("blur", () => {
       capsLockWarning.style.display = "none";
     });
   }
 
-  // 4. Algoritmo de Entropía Estructural y Análisis de Patrones Vulnerables
   function evaluarSeguridadPassword(password) {
     if (password.length === 0) return { isValid: false, msg: "La contraseña es obligatoria." };
     if (password.length < 8) return { isValid: false, msg: "La contraseña debe tener una longitud mínima de 8 caracteres." };
     if (password.length > 128) return { isValid: false, msg: "La contraseña excede el límite seguro permitido." };
 
-    // Lista negra: Palabras de diccionarios comunes o contextos predecibles de la app
     const blacklist = ["12345678", "password", "contraseña", "admin1234", "mundoentrelibros", "libros2026"];
     if (blacklist.includes(password.toLowerCase())) {
       return { isValid: false, msg: "Contraseña extremadamente común y peligrosa. Utiliza una combinación más impredecible." };
     }
 
-    // Detección de repeticiones continuas de un mismo carácter (ej: aaaaaa, 111111)
     if (/(\w)\1{3,}/.test(password)) {
       return { isValid: false, msg: "Evita usar caracteres o números repetidos consecutivamente." };
     }
 
-    // Detección de secuencias lineales comunes de teclado (Keyboard walks)
     const keyboardPatterns = ["qwerty", "asdfgh", "zxcvbn", "12345", "54321"];
     const lowerPass = password.toLowerCase();
     const tienePatronTeclado = keyboardPatterns.some(pattern => lowerPass.includes(pattern));
@@ -423,7 +411,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return { isValid: true, msg: "" };
   }
 
-  // 5. Validadores individuales integrados
   const checarEmail = () => {
     if (!emailInput || !emailError) return true;
     const value = emailInput.value.trim();
@@ -452,8 +439,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const checarPassword = () => {
     if (!passwordInput || !passwordError) return true;
-    
-    // Evaluamos la contraseña mediante el analizador heurístico
     const analisis = evaluarSeguridadPassword(passwordInput.value);
 
     if (analisis.isValid) {
@@ -468,11 +453,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return analisis.isValid;
   };
 
-  // Escuchas en tiempo real
   if (emailInput) emailInput.addEventListener("input", checarEmail);
   if (passwordInput) passwordInput.addEventListener("input", checarPassword);
 
-  // 6. Control del Formulario con SweetAlert2 integrado
   loginForm.addEventListener("submit", (event) => {
     const isEmailValid = checarEmail();
     const isPasswordValid = checarPassword();
@@ -487,7 +470,6 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordInput.focus();
       }
 
-      // Despliegue de la alerta con los estilos corporativos exactos aportados por la imagen
       if (typeof Swal !== "undefined") {
         Swal.fire({
           icon: "warning",
@@ -504,9 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 7. Generación del Modelo JSON Premium ante éxito total
     event.preventDefault();
-    
     submitBtn.disabled = true;
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "Autenticando de forma segura...";
@@ -526,8 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    const usuarioJSON = JSON.stringify(usuarioLogin, null, 2);
-    console.log("Transmisión de JSON estructurada con métricas de seguridad:", usuarioJSON);
+    console.log("Transmisión de JSON estructurada con métricas de seguridad:", JSON.stringify(usuarioLogin, null, 2));
 
     if (loginSuccess) {
       loginSuccess.textContent = "¡Credenciales verificadas con éxito! Redirigiendo...";
@@ -543,253 +522,176 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000);
   });
 });
-// Historial
+
+/* ==========================================================================
+   MI CUENTA - HISTORIAL DE COMPRAS
+   ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
+  const btnHistorial = document.querySelector(".btn-historial");
+  const contenedor = document.getElementById("contenido");
 
-    const btnHistorial = document.querySelector(".btn-historial");
-    const contenedor = document.getElementById("contenido");
+  const modal = document.getElementById("modal-historial");
+  const modalBody = document.getElementById("modal-body");
+  const closeModal = document.querySelector(".close-modal");
 
-    const modal = document.getElementById("modal-historial");
-    const modalBody = document.getElementById("modal-body");
-    const closeModal = document.querySelector(".close-modal");
+  // Cambiado a true por defecto para alinearse con la vista cargada inicial
+  let historialVisible = true; 
 
-    let historialVisible = false;
+  if (btnHistorial && contenedor) {
+    // Renderizado automático inicial al cargar el módulo
+    mostrarHistorial();
+    btnHistorial.textContent = "Ocultar historial";
 
-    // =========================
-    // MOSTRAR / OCULTAR
-    // =========================
     btnHistorial.addEventListener("click", () => {
-
-        if (historialVisible) {
-            contenedor.innerHTML = "";
-            btnHistorial.textContent = "Historial de compra";
-            historialVisible = false;
-        } else {
-            mostrarHistorial();
-            btnHistorial.textContent = "Ocultar historial";
-            historialVisible = true;
-        }
-    });
-
-    // =========================
-    // MOSTRAR HISTORIAL
-    // =========================
-    function mostrarHistorial() {
-
-        const historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
-
+      if (historialVisible) {
         contenedor.innerHTML = "";
+        btnHistorial.textContent = "Historial de compra";
+        historialVisible = false;
+      } else {
+        mostrarHistorial();
+        btnHistorial.textContent = "Ocultar historial";
+        historialVisible = true;
+      }
+    });
+  }
 
-        if (historial.length === 0) {
-            contenedor.innerHTML = `<p class="empty">No hay compras registradas</p>`;
-            return;
+  function mostrarHistorial() {
+    if (!contenedor) return;
+    const historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
+    contenedor.innerHTML = "";
+
+    if (historial.length === 0) {
+      contenedor.innerHTML = `<p class="empty">No hay compras registradas</p>`;
+      return;
+    }
+
+    historial.forEach(compra => {
+      const card = document.createElement("div");
+      card.classList.add("card-historial");
+
+      card.innerHTML = `
+        <span class="pedido-numero">#Pedido ${compra.idCompra}</span>
+        <span class="pedido-total">$${compra.total}</span>
+        <span class="pedido-productos">${compra.productos.length} productos</span>
+        <span class="pedido-estado">${compra.status || "pendiente"}</span>
+        <button class="btn-ver">Ver detalles</button>
+      `;
+
+      contenedor.appendChild(card);
+      card.querySelector(".btn-ver").addEventListener("click", () => {
+        abrirModal(compra);
+      });
+    });
+  }
+
+  function parseFecha(fecha) {
+    if (!fecha) return null;
+    const partes = fecha.split("/");
+    if (partes.length !== 3) return null;
+
+    const dia = parseInt(partes[0], 10);
+    const mes = parseInt(partes[1], 10) - 1;
+    const anio = parseInt(partes[2], 10);
+
+    const d = new Date(anio, mes, dia);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function sumarDias(fecha, dias) {
+    const nuevaFecha = new Date(fecha);
+    nuevaFecha.setDate(nuevaFecha.getDate() + dias);
+    return nuevaFecha;
+  }
+
+  function abrirModal(compra) {
+    if (!modalBody || !modal) return;
+    const fechaPedido = parseFecha(compra.fecha);
+    const isPagado = compra.status === "pagado";
+    const fechaPedidoTexto = compra.fecha || "Sin fecha";
+    let entregaTexto = "Pendiente";
+
+    if (isPagado) {
+      let fechaBase = compra.fechaPago ? new Date(compra.fechaPago) : fechaPedido;
+      if (fechaBase) {
+        const entrega = sumarDias(fechaBase, 15);
+        entregaTexto = entrega.toLocaleDateString("es-MX");
+      }
+    }
+
+    const libros = compra.productos.filter(p => p.cantidad === 1);
+    const sagas = compra.productos.filter(p => p.cantidad > 1);
+
+    modalBody.innerHTML = `
+      <div class="tabla-info">
+          <div class="col">
+              <p><b>Compra:</b> #${compra.idCompra}</p>
+              <p><b>Fecha:</b> ${fechaPedidoTexto}</p>
+              <p><b>Entrega:</b> ${entregaTexto}</p>
+          </div>
+          <div class="col">
+              <p><b>Estado:</b> ${compra.status || "pendiente"}</p>
+              <p><b>Total:</b> $${compra.total}</p>
+          </div>
+      </div>
+      <hr>
+      <h3>📚 Libros</h3>
+      <div class="grid-libros">
+          ${libros.length ? libros.map(p => `
+              <div class="item-libro">
+                  <img src="${p.portada}">
+                  <div>
+                      <p><b>${p.titulo}</b></p>
+                      <small>$${p.precio} x ${p.cantidad}</small>
+                  </div>
+              </div>
+          `).join("") : "<p>Sin libros</p>"}
+      </div>
+      <h3>📦 Sagas</h3>
+      <div class="grid-libros">
+          ${sagas.length ? sagas.map(p => `
+              <div class="item-libro saga">
+                  <img src="${p.portada}">
+                  <div>
+                      <p><b>${p.titulo}</b></p>
+                      <small>$${p.precio} x ${p.cantidad}</small>
+                  </div>
+              </div>
+          `).join("") : "<p>Sin sagas</p>"}
+      </div>
+      <div class="pagar-wrapper">
+          ${!isPagado ? `<button id="btn-pagar" class="btn-ver pagar">Pagar</button>` : `<p class="pagado">✔ Pagado</p>`}
+      </div>
+    `;
+
+    modal.style.display = "flex";
+    const btnPagar = document.getElementById("btn-pagar");
+
+    if (btnPagar) {
+      btnPagar.addEventListener("click", () => {
+        let historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
+        const index = historial.findIndex(h => h.idCompra === compra.idCompra);
+
+        if (index !== -1) {
+          historial[index].status = "pagado";
+          historial[index].fechaPago = new Date().toISOString();
+          localStorage.setItem("historialCompras", JSON.stringify(historial));
         }
 
-        historial.forEach(compra => {
-
-            const card = document.createElement("div");
-            card.classList.add("card-historial");
-
-            card.innerHTML = `
-    <span class="pedido-numero">
-        #Pedido ${compra.idCompra}
-    </span>
-
-    <span class="pedido-total">
-        $${compra.total}
-    </span>
-
-    <span class="pedido-productos">
-        ${compra.productos.length} productos
-    </span>
-
-    <span class="pedido-estado">
-        ${compra.status || "pendiente"}
-    </span>
-
-    <button class="btn-ver">
-        Ver detalles
-    </button>
-`;
-
-            contenedor.appendChild(card);
-
-            card.querySelector(".btn-ver").addEventListener("click", () => {
-                abrirModal(compra);
-            });
-        });
-    }
-
-    // =========================
-    // PARSE FECHA DD/MM/YYYY
-    // =========================
-    function parseFecha(fecha) {
-
-        if (!fecha) return null;
-
-        const partes = fecha.split("/");
-
-        if (partes.length !== 3) return null;
-
-        const dia = parseInt(partes[0], 10);
-        const mes = parseInt(partes[1], 10) - 1;
-        const anio = parseInt(partes[2], 10);
-
-        const d = new Date(anio, mes, dia);
-
-        return isNaN(d.getTime()) ? null : d;
-    }
-
-    // =========================
-    // SUMAR DÍAS
-    // =========================
-    function sumarDias(fecha, dias) {
-        const nuevaFecha = new Date(fecha);
-        nuevaFecha.setDate(nuevaFecha.getDate() + dias);
-        return nuevaFecha;
-    }
-
-    // =========================
-    // MODAL
-    // =========================
-    function abrirModal(compra) {
-
-        const fechaPedido = parseFecha(compra.fecha);
-
-        const isPagado = compra.status === "pagado";
-
-        const fechaPedidoTexto = compra.fecha || "Sin fecha";
-
-        let entregaTexto = "Pendiente";
-
-        if (isPagado) {
-
-            let fechaBase = null;
-
-            if (compra.fechaPago) {
-                fechaBase = new Date(compra.fechaPago);
-            } else {
-                fechaBase = fechaPedido;
-            }
-
-            if (fechaBase) {
-                const entrega = sumarDias(fechaBase, 15);
-                entregaTexto = entrega.toLocaleDateString("es-MX");
-            }
-        }
-
-        const libros = compra.productos.filter(p => p.cantidad === 1);
-        const sagas = compra.productos.filter(p => p.cantidad > 1);
-
-        modalBody.innerHTML = `
-
-        <div class="tabla-info">
-
-            <div class="col">
-                <p><b>Compra:</b> #${compra.idCompra}</p>
-                <p><b>Fecha:</b> ${fechaPedidoTexto}</p>
-                <p><b>Entrega:</b> ${entregaTexto}</p>
-            </div>
-
-            <div class="col">
-                <p><b>Estado:</b> ${compra.status || "pendiente"}</p>
-                <p><b>Total:</b> $${compra.total}</p>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <h3>📚 Libros</h3>
-
-        <div class="grid-libros">
-            ${
-                libros.length
-                ? libros.map(p => `
-                    <div class="item-libro">
-                        <img src="${p.portada}">
-                        <div>
-                            <p><b>${p.titulo}</b></p>
-                            <small>$${p.precio} x ${p.cantidad}</small>
-                        </div>
-                    </div>
-                `).join("")
-                : "<p>Sin libros</p>"
-            }
-        </div>
-
-        <h3>📦 Sagas</h3>
-
-        <div class="grid-libros">
-            ${
-                sagas.length
-                ? sagas.map(p => `
-                    <div class="item-libro saga">
-                        <img src="${p.portada}">
-                        <div>
-                            <p><b>${p.titulo}</b></p>
-                            <small>$${p.precio} x ${p.cantidad}</small>
-                        </div>
-                    </div>
-                `).join("")
-                : "<p>Sin sagas</p>"
-            }
-        </div>
-
-        <div class="pagar-wrapper">
-            ${
-                !isPagado
-                ? `<button id="btn-pagar" class="btn-ver pagar">Pagar</button>`
-                : `<p class="pagado">✔ Pagado</p>`
-            }
-        </div>
-        `;
-
-        modal.style.display = "flex";
-
-        const btnPagar = document.getElementById("btn-pagar");
-
-        if (btnPagar) {
-
-            btnPagar.addEventListener("click", () => {
-
-                let historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
-
-                const index = historial.findIndex(
-                    h => h.idCompra === compra.idCompra
-                );
-
-                if (index !== -1) {
-
-                    historial[index].status = "pagado";
-
-                    // fecha exacta de pago
-                    historial[index].fechaPago = new Date().toISOString();
-
-                    localStorage.setItem(
-                        "historialCompras",
-                        JSON.stringify(historial)
-                    );
-                }
-
-                modal.style.display = "none";
-
-                mostrarHistorial();
-            });
-        }
-    }
-
-    // =========================
-    // CERRAR MODAL
-    // =========================
-    closeModal.addEventListener("click", () => {
         modal.style.display = "none";
-    });
+        mostrarHistorial();
+      });
+    }
+  }
 
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.style.display = "none";
-        }
+  if (closeModal) {
+    closeModal.addEventListener("click", () => {
+      if (modal) modal.style.display = "none";
     });
+  }
 
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 });

@@ -1560,3 +1560,99 @@ font-weight: bold;
     }
 }
 
+/* Contenedor Principal en Flexbox */
+.account-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Georgia', serif; /* O la tipografía de tu web */
+}
+
+/* Sidebar (Menú Izquierdo) */
+.sidebar {
+    width: 280px;
+    background-color: #F7E3C3; /* Fondo crema de la imagen */
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    color: #5C2D1B; /* Color café oscuro */
+    font-size: 24px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Botones del Menú */
+.menu-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    background-color: #FDF4E7; /* Fondo del botón interactivo */
+    border: 1px solid #E6D2B5;
+    color: #5C2D1B;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover, .menu-btn.active {
+    background-color: #F5EAD6;
+    font-weight: bold;
+}
+
+/* Icono provisional (puedes cambiarlo por SVGs o FontAwesome) */
+.menu-btn .icon {
+    margin-right: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Área de contenido de la derecha */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+/* Control de secciones mediante JS */
+.content-section {
+    display: none; /* Ocultas por defecto */
+}
+
+.content-section.active {
+    display: block; /* Solo se muestra la sección activa */
+}
+
+/* Sidebar Fijo */
+.sidebar {
+    width: 280px;
+    background-color: #F7E3C3;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    
+    /* AGREGA ESTO */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+/* Contenido Derecho (Necesita moverse a la derecha para no ser tapado) */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff;
+    
+    /* AGREGA ESTO (Debe ser igual o mayor al width de tu sidebar) */
+    margin-left: 280px; 
+}

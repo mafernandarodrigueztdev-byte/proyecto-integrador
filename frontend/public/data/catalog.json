@@ -72,7 +72,7 @@
       "edicion": "Edición Especial Cantos Pintados",
       "isbn": "9786073866170",
       "precio": 599,
-      "portada": "/src/assets/libros/novelaJuvenil/Amanecer_en_la_casecha.jpg",
+      "portada": "/src/assets/libros/novelaJuvenil/Amanecer_en_la_cosecha.jpg",
       "sinopsis": "Una nueva historia ambientada en Panem que explora eventos cruciales previos a la saga principal."
     },
     {
@@ -1286,7 +1286,7 @@
     },
     {
       "id": 99,
-      "titulo": "La Inteligencia Emocional: Por Qué es Más Importante que el Cociente Intelectual",
+      "titulo": "La Inteligencia Emocional: Por Qué es Más Importante que el Cociente Intelectual.",
       "autor": "Daniel Goleman",
       "categoria": "psicologia",
       "saga": null,
@@ -1301,75 +1301,91 @@
 
   "sagas": [
     {
-      "id": "los-juegos-del-hambre",
+      "id": "1001",
       "nombre": "Los Juegos del Hambre",
+      "autor": "Suzanne Collins",
+      "editorial": "Editorial Molino",
       "isbnSaga": "9786077351054",
       "precioSaga": 995,
       "portada": "/src/assets/libros/sagas/Saga_juegos_hambre.jpg",
-      "descripcion": "La saga completa que revolucionó la literatura juvenil distópica.",
+      "descripcion": "En una sociedad dividida y controlada por el Capitolio, Katniss Everdeen se convierte en el símbolo de una revolución que desafiará el poder establecido. Una saga llena de acción, sacrificio, amistad, amor y lucha por la libertad que marcó a toda una generación de lectores.",
       "libros": [1, 2, 3, 4, 5]
     },
     {
-      "id": "crepusculo",
+      "id": "1002",
       "nombre": "Crepúsculo",
       "isbnSaga": "9788420453651",
+      "autor": "Stephenie Meyer",
+      "editorial": "Alfaguara",
       "precioSaga": 2399,
       "portada": "/src/assets/libros/sagas/Saga_crepusculo.jpeg",
-      "descripcion": "La historia de amor sobrenatural entre Bella Swan y Edward Cullen.",
+      "descripcion": "La vida de Bella Swan cambia para siempre cuando conoce a Edward Cullen, un misterioso joven que guarda un peligroso secreto. Entre vampiros, hombres lobo y decisiones imposibles, esta saga explora el amor, la lealtad y el sacrificio en un mundo sobrenatural.",
       "libros": [6, 7, 8, 9, 10]
     },
     {
-      "id": "culpables",
+      "id": "1003",
       "nombre": "Culpables",
       "isbnSaga": "9788410050884",
+      "autor": "Mercedes Ron",
+      "editorial": "Montena",
       "precioSaga": 1299,
       "portada": "/src/assets/libros/sagas/Saga_culpable.jpg",
-      "descripcion": "Romance juvenil lleno de emociones, conflictos y segundas oportunidades.",
+      "descripcion": "Noah y Nick deberán enfrentar secretos familiares, conflictos emocionales y decisiones que pondrán a prueba su relación. Una saga romántica cargada de emociones intensas, crecimiento personal y segundas oportunidades.",
       "libros": [14, 15, 16, 17]
     },
     {
-      "id": "hush-hush",
+      "id": "1004",
       "nombre": "Hush Hush",
       "isbnSaga": "9781416989417",
+      "autor": "Becca Fitzpatrick",
+      "editorial": "B de Blok",
       "precioSaga": 1085,
       "portada": "/src/assets/libros/sagas/Saga_silencio.jpeg",
-      "descripcion": "Ángeles caídos, secretos y romance paranormal.",
+      "descripcion": "Cuando Nora Grey conoce al enigmático Patch, descubre un mundo oculto donde ángeles caídos, profecías y antiguos conflictos amenazan su vida. Una historia de romance paranormal, misterio y peligros sobrenaturales.",
       "libros": [18, 19, 20, 21]
     },
     {
-      "id": "harry-potter",
+      "id": "1005",
       "nombre": "Harry Potter",
       "isbnSaga": "7503028747214",
+      "autor": "J. K. Rowling",
+      "editorial": "Salamandra Infantil y Juvenil",
       "precioSaga": 1879,
       "portada": "/src/assets/libros/sagas/Saga_harry.jpg",
-      "descripcion": "La colección completa del mago más famoso del mundo.",
+      "descripcion": "Harry Potter descubre que es un mago y comienza una extraordinaria aventura en Hogwarts. Acompañado por sus amigos, enfrentará desafíos, descubrirá secretos del pasado y luchará contra las fuerzas oscuras que amenazan el mundo mágico.",
       "libros": [25, 26, 27, 28, 29, 30, 31]
     },
     {
-      "id": "percy-jackson",
+      "id": "1006",
       "nombre": "Percy Jackson",
       "isbnSaga": "9788418173721",
+      "autor": "Rick Riordan",
+      "editorial": "Salamandra Infantil y Juvenil",
       "precioSaga": 1225,
       "portada": "/src/assets/libros/sagas/Saga_percy.jpg",
-      "descripcion": "Mitología griega, aventuras y héroes modernos.",
+      "descripcion": "Percy Jackson descubre que es hijo de Poseidón y se ve envuelto en una serie de aventuras inspiradas en la mitología griega. Monstruos, dioses, profecías y batallas épicas acompañan a este joven héroe en su búsqueda por proteger el mundo.",
       "libros": [32, 33, 34, 35, 36]
     },
     {
-      "id": "el-senor-de-los-anillos",
+      "id": "1007",
       "nombre": "El Señor de los Anillos",
       "isbnSaga": "9788445018248",
+      "autor": "J. R. R. Tolkien",
+      "editorial": "Minotauro",
       "precioSaga": 978,
       "portada": "/src/assets/libros/sagas/Saga_señor.jpg",
-      "descripcion": "La épica aventura de la Tierra Media creada por Tolkien.",
+      "descripcion": "En la Tierra Media, un pequeño hobbit recibe la misión de destruir el Anillo Único antes de que caiga en manos del mal. Una de las obras más importantes de la fantasía épica, repleta de héroes, amistad, sacrificio y grandes batallas.",
       "libros": [37, 38, 39]
     },
     {
-      "id": "cancion-de-hielo-y-fuego",
+      "id": "1008",
       "nombre": "Canción de Hielo y Fuego",
       "isbnSaga": "9786073155731",
+      "autor": "George R. R. Martin",
+      "editorial": "Planeta Cómic",
       "precioSaga": 989,
       "portada": "/src/assets/libros/sagas/Saga_Canción.jpg",
-      "descripcion": "Intrigas políticas, guerras y dragones en Poniente.",
+      "descripcion": "Las grandes casas de Poniente luchan por el control del Trono de Hierro mientras antiguas amenazas resurgen en el norte. Una saga de fantasía oscura donde las intrigas políticas, las traiciones, las guerras y los dragones cambian el destino de un continente.x",
       "libros": [41, 42, 43, 44]
     }
   ]

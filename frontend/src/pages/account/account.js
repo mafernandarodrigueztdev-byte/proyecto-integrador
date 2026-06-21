@@ -921,3 +921,85 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // === 1. CONTROL DE VISTAS PRINCIPALES ===
+    const vistaLogin = document.getElementById('vista-login');
+    const vistaRegistro = document.getElementById('vista-registro');
+    const vistaMiCuenta = document.getElementById('vista-mi-cuenta');
+
+    const navMiCuentaBtn = document.getElementById('nav-mi-cuenta-btn');
+    const irARegistro = document.getElementById('ir-a-registro');
+    const irALogin = document.getElementById('ir-a-login');
+    const loginForm = document.getElementById('loginForm');
+
+    // Estado simulado: cámbialo a true para probar directamente el panel logueado
+    let isLoggedIn = false; 
+
+    function ocultarVistasPrincipales() {
+        vistaLogin.style.display = 'none';
+        vistaRegistro.style.display = 'none';
+        vistaMiCuenta.style.display = 'none';
+    }
+
+    // Evento del botón del menú de navegación (ícono cuenta)
+    navMiCuentaBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        ocultarVistasPrincipales();
+        if (isLoggedIn) {
+            vistaMiCuenta.style.display = 'block';
+        } else {
+            vistaLogin.style.display = 'block';
+        }
+    });
+
+    // Intercambios de los enlaces internos de los formularios
+    irARegistro.addEventListener('click', (e) => {
+        e.preventDefault();
+        ocultarVistasPrincipales();
+        vistaRegistro.style.display = 'block';
+    });
+
+    irALogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        ocultarVistasPrincipales();
+        vistaLogin.style.display = 'block';
+    });
+
+    // Envío del Login (Conexión temporal al flujo de Israel)
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Cuando Israel valide exitosamente:
+        isLoggedIn = true;
+        ocultarVistasPrincipales();
+        vistaMiCuenta.style.display = 'block';
+    });
+
+
+    // === 2. CONTROL DEL SIDEBAR ORIGINAL (MENÚ IZQUIERDO) ===
+    const botonesMenu = document.querySelectorAll('.sidebar-menu .menu-btn');
+    const seccionesContenido = document.querySelectorAll('.main-content .content-section');
+
+    botonesMenu.forEach(boton => {
+        boton.addEventListener('click', () => {
+            // Remover la clase active de todos los botones
+            botonesMenu.forEach(btn => btn.classList.remove('active'));
+            // Añadir active al botón presionado
+            boton.classList.add('active');
+
+            // Obtener el target del botón (actualizar, historial, puntos, wishlist)
+            const target = boton.getAttribute('data-target');
+
+            // Ocultar todas las sub-secciones del contenido principal
+            seccionesContenido.forEach(seccion => {
+                seccion.style.display = 'none';
+            });
+
+            // Mostrar la sección correspondiente emparejando el ID "sec-[target]"
+            const seccionAMostrar = document.getElementById(`sec-${target}`);
+            if (seccionAMostrar) {
+                seccionAMostrar.style.display = 'block';
+            }
+        });
+    });
+});

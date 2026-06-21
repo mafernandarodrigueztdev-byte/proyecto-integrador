@@ -1367,3 +1367,196 @@ font-weight: bold;
   }
 }
 
+/* =========================
+   HISTORIAL
+========================= */
+
+#contenido{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-top:20px;
+    padding:10px;
+    width:100%;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card-historial{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    width:100%;
+    min-height:75px;
+
+    gap:25px;
+
+    background:var(--fondo-blanco-calido);
+    border:1px solid var(--beige-grisaceo);
+
+    padding:18px 25px;
+
+    border-radius:16px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card-historial:hover{
+    transform:translateY(-5px);
+}
+
+.card-historial span{
+    flex:1;
+    text-align:center;
+}
+
+.pedido-numero{
+    font-weight:700;
+    text-align:left !important;
+}
+
+.pedido-total{
+    font-weight:700;
+    color:#2e7d32;
+}
+
+.pedido-estado{
+    text-transform:capitalize;
+}
+
+/* BOTÓN */
+
+.btn-ver{
+    background:var(--boton-principal-acento-fuerte);
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.btn-ver:hover{
+    background:var(--cafe-medio);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+    background:var(--fondo-blanco-calido);
+    width:90%;
+    max-width:650px;
+    border-radius:14px;
+    padding:20px;
+    max-height:80vh;
+    overflow-y:auto;
+}
+
+/* =========================
+   TABLA INFO
+========================= */
+
+.tabla-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    background:rgba(241,240,229,.7);
+    padding:12px;
+    border-radius:12px;
+}
+
+.tabla-info .col p{
+    margin:5px 0;
+}
+
+/* =========================
+   LIBROS / SAGAS
+========================= */
+
+.grid-libros{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:10px;
+    margin-top:10px;
+}
+
+.item-libro{
+    display:flex;
+    gap:10px;
+    align-items:center;
+
+    background:#f7f3ea;
+    padding:10px;
+    border-radius:12px;
+}
+
+.item-libro.saga{
+    border-left:4px solid var(--cafe-medio);
+}
+
+.item-libro img{
+    width:45px;
+    height:65px;
+    object-fit:cover;
+    border-radius:6px;
+}
+
+/* =========================
+   PAGAR
+========================= */
+
+.pagar-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
+
+.btn-ver.pagar{
+    width:60%;
+}
+
+/* PAGADO */
+
+.pagado{
+    color:green;
+    font-weight:bold;
+    text-align:center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px){
+
+    .card-historial{
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    .card-historial span{
+        flex:1 1 40%;
+        text-align:left;
+    }
+
+    .btn-ver{
+        width:100%;
+    }
+}
+

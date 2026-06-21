@@ -543,3 +543,253 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000);
   });
 });
+// Historial
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnHistorial = document.querySelector(".btn-historial");
+    const contenedor = document.getElementById("contenido");
+
+    const modal = document.getElementById("modal-historial");
+    const modalBody = document.getElementById("modal-body");
+    const closeModal = document.querySelector(".close-modal");
+
+    let historialVisible = false;
+
+    // =========================
+    // MOSTRAR / OCULTAR
+    // =========================
+    btnHistorial.addEventListener("click", () => {
+
+        if (historialVisible) {
+            contenedor.innerHTML = "";
+            btnHistorial.textContent = "Historial de compra";
+            historialVisible = false;
+        } else {
+            mostrarHistorial();
+            btnHistorial.textContent = "Ocultar historial";
+            historialVisible = true;
+        }
+    });
+
+    // =========================
+    // MOSTRAR HISTORIAL
+    // =========================
+    function mostrarHistorial() {
+
+        const historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
+
+        contenedor.innerHTML = "";
+
+        if (historial.length === 0) {
+            contenedor.innerHTML = `<p class="empty">No hay compras registradas</p>`;
+            return;
+        }
+
+        historial.forEach(compra => {
+
+            const card = document.createElement("div");
+            card.classList.add("card-historial");
+
+            card.innerHTML = `
+    <span class="pedido-numero">
+        #Pedido ${compra.idCompra}
+    </span>
+
+    <span class="pedido-total">
+        $${compra.total}
+    </span>
+
+    <span class="pedido-productos">
+        ${compra.productos.length} productos
+    </span>
+
+    <span class="pedido-estado">
+        ${compra.status || "pendiente"}
+    </span>
+
+    <button class="btn-ver">
+        Ver detalles
+    </button>
+`;
+
+            contenedor.appendChild(card);
+
+            card.querySelector(".btn-ver").addEventListener("click", () => {
+                abrirModal(compra);
+            });
+        });
+    }
+
+    // =========================
+    // PARSE FECHA DD/MM/YYYY
+    // =========================
+    function parseFecha(fecha) {
+
+        if (!fecha) return null;
+
+        const partes = fecha.split("/");
+
+        if (partes.length !== 3) return null;
+
+        const dia = parseInt(partes[0], 10);
+        const mes = parseInt(partes[1], 10) - 1;
+        const anio = parseInt(partes[2], 10);
+
+        const d = new Date(anio, mes, dia);
+
+        return isNaN(d.getTime()) ? null : d;
+    }
+
+    // =========================
+    // SUMAR DÍAS
+    // =========================
+    function sumarDias(fecha, dias) {
+        const nuevaFecha = new Date(fecha);
+        nuevaFecha.setDate(nuevaFecha.getDate() + dias);
+        return nuevaFecha;
+    }
+
+    // =========================
+    // MODAL
+    // =========================
+    function abrirModal(compra) {
+
+        const fechaPedido = parseFecha(compra.fecha);
+
+        const isPagado = compra.status === "pagado";
+
+        const fechaPedidoTexto = compra.fecha || "Sin fecha";
+
+        let entregaTexto = "Pendiente";
+
+        if (isPagado) {
+
+            let fechaBase = null;
+
+            if (compra.fechaPago) {
+                fechaBase = new Date(compra.fechaPago);
+            } else {
+                fechaBase = fechaPedido;
+            }
+
+            if (fechaBase) {
+                const entrega = sumarDias(fechaBase, 15);
+                entregaTexto = entrega.toLocaleDateString("es-MX");
+            }
+        }
+
+        const libros = compra.productos.filter(p => p.cantidad === 1);
+        const sagas = compra.productos.filter(p => p.cantidad > 1);
+
+        modalBody.innerHTML = `
+
+        <div class="tabla-info">
+
+            <div class="col">
+                <p><b>Compra:</b> #${compra.idCompra}</p>
+                <p><b>Fecha:</b> ${fechaPedidoTexto}</p>
+                <p><b>Entrega:</b> ${entregaTexto}</p>
+            </div>
+
+            <div class="col">
+                <p><b>Estado:</b> ${compra.status || "pendiente"}</p>
+                <p><b>Total:</b> $${compra.total}</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h3>📚 Libros</h3>
+
+        <div class="grid-libros">
+            ${
+                libros.length
+                ? libros.map(p => `
+                    <div class="item-libro">
+                        <img src="${p.portada}">
+                        <div>
+                            <p><b>${p.titulo}</b></p>
+                            <small>$${p.precio} x ${p.cantidad}</small>
+                        </div>
+                    </div>
+                `).join("")
+                : "<p>Sin libros</p>"
+            }
+        </div>
+
+        <h3>📦 Sagas</h3>
+
+        <div class="grid-libros">
+            ${
+                sagas.length
+                ? sagas.map(p => `
+                    <div class="item-libro saga">
+                        <img src="${p.portada}">
+                        <div>
+                            <p><b>${p.titulo}</b></p>
+                            <small>$${p.precio} x ${p.cantidad}</small>
+                        </div>
+                    </div>
+                `).join("")
+                : "<p>Sin sagas</p>"
+            }
+        </div>
+
+        <div class="pagar-wrapper">
+            ${
+                !isPagado
+                ? `<button id="btn-pagar" class="btn-ver pagar">Pagar</button>`
+                : `<p class="pagado">✔ Pagado</p>`
+            }
+        </div>
+        `;
+
+        modal.style.display = "flex";
+
+        const btnPagar = document.getElementById("btn-pagar");
+
+        if (btnPagar) {
+
+            btnPagar.addEventListener("click", () => {
+
+                let historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
+
+                const index = historial.findIndex(
+                    h => h.idCompra === compra.idCompra
+                );
+
+                if (index !== -1) {
+
+                    historial[index].status = "pagado";
+
+                    // fecha exacta de pago
+                    historial[index].fechaPago = new Date().toISOString();
+
+                    localStorage.setItem(
+                        "historialCompras",
+                        JSON.stringify(historial)
+                    );
+                }
+
+                modal.style.display = "none";
+
+                mostrarHistorial();
+            });
+        }
+    }
+
+    // =========================
+    // CERRAR MODAL
+    // =========================
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+});

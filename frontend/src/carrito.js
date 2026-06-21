@@ -310,3 +310,52 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarCarrito();
     }, 100);
 });
+document.addEventListener("click", (e) => {
+
+    if (e.target.classList.contains("resumenbtn")) {
+        realizarCompra();
+    }
+
+});
+
+function realizarCompra() {
+
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    if (carrito.length === 0) {
+        alert("El carrito está vacío");
+        return;
+    }
+
+    let historialCompras =
+        JSON.parse(localStorage.getItem("historialCompras")) || [];
+
+    const total = carrito.reduce((acumulado, producto) => {
+        return acumulado + (producto.precio * producto.cantidad);
+    }, 0);
+
+    const compra = {
+        idCompra: historialCompras.length + 1,
+        fecha: new Date().toLocaleDateString(),
+        total: total,
+        productos: [...carrito]
+    };
+
+    historialCompras.push(compra);
+
+    localStorage.setItem(
+        "historialCompras",
+        JSON.stringify(historialCompras)
+    );
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify([])
+    );
+
+    alert("Compra realizada correctamente");
+
+    console.log(
+        JSON.parse(localStorage.getItem("historialCompras"))
+    );
+}

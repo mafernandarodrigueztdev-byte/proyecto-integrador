@@ -978,37 +978,37 @@ document.addEventListener("DOMContentLoaded", () => {
             const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Estructura válida de correo electrónico
             const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // Min 8 caracteres, 1 Mayús, 1 Minús, 1 Núm
 
-            // ❌ Validación: Campos Obligatorios Base vacíos
+            // Validación: Campos Obligatorios Base vacíos
             if (!nombre || !apellido || !telefono || !email || !emailConfirm) {
                 mostrarAlerta("Campos incompletos", "Por favor, rellena todos los campos de tus datos personales.", "error");
                 return;
             }
 
-            // ❌ Restricción: Nombre y Apellido válidos
+            // Restricción: Nombre y Apellido válidos
             if (!regexLetras.test(nombre) || !regexLetras.test(apellido)) {
                 mostrarAlerta("Formato inválido", "El nombre y el apellido solo deben contener letras.", "warning");
                 return;
             }
 
-            // ❌ Restricción: Teléfono de 10 dígitos
+            //  Restricción: Teléfono de 10 dígitos
             if (!regexTelefono.test(telefono)) {
                 mostrarAlerta("Teléfono inválido", "El número de teléfono debe tener exactamente 10 dígitos numéricos.", "warning");
                 return;
             }
 
-            // ❌ Restricción: Estructura del Email
+            // Restricción: Estructura del Email
             if (!regexEmail.test(email)) {
                 mostrarAlerta("Correo inválido", "Por favor, ingresa una dirección de correo electrónico válida.", "warning");
                 return;
             }
 
-            // ❌ Validación: Coincidencia de correos
+            // Validación: Coincidencia de correos
             if (email !== emailConfirm) {
                 mostrarAlerta("Correos no coinciden", "El correo ingresado y su confirmación no son iguales.", "error");
                 return;
             }
 
-            // ❌ Restricciones de Contraseña (Solo si el usuario escribe algo en el campo)
+            // Restricciones de Contraseña (Solo si el usuario escribe algo en el campo)
             if (password || passwordConfirm) {
                 // Validación: Coincidencia de contraseñas
                 if (password !== passwordConfirm) {
@@ -1028,7 +1028,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // ==========================================================================
-            // 4. Guardado Exitoso
+            // 4. Guardado Exitoso con Limpieza y Cierre de Sección
             // ==========================================================================
             const datosActualizados = { nombre, apellido, telefono, email };
             
@@ -1040,11 +1040,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 icon: 'success',
                 title: '¡Datos guardados con éxito!',
                 text: 'Tu perfil en Mundo Entre Libros ha sido actualizado.',
-                confirmButtonColor: '#3B1A11' // El color café oscuro de tu botón
+                confirmButtonColor: '#3B1A11'
+            }).then((result) => {
+                // Este bloque se ejecuta JUSTO CUANDO EL USUARIO LE DA CLIC AL BOTÓN "OK"
+                if (result.isConfirmed) {
+                    
+                    // 1. Limpiamos por completo todos los campos del formulario
+                    formUpdate.reset();
+
+                    // 2. Escondemos la sección de actualizar datos para que no se vea más
+                    const secActualizar = document.getElementById("sec-actualizar");
+                    if (secActualizar) {
+                        secActualizar.style.display = "none";
+                    }
+
+                    // 3. Quitamos la selección visual (clase active) del menú lateral
+                    menuButtons.forEach(btn => btn.classList.remove("active"));
+                }
             });
         });
     }
-
+          
     // Función auxiliar para acortar las llamadas de alertas de SweetAlert2
     function mostrarAlerta(titulo, mensaje, tipo) {
         Swal.fire({

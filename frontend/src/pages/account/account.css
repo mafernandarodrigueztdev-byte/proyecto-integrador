@@ -231,90 +231,125 @@ main {
 }
 
 
+/*==========================================================================
+                SPA: Control de Vistas
+==========================================================================*/
 
-/*! Formulario de registro*/
+.vista { 
+  display: none;
+}
 
-h1{
-  color: var(--boton-principal-acento-fuerte);
-  font-size: 2.5rem;
-  font-weight: 800;
-  text-align: center;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-  text-shadow: 0 10px 10px rgba(160, 101, 61, 1);
-  padding-top: 10px;
+.vista.activa { 
+  display: block;
+}
+
+
+
+/*============================================================*/
+              /*! Formulario de registro*/
+/*============================================================*/
+
+.regislabel{
+  font-weight: 650;
+  font-size: medium;
+  padding-bottom: 2px;
+  padding-top: 8px;
 }
 
 .form-register{
-  /* width: 400px; */
   width: 50vw;
   min-width: 320px;
   max-width: 600px;
-  background-color: var(--crema-secundario);
-  padding: 30px;
+  background-color: var(--beige-calido-degradado);
+  padding: 20px;
   margin: auto;
-  margin-top: 60px;
-  margin-bottom: 80px;
+  margin-top: 30px;
+  margin-bottom: 40px;
   border-radius: 12px;
   border: 1px solid var(--cafe-medio);
   box-shadow: 7px 13px 37px rgba(160, 101, 61, 1.0);
   font-family: 'Comorant Garamond';
   color: var(--boton-principal-acento-fuerte);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 100;
 }
 
 .form-register h4 {
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 12px;
   font-weight: 700;
+  text-align: center;
 }
 
 .regis-form-data{
   width: 100%;
   background-color: white;
-  padding: 10px;
+  /* padding: 10px; */
+  padding: 7px 10px;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: auto;
   border: 1px solid var(--cafe-medio);
-  color: var(--boton-principal-acento-fuerte)
+  color: var(--boton-principal-acento-fuerte);
+  border: 1px solid var(--cafe-medio);
+  transition: border-color 0.3 ease, box-shadow 0.3s ease;
+}
+
+.regis-form-data:focus{
+  border-color: var(--boton-principal-acento-fuerte);
+  outline: none;
+  box-shadow: 0 0 5px rgba(75, 29, 19, 0.2);
 }
 
 .form-register p{
-  height: 40px;
+  height: auto;
   text-align: center;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 650;
   line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.form-register a{
+  color: var(--boton-principal-acento-fuerte);
+  transition: color 0.3s ease;
+  font-weight: 700;
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
 }
 
 .form-register a:hover{
-  color: var(--boton-principal-acento-fuerte);
+  color: var(--cafe-medio);
   text-decoration: underline var(--cafe-medio);
+  transform: scale(1.08);
 }
 
 .btn-register{
   width: 75%;
   letter-spacing: 1px;
   background: var(--boton-principal-acento-fuerte);
-  padding: 12px;
+  padding: 9px;
   color: white;
   display: block;
-  margin: 16px auto;
-  font-size: 16px;
+  margin: 12px auto 10px;
+  font-size: 15px;
+  outline: none;
+  border: var(--cafe-medio);
+  border-radius: 8px;
+  transition: backgroun-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-register:hover{
-  background: var(--cafe-medio);
+  transform: scale(1.07); 
 }
 
 /*! Warnings*/
 .warnings{
   width: 200px;
   text-align: center;
-  margin: auto;
+  margin: 10px auto 4px;
   color: var(--beige-calido-degradado);
-  padding-top: 20px;
+  padding-top: 0;
+  display: block;
 }
 
 
@@ -1560,3 +1595,303 @@ font-weight: bold;
     }
 }
 
+/* ==========================================
+   Contenedor Principal y Estructura
+   ========================================== */
+.account-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Área de contenido de la derecha (Donde viven el historial, puntos y wishlist) */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff;
+    /* Margen izquierdo igual al width del sidebar para evitar que se encimen */
+    margin-left: 400px; 
+}
+
+/* Control de secciones mediante JS */
+.content-section {
+    display: none; /* Ocultas por defecto */
+}
+
+.content-section.active {
+    display: block; /* Solo se muestra la sección activa */
+}
+
+/* ==========================================
+   Sidebar (Menú Izquierdo Fijo)
+   ========================================== */
+.sidebar {
+    width: 400px;
+    background-color: #F7E3C3; /* Fondo crema de tu imagen */
+    padding: 40px 20px;
+    box-sizing: border-box;
+    
+    /* Posicionamiento fijo lateral para que no se deslice */
+    position: fixed;
+    left: 0;
+    top: 75px; /* Evita que el Navbar tape el título */
+    height: calc(100vh - 75px); 
+    
+    /* Fuerza al sidebar a flotar por encima del contenido derecho */
+    z-index: 100; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título 'Mi cuenta' */
+.sidebar h2 {
+    color: #5C2D1B !important;
+    font-size: 40px !important; 
+    display: block !important;  
+    
+    /* Margen superior para bajar el título */
+    margin-top: 40px; 
+    text-align: center; 
+    
+    /* Espacio que queda entre el título y el bloque de botones */
+    margin-bottom: 1px; 
+    padding-left: 10px;
+}
+
+/* ==========================================
+   Bloque de Menú y Botones
+   ========================================== */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Controla la separación entre cada botón */
+    margin-top: 70px; /* Controla qué tan abajo empieza el bloque respecto al título */
+}
+
+/* Botones del Menú */
+.menu-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 25px; /* Padding aumentado para hacer los botones más grandes */
+    background-color: #FDF4E7; /* Fondo claro del botón interactivo de la imagen */
+    border: 0.5px solid #E6D2B5;
+    color: #5C2D1B;
+    font-size: 22px; /* Texto grande acorde a la captura */
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el cursor o cuando la pestaña está activa */
+.menu-btn:hover, .menu-btn.active {
+    background-color: #F5EAD6;
+    font-weight: bold;
+}
+
+/* Iconos de los botones (mantienen tu estructura original por si añades algo después) */
+.menu-btn .icon {
+    margin-right: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ==========================================================================
+   REGLAS RESPONSIVAS (Para pantallas menores a 992px) - TOTALMENTE CORREGIDO
+   ========================================================================== */
+@media (max-width: 992px) {
+    
+    .account-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .account-container .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto; 
+        left: auto;
+        top: auto; 
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .account-container .sidebar h2 {
+        font-size: 30px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+
+    .account-container .sidebar-menu {
+        display: flex; 
+        flex-direction: row; 
+        gap: 15px;
+        margin-top: 25px;
+        overflow-x: auto; 
+        padding-bottom: 10px;
+        width: 100%;
+        scrollbar-width: none; 
+    }
+    
+    .account-container .sidebar-menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .account-container .menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto; 
+        white-space: nowrap; 
+        padding: 15px 25px;
+        font-size: 18px;
+        box-sizing: border-box;
+    }
+
+    .account-container .menu-btn .icon {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .account-container .main-content {
+        margin-left: 0; 
+        width: 100%;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+
+    /* Historial y Modales Responsivos */
+    #contenido .card-historial {
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 12px;
+        padding: 15px;
+        min-height: auto;
+    }
+
+    #contenido .card-historial span {
+        text-align: left;
+        width: 100%;
+        flex: none;
+    }
+
+    .card-historial .btn-ver {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        margin-top: 5px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .tabla-info {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+/* ==========================================================================
+   Formulario: Actualiza tus Datos (Estilo Imagen Clonal)
+   ========================================================================== */
+.update-profile-container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Título exterior */
+.update-title {
+    color: #5C2D1B;
+    font-size: 40px;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+/* Caja contenedora color crema de la imagen */
+#form-update-profile {
+    background-color: #F6EAD6; /* Fondo beige suave */
+    border-radius: 15px;      /* Bordes muy redondeados */
+    padding: 35px 40px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* Bloques de campos */
+.update-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Etiquetas del input */
+.update-field label {
+    color: #5C2D1B;
+    font-size: 25px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+/* Cajas de texto blancas de la imagen */
+.update-field input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #FDFDFD;
+    border: 1px solid #E6D2B5;
+    font-size: 20px;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.update-field input:focus {
+    outline: none;
+    border-color: #5C2D1B;
+    background-color: #FFFFFF;
+}
+
+/* Placeholders tenues estilo imagen */
+.update-field input::placeholder {
+    color: #E2D2BC;
+    opacity: 0.8;
+}
+
+/* Contenedor del botón para centrarlo abajo */
+.update-submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Botón café oscuro elegante */
+.btn-save-profile {
+    background-color: #3B1A11; /* Café oscuro de la captura */
+    color: #FDF4E7;
+    border: none;
+    padding: 14px 80px;       /* Ancho cómodo */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save-profile:hover {
+    background-color: #5C2D1B;
+}
+
+/* Ajustes responsivos para celulares */
+@media (max-width: 768px) {
+    #form-update-profile {
+        padding: 20px 15px;
+    }
+    .btn-save-profile {
+        width: 100%;
+        padding: 14px 0;
+    }
+}

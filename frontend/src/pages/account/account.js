@@ -1,3 +1,37 @@
+/*============================================================================
+             SPA: Control de vistas (CORREGIDO PARA USAR DISPLAY)
+=============================================================================*/
+// Mapeamos las vistas principales usando sus IDs para sincronizar con el flujo de abajo
+const vistaLogin = document.getElementById('vista-login');
+const vistaRegistro = document.getElementById('vista-registro');
+const vistaMiCuenta = document.getElementById('vista-mi-cuenta');
+
+function mostrarVista(id) {
+  // En lugar de usar clases que pueden chocar con los estilos de visualización,
+  // controlamos directamente el display de las 3 pantallas principales.
+  if (vistaLogin) vistaLogin.style.display = (id === "vista-login") ? "block" : "none";
+  if (vistaRegistro) vistaRegistro.style.display = (id === "vista-registro") ? "block" : "none";
+  if (vistaMiCuenta) vistaMiCuenta.style.display = (id === "vista-mi-cuenta") ? "block" : "none";
+}
+
+// Mostrar login por defecto al cargar la página
+mostrarVista("vista-login");
+
+// Links de navegación entre vistas
+document.getElementById("ir-a-registro")
+  ?.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarVista("vista-registro");
+  });
+
+document.getElementById("ir-a-login")
+  ?.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarVista("vista-login");
+  });
+
+
+
 /* ==========================================================================
    MI CUENTA - PUNTOS ACUMULADOS
    ========================================================================== */
@@ -153,8 +187,103 @@ document.addEventListener("DOMContentLoaded", async () => {
       .join("");
   }
 
+  // Hacer que renderUserPoints esté disponible globalmente para poder llamarlo tras el login exitoso
+  window.renderUserPointsGlobal = renderUserPoints;
   renderUserPoints();
 });
+
+/*👁*/
+
+
+/*==========================================================================*/
+         //*!Formulario de registro*/
+/*==========================================================================*/
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("formregister");
+
+    form.addEventListener("submit", (e) => {
+        // Evita que el formulario se envíe automáticamente y recargue la página
+        e.preventDefault(); 
+        
+        // Captura los valores actuales de los inputs eliminando espacios vacíos al inicio/final
+        const nombre = document.getElementById("regisNombres").value.trim();
+        const apellidos = document.getElementById("regisApellidos").value.trim();
+        const phone = document.getElementById("regisphone").value.trim();
+        const email = document.getElementById("regisEmail").value.trim();
+        const emailconf = document.getElementById("regisEmailconf").value.trim();
+        const password = document.getElementById("regisPassword").value.trim();
+        const passwordconf = document.getElementById("regisPasswordconf").value.trim();
+
+        let errores = [];
+
+        // 1. Valida campos vacíos
+        if (!nombre || !apellidos || !phone || !email || !emailconf || !password || !passwordconf) {
+            errores.push("Todos los campos son obligatorios.");
+        }
+
+        // 2. Valida formato de Email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email && !emailRegex.test(email)) {
+            errores.push("Ingresa un correo válido.");
+        }
+
+        // 3. Valida coincidencia de correos
+        if (email !== emailconf) {
+            errores.push("Los correos no coinciden.");
+        }
+
+        // 4. Valida longitud de la contraseña
+        if (password && password.length < 8) {
+            errores.push("La contraseña debe tener al menos 8 caracteres.");
+        }
+
+        // 5. Valida coincidencia de contraseñas
+        if (password !== passwordconf) {
+            errores.push("Las contraseñas no coinciden.");
+        }
+
+        // 6. Evalua resultados
+        if (errores.length > 0) {
+          // Unir errores con salto de linea de HTML para el cuerpo de la alerta
+          const mensajeErrores = errores.join("<br>");
+
+          Swal.fire({
+                title: 'Error de registro',
+                html: mensajeErrores, // Se usa 'html' en lugar de 'text' para que interprete los <br>
+                icon: 'error',
+                confirmButtonText: 'Entendido',
+                background: "#F6EBD9",
+                confirmButtonColor: '#4b1d13'
+            }); 
+        } else {
+
+          //Construcción de modelo de usuario
+            const nuevoUsuario = {
+            nombre:         nombre,
+            apellidos:      apellidos,
+            telefono:       phone,
+            email:          email,
+            password:       password,
+            rol:            "usuario",
+            activo:         true,
+          };
+            Swal.fire({
+                title: '¡Registro Exitoso!',
+                text: 'Tu cuenta ha sido creada correctamente.',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                background: "#F6EBD9",
+                confirmButtonColor: '#4b1d13'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario da clic en 'Continuar', lo mandamos al login para que entre
+                    mostrarVista("vista-login");
+                  }
+            });
+        }
+    });
+});
+
 
 /* ==========================================================================
    MI CUENTA - WISHLIST
@@ -315,10 +444,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
-   MI CUENTA - LOG IN
+   MI CUENTA - LOG IN (UNIFICADO CON EL REDIRECCIONAMIENTO SPA)
    ========================================================================== */
 
-   document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) return;
 
@@ -472,22 +601,21 @@ document.addEventListener("DOMContentLoaded", () => {
   if (emailInput) emailInput.addEventListener("input", checarEmail);
   if (passwordInput) passwordInput.addEventListener("input", checarPassword);
 
-  // 6. Control del Formulario con SweetAlert2 integrado
+  // 6. Control del Formulario con SweetAlert2 e integración SPA
   loginForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Detenemos comportamiento original para validar primero
+
     const isEmailValid = checarEmail();
     const isPasswordValid = checarPassword();
 
     if (!isEmailValid || !isPasswordValid) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-
       if (!isEmailValid) {
         emailInput.focus();
       } else if (!isPasswordValid) {
         passwordInput.focus();
       }
 
-      // Despliegue de la alerta con los estilos corporativos exactos aportados por la imagen
+      // Despliegue de la alerta con los estilos corporativos
       if (typeof Swal !== "undefined") {
         Swal.fire({
           icon: "warning",
@@ -504,113 +632,90 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 7. Generación del Modelo JSON Premium ante éxito total
-    event.preventDefault();
-    
+    // FLUJO DE ÉXITO: Fusionado aquí para evitar la duplicación de listeners del submit
     submitBtn.disabled = true;
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "Autenticando de forma segura...";
 
-    const usuarioLogin = {
-      email: emailInput.value.trim(),
-      password: passwordInput.value,
-      rememberMe: false,
-      timestamp: new Date().toISOString(),
-      deviceContext: {
-        screenResolution: `${window.innerWidth}x${window.innerHeight}`,
-        isMobile: window.innerWidth <= 991
-      },
-      securityMetrics: {
-        passLength: passwordInput.value.length,
-        isHighEntropy: true
-      }
-    };
-
-    const usuarioJSON = JSON.stringify(usuarioLogin, null, 2);
-    console.log("Transmisión de JSON estructurada con métricas de seguridad:", usuarioJSON);
-
-    if (loginSuccess) {
-      loginSuccess.textContent = "¡Credenciales verificadas con éxito! Redirigiendo...";
-    }
-
+    // Simulamos respuesta exitosa del backend o validación de Israel
     setTimeout(() => {
+      // 1. Redireccionamos usando la función SPA corregida
+      mostrarVista("vista-mi-cuenta");
+      
+      // 2. Cargamos dinámicamente los puntos del usuario que se logueó
+      if (window.renderUserPointsGlobal) {
+         window.renderUserPointsGlobal();
+      }
+
+      // 3. Limpiamos campos de forma segura
       loginForm.reset();
       emailInput.classList.remove("is-valid-login-js");
       passwordInput.classList.remove("is-valid-login-js");
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
-      if (loginSuccess) loginSuccess.textContent = "";
-    }, 5000);
+    }, 1000);
   });
 });
+
+
+// Historial
 // Historial
 document.addEventListener("DOMContentLoaded", () => {
 
-    const btnHistorial = document.querySelector(".btn-historial");
+    // CORREGIDO: Selecciona tu botón real usando el atributo data-target
+    const btnHistorial = document.querySelector('button[data-target="historial"]');
+    
+    // Selecciona el contenedor que tienes dentro de #sec-historial
     const contenedor = document.getElementById("contenido");
 
+    // Selectores del modal
     const modal = document.getElementById("modal-historial");
     const modalBody = document.getElementById("modal-body");
     const closeModal = document.querySelector(".close-modal");
 
-    let historialVisible = false;
+    if (!btnHistorial || !contenedor) {
+        console.warn("No se encontró el botón con data-target='historial' o el div '#contenido'.");
+        return;
+    }
 
-    // =========================
-    // MOSTRAR / OCULTAR
-    // =========================
+    // ==========================================================================
+    // EVENTO CLICK: Escucha tu botón del sidebar y pinta los datos fijamente
+    // ==========================================================================
     btnHistorial.addEventListener("click", () => {
-
-        if (historialVisible) {
-            contenedor.innerHTML = "";
-            btnHistorial.textContent = "Historial de compra";
-            historialVisible = false;
-        } else {
-            mostrarHistorial();
-            btnHistorial.textContent = "Ocultar historial";
-            historialVisible = true;
+        // Asegura que la sección de historial sea visible activando la clase de tu CSS
+        const seccionPadre = document.getElementById("sec-historial");
+        if (seccionPadre) {
+            seccionPadre.style.display = "block";
+            seccionPadre.classList.add("active");
         }
+
+        mostrarHistorial();
     });
 
     // =========================
     // MOSTRAR HISTORIAL
     // =========================
     function mostrarHistorial() {
-
         const historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
 
         contenedor.innerHTML = "";
 
         if (historial.length === 0) {
-            contenedor.innerHTML = `<p class="empty">No hay compras registradas</p>`;
+            contenedor.innerHTML = `<p class="empty" style="padding: 20px; text-align: center; color: #521f12; font-weight: 700;">No hay compras registradas en tu historial.</p>`;
             return;
         }
 
         historial.forEach(compra => {
-
             const card = document.createElement("div");
             card.classList.add("card-historial");
 
             card.innerHTML = `
-    <span class="pedido-numero">
-        #Pedido ${compra.idCompra}
-    </span>
-
-    <span class="pedido-total">
-        $${compra.total}
-    </span>
-
-    <span class="pedido-productos">
-        ${compra.productos.length} productos
-    </span>
-
-    <span class="pedido-estado">
-        ${compra.status || "pendiente"}
-    </span>
-
-    <button class="btn-ver">
-        Ver detalles
-    </button>
-`;
+                <span class="pedido-numero">#Pedido ${compra.idCompra}</span>
+                <span class="pedido-total">$${compra.total}</span>
+                <span class="pedido-productos">${compra.productos.length} productos</span>
+                <span class="pedido-estado">${compra.status || "pendiente"}</span>
+                <button class="btn-ver">Ver detalles</button>
+            `;
 
             contenedor.appendChild(card);
 
@@ -624,19 +729,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // PARSE FECHA DD/MM/YYYY
     // =========================
     function parseFecha(fecha) {
-
         if (!fecha) return null;
-
         const partes = fecha.split("/");
-
         if (partes.length !== 3) return null;
-
         const dia = parseInt(partes[0], 10);
         const mes = parseInt(partes[1], 10) - 1;
         const anio = parseInt(partes[2], 10);
-
         const d = new Date(anio, mes, dia);
-
         return isNaN(d.getTime()) ? null : d;
     }
 
@@ -653,19 +752,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // MODAL
     // =========================
     function abrirModal(compra) {
-
         const fechaPedido = parseFecha(compra.fecha);
-
         const isPagado = compra.status === "pagado";
-
         const fechaPedidoTexto = compra.fecha || "Sin fecha";
-
         let entregaTexto = "Pendiente";
 
         if (isPagado) {
-
             let fechaBase = null;
-
             if (compra.fechaPago) {
                 fechaBase = new Date(compra.fechaPago);
             } else {
@@ -681,31 +774,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const libros = compra.productos.filter(p => p.cantidad === 1);
         const sagas = compra.productos.filter(p => p.cantidad > 1);
 
-        modalBody.innerHTML = `
-
-        <div class="tabla-info">
-
-            <div class="col">
-                <p><b>Compra:</b> #${compra.idCompra}</p>
-                <p><b>Fecha:</b> ${fechaPedidoTexto}</p>
-                <p><b>Entrega:</b> ${entregaTexto}</p>
+        if (modalBody) {
+            modalBody.innerHTML = `
+            <div class="tabla-info">
+                <div class="col">
+                    <p><b>Compra:</b> #${compra.idCompra}</p>
+                    <p><b>Fecha:</b> ${fechaPedidoTexto}</p>
+                    <p><b>Entrega:</b> ${entregaTexto}</p>
+                </div>
+                <div class="col">
+                    <p><b>Estado:</b> ${compra.status || "pendiente"}</p>
+                    <p><b>Total:</b> $${compra.total}</p>
+                </div>
             </div>
-
-            <div class="col">
-                <p><b>Estado:</b> ${compra.status || "pendiente"}</p>
-                <p><b>Total:</b> $${compra.total}</p>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <h3>📚 Libros</h3>
-
-        <div class="grid-libros">
-            ${
-                libros.length
-                ? libros.map(p => `
+            <hr>
+            <h3>📚 Libros</h3>
+            <div class="grid-libros">
+                ${libros.length ? libros.map(p => `
                     <div class="item-libro">
                         <img src="${p.portada}">
                         <div>
@@ -713,17 +798,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             <small>$${p.precio} x ${p.cantidad}</small>
                         </div>
                     </div>
-                `).join("")
-                : "<p>Sin libros</p>"
-            }
-        </div>
-
-        <h3>📦 Sagas</h3>
-
-        <div class="grid-libros">
-            ${
-                sagas.length
-                ? sagas.map(p => `
+                `).join("") : "<p>Sin libros</p>"}
+            </div>
+            <h3>📦 Sagas</h3>
+            <div class="grid-libros">
+                ${sagas.length ? sagas.map(p => `
                     <div class="item-libro saga">
                         <img src="${p.portada}">
                         <div>
@@ -731,49 +810,29 @@ document.addEventListener("DOMContentLoaded", () => {
                             <small>$${p.precio} x ${p.cantidad}</small>
                         </div>
                     </div>
-                `).join("")
-                : "<p>Sin sagas</p>"
-            }
-        </div>
+                `).join("") : "<p>Sin sagas</p>"}
+            </div>
+            <div class="pagar-wrapper">
+                ${!isPagado ? `<button id="btn-pagar" class="btn-ver pagar">Pagar</button>` : `<p class="pagado">✔ Pagado</p>`}
+            </div>
+            `;
+        }
 
-        <div class="pagar-wrapper">
-            ${
-                !isPagado
-                ? `<button id="btn-pagar" class="btn-ver pagar">Pagar</button>`
-                : `<p class="pagado">✔ Pagado</p>`
-            }
-        </div>
-        `;
-
-        modal.style.display = "flex";
+        if (modal) modal.style.display = "flex";
 
         const btnPagar = document.getElementById("btn-pagar");
-
         if (btnPagar) {
-
             btnPagar.addEventListener("click", () => {
-
                 let historial = JSON.parse(localStorage.getItem("historialCompras")) || [];
-
-                const index = historial.findIndex(
-                    h => h.idCompra === compra.idCompra
-                );
+                const index = historial.findIndex(h => h.idCompra === compra.idCompra);
 
                 if (index !== -1) {
-
                     historial[index].status = "pagado";
-
-                    // fecha exacta de pago
                     historial[index].fechaPago = new Date().toISOString();
-
-                    localStorage.setItem(
-                        "historialCompras",
-                        JSON.stringify(historial)
-                    );
+                    localStorage.setItem("historialCompras", JSON.stringify(historial));
                 }
 
-                modal.style.display = "none";
-
+                if (modal) modal.style.display = "none";
                 mostrarHistorial();
             });
         }
@@ -782,14 +841,233 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     // CERRAR MODAL
     // =========================
-    closeModal.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
+    if (closeModal) {
+        closeModal.addEventListener("click", () => {
+            if (modal) modal.style.display = "none";
+        });
+    }
 
     window.addEventListener("click", (e) => {
-        if (e.target === modal) {
+        if (modal && e.target === modal) {
             modal.style.display = "none";
         }
     });
+});
 
+document.addEventListener('DOMContentLoaded', () => {
+    // === CONTROL DEL SIDEBAR INTERNO DE MI CUENTA (IZQUIERDO) ===
+    // Eliminamos el bloque duplicado de vistas principales para que no choque con la sección SPA de arriba
+    const botonesMenu = document.querySelectorAll('.sidebar-menu .menu-btn');
+    const seccionesContenido = document.querySelectorAll('.main-content .content-section');
+
+    botonesMenu.forEach(boton => {
+        boton.addEventListener('click', () => {
+            // Remover la clase active de todos los botones
+            botonesMenu.forEach(btn => btn.classList.remove('active'));
+            // Añadir active al botón presionado
+            boton.classList.add('active');
+
+            // Obtener el target del botón (actualizar, historial, puntos, wishlist)
+            const target = boton.getAttribute('data-target');
+
+            // Ocultar todas las sub-secciones del contenido principal
+            seccionesContenido.forEach(seccion => {
+                seccion.style.display = 'none';
+            });
+
+            // Mostrar la sección correspondiente emparejando el ID "sec-[target]"
+            const seccionAMostrar = document.getElementById(`sec-${target}`);
+            if (seccionAMostrar) {
+                seccionAMostrar.style.display = 'block';
+            }
+        });
+    });
+    
+    // Vinculación opcional: si tienes un botón de menú exterior para forzar la vista de cuenta
+    const navMiCuentaBtn = document.getElementById('nav-mi-cuenta-btn');
+    if (navMiCuentaBtn) {
+        navMiCuentaBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Si el storage tiene un usuario, va directo a cuenta, si no, al login
+            const sessionActive = localStorage.getItem("mel_logged_user");
+            mostrarVista(sessionActive ? "vista-mi-cuenta" : "vista-login");
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // ==========================================================================
+    // 1. Control del Menú Lateral / SPA (Mostrar/Ocultar Vistas)
+    // ==========================================================================
+    const menuButtons = document.querySelectorAll(".menu-btn");
+    const contentSections = document.querySelectorAll(".content-section");
+
+    menuButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            menuButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            contentSections.forEach(section => section.style.display = "none");
+
+            const targetSectionId = `sec-${button.getAttribute("data-target")}`;
+            const targetSection = document.getElementById(targetSectionId);
+            if (targetSection) {
+                targetSection.style.display = "block";
+                
+                if(button.getAttribute("data-target") === "actualizar") {
+                    cargarDatosUsuario();
+                }
+            }
+        });
+    });
+
+    // ==========================================================================
+    // 2. Carga Asíncrona de act.json con protección anti-errores
+    // ==========================================================================
+    function cargarDatosUsuario() {
+        const datosLocales = localStorage.getItem("usuario_perfil");
+
+        if (datosLocales) {
+            inyectarDatosEnPantalla(JSON.parse(datosLocales));
+        } else {
+            fetch("/act.json") 
+                .then(response => {
+                    if (!response.ok) throw new Error("Error al abrir act.json");
+                    return response.text(); 
+                })
+                .then(texto => {
+                    // Si el archivo está vacío, pasa un objeto vacío sin romper el flujo
+                    const datosDesdeJson = texto ? JSON.parse(texto) : {};
+                    inyectarDatosEnPantalla(datosDesdeJson);
+                })
+                .catch(error => {
+                    console.error("Aviso: act.json está vacío o no se encontró. Iniciando limpio.", error);
+                    inyectarDatosEnPantalla({ nombre: "", apellido: "", telefono: "", email: "" });
+                });
+        }
+    }
+
+    function inyectarDatosEnPantalla(datos) {
+        document.getElementById("update-nombre").value = datos.nombre || "";
+        document.getElementById("update-apellido").value = datos.apellido || "";
+        document.getElementById("update-telefono").value = datos.telefono || "";
+        document.getElementById("update-email").value = datos.email || "";
+        document.getElementById("update-email-confirm").value = datos.email || "";
+    }
+
+    // ==========================================================================
+    // 3. Sistema de Restricciones y Validaciones (Submit del Formulario)
+    // ==========================================================================
+    const formUpdate = document.getElementById("form-update-profile");
+    if (formUpdate) {
+        formUpdate.addEventListener("submit", (e) => {
+            e.preventDefault(); // Detiene la recarga de página
+
+            // Captura de valores limpios sin espacios en los extremos
+            const nombre = document.getElementById("update-nombre").value.trim();
+            const apellido = document.getElementById("update-apellido").value.trim();
+            const telefono = document.getElementById("update-telefono").value.trim();
+            const email = document.getElementById("update-email").value.trim();
+            const emailConfirm = document.getElementById("update-email-confirm").value.trim();
+            const password = document.getElementById("update-password").value;
+            const passwordConfirm = document.getElementById("update-password-confirm").value;
+
+            // --- EXPRESIONES REGULARES (RESTRICCIONES) ---
+            const regexLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Solo letras y acentos
+            const regexTelefono = /^\d{10}$/; // Exactamente 10 números continuos
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Estructura válida de correo electrónico
+            const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // Min 8 caracteres, 1 Mayús, 1 Minús, 1 Núm
+
+            // Validación: Campos Obligatorios Base vacíos
+            if (!nombre || !apellido || !telefono || !email || !emailConfirm) {
+                mostrarAlerta("Campos incompletos", "Por favor, rellena todos los campos de tus datos personales.", "error");
+                return;
+            }
+
+            // Restricción: Nombre y Apellido válidos
+            if (!regexLetras.test(nombre) || !regexLetras.test(apellido)) {
+                mostrarAlerta("Formato inválido", "El nombre y el apellido solo deben contener letras.", "warning");
+                return;
+            }
+
+            //  Restricción: Teléfono de 10 dígitos
+            if (!regexTelefono.test(telefono)) {
+                mostrarAlerta("Teléfono inválido", "El número de teléfono debe tener exactamente 10 dígitos numéricos.", "warning");
+                return;
+            }
+
+            // Restricción: Estructura del Email
+            if (!regexEmail.test(email)) {
+                mostrarAlerta("Correo inválido", "Por favor, ingresa una dirección de correo electrónico válida.", "warning");
+                return;
+            }
+
+            // Validación: Coincidencia de correos
+            if (email !== emailConfirm) {
+                mostrarAlerta("Correos no coinciden", "El correo ingresado y su confirmación no son iguales.", "error");
+                return;
+            }
+
+            // Restricciones de Contraseña (Solo si el usuario escribe algo en el campo)
+            if (password || passwordConfirm) {
+                // Validación: Coincidencia de contraseñas
+                if (password !== passwordConfirm) {
+                    mostrarAlerta("Contraseñas diferentes", "La nueva contraseña y su confirmación no coinciden.", "error");
+                    return;
+                }
+                
+                // Restricción: Formato y longitud de 8 dígitos seguros
+                if (!regexPassword.test(password)) {
+                    mostrarAlerta(
+                        "Contraseña insegura", 
+                        "La contraseña debe tener mínimo 8 caracteres, e incluir al menos una letra mayúscula, una minúscula y un número.", 
+                        "info"
+                    );
+                    return;
+                }
+            }
+
+            // ==========================================================================
+            // 4. Guardado Exitoso con Limpieza y Cierre de Sección
+            // ==========================================================================
+            const datosActualizados = { nombre, apellido, telefono, email };
+            
+            // Guardamos localmente para persistencia inmediata en la SPA
+            localStorage.setItem("usuario_perfil", JSON.stringify(datosActualizados));
+
+            // Alerta de éxito con SweetAlert2
+            Swal.fire({
+                icon: 'success',
+                title: '¡Datos guardados con éxito!',
+                text: 'Tu perfil en Mundo Entre Libros ha sido actualizado.',
+                confirmButtonColor: '#3B1A11'
+            }).then((result) => {
+                // Este bloque se ejecuta JUSTO CUANDO EL USUARIO LE DA CLIC AL BOTÓN "OK"
+                if (result.isConfirmed) {
+                    
+                    // 1. Limpiamos por completo todos los campos del formulario
+                    formUpdate.reset();
+
+                    // 2. Escondemos la sección de actualizar datos para que no se vea más
+                    const secActualizar = document.getElementById("sec-actualizar");
+                    if (secActualizar) {
+                        secActualizar.style.display = "none";
+                    }
+
+                    // 3. Quitamos la selección visual (clase active) del menú lateral
+                    menuButtons.forEach(btn => btn.classList.remove("active"));
+                }
+            });
+        });
+    }
+          
+    // Función auxiliar para acortar las llamadas de alertas de SweetAlert2
+    function mostrarAlerta(titulo, mensaje, tipo) {
+        Swal.fire({
+            icon: tipo,
+            title: titulo,
+            text: mensaje,
+            confirmButtonColor: '#3B1A11'
+        });
+    }
 });

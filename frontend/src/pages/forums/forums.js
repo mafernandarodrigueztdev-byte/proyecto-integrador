@@ -1732,6 +1732,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       showForumHome(false);
     }
   });
+  
 
   /* ==========================================================================
      INICIO

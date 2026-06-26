@@ -258,15 +258,21 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
 
           //Construcción de modelo de usuario
-            const nuevoUsuario = {
-            nombre:         nombre,
-            apellidos:      apellidos,
-            telefono:       phone,
-            email:          email,
-            password:       password,
-            rol:            "usuario",
-            activo:         true,
-          };
+          const nuevoUsuario = {
+            id: crypto.randomUUID(),
+            nombre: nombre,
+            apellidos: apellidos,
+            telefono: phone,
+            email: email,
+            password: password,
+            rol: "usuario",
+            activo: true,
+            };
+            // Guardar usuario logueado
+            localStorage.setItem(
+                "mel_logged_user",
+                JSON.stringify(nuevoUsuario)
+            );
             Swal.fire({
                 title: '¡Registro Exitoso!',
                 text: 'Tu cuenta ha sido creada correctamente.',
@@ -277,7 +283,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Si el usuario da clic en 'Continuar', lo mandamos al login para que entre
-                    mostrarVista("vista-login");
+                    mostrarVista("vista-mi-cuenta");
+                      if (window.renderUserPointsGlobal) {
+                          window.renderUserPointsGlobal();
+                      };
                   }
             });
         }

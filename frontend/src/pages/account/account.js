@@ -12,10 +12,13 @@ function mostrarVista(id) {
   if (vistaLogin) vistaLogin.style.display = (id === "vista-login") ? "block" : "none";
   if (vistaRegistro) vistaRegistro.style.display = (id === "vista-registro") ? "block" : "none";
   if (vistaMiCuenta) vistaMiCuenta.style.display = (id === "vista-mi-cuenta") ? "block" : "none";
+  // Guarda la vista activa aunque se refresque la página
+  sessionStorage.setItem("vista_activa", id);
 }
 
 // Mostrar login por defecto al cargar la página
-mostrarVista("vista-login");
+const vistaGuardada = sessionStorage.getItem("vista_activa") || "vista-login";
+mostrarVista(vistaGuardada);
 
 // Links de navegación entre vistas
 document.getElementById("ir-a-registro")
@@ -200,6 +203,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 /*==========================================================================*/
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formregister");
+    
+    // Toggle Password
+    const passwordInput = document.getElementById("regisPassword");
+    const passwordconfInput = document.getElementById("regisPasswordconf");
+    const togglePasswordBtn = document.getElementById("togglePassword");
+    const togglePasswordconfBtn = document.getElementById("togglePasswordconf");
+
+    // Registrar los eventos de toggle UNA SOLA VEZ, fuera del submit
+    if (togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener("click", () => {
+            const isPassword = passwordInput.type === "password";
+            passwordInput.type = isPassword ? "text" : "password";
+            togglePasswordBtn.textContent = isPassword ? "👁" : "👁"; 
+            togglePasswordBtn.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
+        });
+    }
+
+    if (togglePasswordconfBtn && passwordconfInput) {
+        togglePasswordconfBtn.addEventListener("click", () => {
+            const isPassword = passwordconfInput.type === "password";
+            passwordconfInput.type = isPassword ? "text" : "password";
+            togglePasswordconfBtn.textContent = isPassword ? "👁" : "👁";
+            togglePasswordconfBtn.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
+        });
+    }
 
     form.addEventListener("submit", (e) => {
         // Evita que el formulario se envíe automáticamente y recargue la página
@@ -213,6 +241,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const emailconf = document.getElementById("regisEmailconf").value.trim();
         const password = document.getElementById("regisPassword").value.trim();
         const passwordconf = document.getElementById("regisPasswordconf").value.trim();
+        const togglePasswordBtn = document.getElementById("togglePassword");
+
 
         let errores = [];
 
@@ -236,6 +266,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (password && password.length < 8) {
             errores.push("La contraseña debe tener al menos 8 caracteres.");
         }
+
+        // 4.1 PLUS: Alternar visibilidad de contraseña
+        if (togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener("click", () => {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        togglePasswordBtn.textContent = isPassword ? "👁" : "👁";
+        togglePasswordBtn.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
+    });
+  }
 
         // 5. Valida coincidencia de contraseñas
         if (password !== passwordconf) {

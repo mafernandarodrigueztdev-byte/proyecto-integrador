@@ -95,22 +95,28 @@
                 <form class="form-register" id="formregister" novalidate>
                     <h4>Crea tu cuenta</h4>
                     <label class="regislabel" for="regisNombres">Ingresa tu nombre/s</label>
-                    <input class="regis-form-data" type="text" name="regisNombres" id="regisNombres" placeholder="Nombre/s">
+                        <input class="regis-form-data" type="text" name="regisNombres" id="regisNombres" placeholder="Nombre/s">
                     <label class="regislabel" for="regisApellidos">Ingresa tus apellidos</label>
-                    <input class="regis-form-data" type="text" name="regisApellidos" id="regisApellidos" placeholder="Apellidos">
+                        <input class="regis-form-data" type="text" name="regisApellidos" id="regisApellidos" placeholder="Apellidos">
                     <label class="regislabel" for="regisphone">Ingresa tu teléfono</label>
-                    <input class="regis-form-data" type="tel" name="regisphone" id="regisphone" placeholder="123-456-7890">
+                        <input class="regis-form-data" type="tel" name="regisphone" id="regisphone" placeholder="123-456-7890">
 
                     <label class="regislabel" for="regisEmail">Ingresa tu e-mail</label>
-                    <input class="regis-form-data" type="email" name="regisEmail" id="regisEmail" placeholder="tu.correo@ejemplo.com">
+                        <input class="regis-form-data" type="email" name="regisEmail" id="regisEmail" placeholder="tu.correo@ejemplo.com">
 
                     <label class="regislabel" for="regisEmailconf">Confirma tu e-mail</label>
-                    <input class="regis-form-data" type="email" name="regisEmailconf" id="regisEmailconf" placeholder="tu.correo@ejemplo.com">
+                        <input class="regis-form-data" type="email" name="regisEmailconf" id="regisEmailconf" placeholder="tu.correo@ejemplo.com">
 
                     <label class="regislabel" for="regisPassword">Ingresa tu contraseña</label>
-                    <input class="regis-form-data" type="password" name="regisPassword" id="regisPassword" placeholder="8 caracteres mínimo">
+                        <div class="password-wrapper">
+                        <input class="regis-form-data" type="password" name="regisPassword" id="regisPassword" placeholder="8 caracteres mínimo">
+                            <button type="button" id="togglePassword" class="toggle-password-icon" aria-label="Mostrar contraseña">👁</button>
+                        </div>
                     <label class="regislabel" for="regisPasswordconf">Confirma tu contraseña</label>
-                    <input class="regis-form-data" type="password" name="regisPasswordconf" id="regisPasswordconf" placeholder="8 caracteres mínimo">
+                        <div class="password-wrapper">
+                            <input class="regis-form-data" type="password" name="regisPasswordconf" id="regisPasswordconf" placeholder="8 caracteres mínimo">
+                            <button type="button" id="togglePasswordconf" class="toggle-password-icon" aria-label="Mostrar contraseña">👁</button>
+                        </div>
                     <input class="btn-register" type="submit" value="Registrarse">
                     <br>
                     <p><a href="#" id="ir-a-login">Ya tengo una Cuenta</a></p>

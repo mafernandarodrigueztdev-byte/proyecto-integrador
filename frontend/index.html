@@ -12,78 +12,107 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg sticky-top" aria-label="Navegación principal">
-            <div class="container">
+     <!--? body: Navbar: Israel -->
+<nav class="navbar navbar-expand-lg sticky-top" aria-label="Navegación principal">
+    <div class="container">
 
-                <a class="navbar-brand fw-bold" href="/">
-                    <img src="/src/assets/icons/logo-mel.png" alt="Logo Mundo Entre Libros" class="navbar-logo"
-                        loading="lazy" />
-                </a>
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="/">
+            <img
+                src="/src/assets/icons/logo-mel.png"
+                alt="Logo Mundo Entre Libros"
+                class="navbar-logo"
+                loading="lazy">
+        </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <!-- Botón hamburguesa -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Abrir menú">
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="/"> Inicio </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/catalog/catalog.html">
-                                Catálogo
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/forums/forums.html">
-                                Foros
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/aboutUs/aboutUs.html">
-                                Nosotros
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact/contact.html">
-                                Contacto
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/account/account.html">
-                                <img src="/src/assets/icons/icono-cuenta-navbar.png" alt="Mi Cuenta" class="navbar-icon"
-                                    loading="lazy" />
-                            </a>
-                        </li>
+            <span class="navbar-toggler-icon"></span>
 
-                    <!----Carrito  modal----->
+        </button>
 
-                        <li class="nav-item contenedor-carrito-offcanvas">
-                            <a class="nav-link" href="/shoppingCart/shopping.html" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+        <!-- Contenido de la navbar -->
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-                                <div class="caja-icono-carrito">
-                                    <img src="/src/assets/icons/icono-carrito-navbar.png" alt="Carrito"
-                                        class="navbar-icon">
-                                    <span id="contador-carrito">0</span>
-                                </div>
-                            </a>
-                        </li>
+            <!-- Menú principal -->
+            <ul class="navbar-nav mx-auto">
 
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCatalog" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catálogo
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownCatalog">
+                        <li><a class="dropdown-item" href="/catalog/catalog.html">Sagas</a></li>    
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/catalog/catalog.html">Ver todo el catálogo</a></li>
                     </ul>
+                </li>
 
-                    <form class="search-form d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar libros..."
-                            aria-label="Buscar libros" />
-                        <button class="btn btn-outline-light" type="submit">
-                            Buscar
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+                <li class="nav-item">
+                    <a class="nav-link" href="/forums/forums.html">
+                        Foros
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutUs/aboutUs.html">
+                        Nosotros
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact/contact.html">
+                        Contacto
+                    </a>
+                </li>
+
+                <!-- Usuario -->
+                <li class="nav-item nav-icon-item">
+                    <a class="nav-link nav-icon-link" href="/account/account.html">
+                        <img
+                            src="/src/assets/icons/icono-cuenta-navbar.png"
+                            alt="Mi Cuenta"
+                            class="navbar-icon"
+                            loading="lazy">
+                    </a>
+                </li>
+
+                <!-- Carrito Offcanvas -->
+                <li class="nav-item contenedor-carrito-offcanvas"> 
+    <a class="nav-link" href="/shoppingCart/shopping.html" 
+       data-bs-toggle="offcanvas" 
+       data-bs-target="#offcanvasCarrito" 
+       aria-controls="offcanvasCarrito"
+       aria-label="Ver carrito de compras"> <div class="caja-icono-carrito"> 
+            <img src="/src/assets/icons/icono-carrito-navbar.png" 
+                 alt="" class="navbar-icon"> <span id="contador-carrito">0</span> 
+        </div> 
+    </a> 
+</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+<!-- Aqui termina el navbar dentro de body: Israel-->
+
+
         <!--? Header / Carrusel: Mafer -->
         <header class="home-header" aria-label="Carrusel principal de Mundo Entre Libros">
             <div id="homeHeroCarousel" class="carousel slide home-hero-carousel" data-bs-ride="carousel"
@@ -385,6 +414,12 @@
             </div>
         </div>
     </div>
+
+    <div id="toast-carrito" class="toast-notificacion">
+        <span class="toast-icono">✔️</span>
+        <span class="toast-mensaje">¡Libro agregado al carrito!</span>
+    </div>
+
 
     <script type="module" src="/src/main.js"></script>
     <script src="/src/carrito.js" defer></script>

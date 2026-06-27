@@ -117,6 +117,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         guardarCarrito();
         renderizarCarrito();
+        
+        // 1. Disparamos la animación visual del número
+        if (typeof animarContadorCarrito === 'function') {
+            animarContadorCarrito(); 
+        }
+        
+        // 2. Mostramos el mensaje flotante de éxito
+        mostrarToastCarrito();
+    }
+
+    function mostrarToastCarrito() {
+        const toast = document.getElementById("toast-carrito");
+        if (!toast) return; // Si no encuentra el toast en el HTML, no hace nada
+
+        // 1. Le agregamos la clase que lo hace visible
+        toast.classList.add("mostrar");
+
+        // 2. Usamos setTimeout para quitarle la clase después de 3 segundos (3000 ms)
+        setTimeout(() => {
+            toast.classList.remove("mostrar");
+        }, 3000);
     }
 
     function sumarProducto(id) {
@@ -128,6 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         guardarCarrito();
         renderizarCarrito();
+
+        // Excelente idea agregar la animación aquí también
+        if (typeof animarContadorCarrito === 'function') {
+            animarContadorCarrito(); 
+        }
     }
 
     function restarProducto(id) {
@@ -174,6 +200,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const cantidadProductos = calcularCantidadProductos();
 
         contadorCarrito.textContent = cantidadProductos > 99 ? "99+" : cantidadProductos;
+    }
+
+    function animarContadorCarrito() {
+        if (!contadorCarrito) return;
+
+        // 1. Quitamos la clase por si el usuario hace clics muy rápidos
+        contadorCarrito.classList.remove("animacion-pop");
+        
+        // 2. Este pequeño truco fuerza al navegador a reiniciar la animación
+        void contadorCarrito.offsetWidth; 
+        
+        // 3. Agregamos la clase de CSS que hace el "salto"
+        contadorCarrito.classList.add("animacion-pop");
+
+        // 4. La retiramos después de 300ms para que esté lista para la próxima vez
+        setTimeout(() => {
+            contadorCarrito.classList.remove("animacion-pop");
+        }, 300);
     }
 
     function actualizarTotales() {

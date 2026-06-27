@@ -1,3 +1,27 @@
+/*==========================================================================
+    SETEAR ENLACE ACTIVO EN EL NAVBAR AUTOMÁTICAMENTE
+==========================================================================*/
+document.addEventListener("DOMContentLoaded", () => {
+    // Obtenemos la ruta actual del navegador (ej: "/catalog/catalog.html" o "/")
+    const rutaActual = window.location.pathname;
+
+    // Seleccionamos todos los enlaces de la barra de navegación
+    const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+    navLinks.forEach(link => {
+        // Obtenemos el atributo href de cada enlace
+        const linkHref = link.getAttribute("href");
+
+        // Si la ruta del navegador coincide con el href del enlace, 
+        // o si estamos en la raíz ("/") y el enlace es el de Inicio...
+        if (rutaActual === linkHref || (rutaActual === "/" && linkHref === "/")) {
+            link.classList.add("active"); // Le ponemos la línea estática
+        } else {
+            link.classList.remove("active"); // Nos aseguramos de quitarla de los demás
+        }
+    });
+});
+
 /* ==========================================================================
    HOME - FOROS DESTACADOS
    Usa la misma lógica que forums.js:

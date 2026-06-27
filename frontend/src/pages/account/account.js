@@ -16,9 +16,14 @@ function mostrarVista(id) {
   sessionStorage.setItem("vista_activa", id);
 }
 
-// Mostrar login por defecto al cargar la página
-const vistaGuardada = sessionStorage.getItem("vista_activa") || "vista-login";
-mostrarVista(vistaGuardada);
+// Verificar sesión al cargar account.html
+const sesionActiva = localStorage.getItem("mel_logged_user");
+if (!sesionActiva) {
+    mostrarVista("vista-login");
+} else {
+    const vistaGuardada = sessionStorage.getItem("vista_activa") || "vista-mi-cuenta";
+    mostrarVista(vistaGuardada);
+}
 
 // Links de navegación entre vistas
 document.getElementById("ir-a-registro")
@@ -322,11 +327,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 confirmButtonColor: '#4b1d13'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Si el usuario da clic en 'Continuar', lo mandamos al login para que entre
+                    // Si el usuario da clic en 'Continuar', se envía al login para que entre
                     mostrarVista("vista-mi-cuenta");
                       if (window.renderUserPointsGlobal) {
                           window.renderUserPointsGlobal();
                       };
+                      const liCerrarSesion = document.getElementById("li-cerrar-sesion");
+                      if (liCerrarSesion) liCerrarSesion.classList.remove("d-none");
                   }
             });
         }
@@ -688,6 +695,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Simulamos respuesta exitosa del backend o validación de Israel
     setTimeout(() => {
+      //!Guardar sesión en localStorage
+      const datosUsuario = {
+        email: emailInput.value
+      };
+      localStorage.setItem("mel_logged_user", JSON.stringify(datosUsuario));
       // 1. Redireccionamos usando la función SPA corregida
       mostrarVista("vista-mi-cuenta");
       
@@ -695,6 +707,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.renderUserPointsGlobal) {
          window.renderUserPointsGlobal();
       }
+
+      const liCerrarSesion = document.getElementById("li-cerrar-sesion");
+      if (liCerrarSesion) liCerrarSesion.classList.remove("d-none");
 
       // 3. Limpiamos campos de forma segura
       loginForm.reset();

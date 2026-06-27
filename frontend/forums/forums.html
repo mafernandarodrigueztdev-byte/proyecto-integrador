@@ -70,18 +70,15 @@
                                 </div>
                             </a>
                         </li>
-
-          </ul>
-
-          <form class="search-form d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar libros..." aria-label="Buscar libros" />
-            <button class="btn btn-outline-light" type="submit">
-              Buscar
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
+                        <li class="nav-item d-none" id="li-cerrar-sesion">
+                            <a class="nav-link cerrar-sesion-link" href="#" id="btn-cerrar-sesion">
+                                Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
     <!-- MAIN -->
     <main class="forums-page">
@@ -431,6 +428,7 @@
   <script type="module" src="../src/pages/forums/forums.js"></script>
   <script src="/src/carrito.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/src/auth.js"></script>
 </body>
 
 </html>

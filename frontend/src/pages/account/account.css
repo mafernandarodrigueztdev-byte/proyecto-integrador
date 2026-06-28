@@ -597,6 +597,147 @@ main {
   transition: transform 0.4s ease-in-out !important;
 }
 
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+
+.navbar {
+  background-color: var(--beige-calido-degradado);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 0.5rem 0;
+  box-shadow: var(--sombra);
+}
+
+/* Contenedor interno de Bootstrap */
+.navbar .container {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+}
+
+/* Marca / logo */
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo */
+.navbar-logo {
+  width: 90px;
+  max-width: 90px;
+  height: auto;
+  object-fit: contain;
+  transform: none;
+}
+
+/* Links */
+.nav-link {
+  position: relative;
+  color: var(--texto-principal-cafe-oscuro) !important;
+  padding: 0.5rem 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cafe-medio) !important;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* Línea decorativa inferior */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--cafe-medio);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+/* Buscador */
+.search-form input {
+  font-size: 1rem;
+}
+
+.search-form .btn {
+  background-color: var(--boton-principal-acento-fuerte);
+  color: var(--fondo-principal-crema);
+  border: none;
+  font-size: 1rem;
+  padding: 0.45rem 1rem;
+}
+
+.search-form .btn:hover {
+  background-color: var(--texto-principal-cafe-oscuro);
+  color: var(--fondo-principal-crema);
+}
+
+/* ==========================================================================
+   ICONOS NAVBAR
+   ========================================================================== */
+
+.navbar-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  transition: transform var(--transicion);
+  flex-shrink: 0; /*evita que se comprima en flex*/
+  display: block; /*para que no colapse*/
+}
+
+/* Hover sobre iconos */
+.nav-link:hover .navbar-icon {
+  transform: scale(1.1) translateY(-2px);
+}
+
+/* Separación entre los elementos del menú */
+.navbar-nav {
+  align-items: center;
+  gap: 10px;
+}
+
+#nav-mi-cuenta-btn {
+  margin-left: 20px;
+}
+
+.contenedor-carrito-offcanvas {
+  margin-left: 10px;
+}
+
+.caja-icono-carrito {
+  position: relative; /* para el badge del contador */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.btn {
+  background-color: var(--boton-principal-acento-fuerte);
+  font-weight: 800;
+  transition: 0.1s ease;
+}
+
 
 /*==========================================================================
                 SPA: Control de Vistas
@@ -707,6 +848,30 @@ main {
 
 .btn-register:hover{
   transform: scale(1.07); 
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper .regis-form-data {
+    width: 100%;
+    padding-right: 2.5rem; /* espacio para que el texto no tape el ojo */
+    box-sizing: border-box;
+}
+
+.toggle-password-icon {
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+    color: #5a2d0c;
 }
 
 /*! Warnings*/
@@ -1664,6 +1829,19 @@ font-weight: bold;
   margin: 0 auto;
 }
 
+.login-section a{
+  color: var(--boton-principal-acento-fuerte);
+  transition: color 0.3s ease;
+  font-weight: 700;
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+}
+
+.login-section a:hover {
+  color: var(--cafe-medio);
+  text-decoration: underline var(--cafe-medio);
+  transform: scale(1.08);
+}
 .login-banner {
   background-color: var(--fondo-blanco-calido);
   padding: 40px 20px;
@@ -1968,6 +2146,19 @@ font-weight: bold;
 .account-container {
     display: flex;
     min-height: 100vh;
+    position: relative;
+}
+
+/* Pseudo-elemento que pinta el fondo crema de todo el lado izquierdo */
+.account-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    background-color: #F7E3C3;
+    z-index: 0;
 }
 
 /* Área de contenido de la derecha (Donde viven el historial, puntos y wishlist) */
@@ -1976,7 +2167,7 @@ font-weight: bold;
     padding: 40px;
     background-color: #ffffff;
     /* Margen izquierdo igual al width del sidebar para evitar que se encimen */
-    margin-left: 400px; 
+    margin-left: 400px;
 }
 
 /* Control de secciones mediante JS */
@@ -1993,18 +2184,18 @@ font-weight: bold;
    ========================================== */
 .sidebar {
     width: 400px;
-    background-color: #F7E3C3; /* Fondo crema de tu imagen */
-    padding: 40px 20px;
+    padding: 20px 20px;
     box-sizing: border-box;
-    
+    background-color: transparent; /* Ya no necesita fondo propio */
     /* Posicionamiento fijo lateral para que no se deslice */
     position: fixed;
-    left: 0;
     top: 75px; /* Evita que el Navbar tape el título */
-    height: calc(100vh - 75px); 
-    
+    left: 0;
+    /* CLAVE: el sidebar termina justo antes del footer */
+    height: calc(100vh - 75px);
+    overflow-y: auto;
     /* Fuerza al sidebar a flotar por encima del contenido derecho */
-    z-index: 100; 
+    z-index: 1; 
     display: flex;
     flex-direction: column;
 }
@@ -2016,7 +2207,7 @@ font-weight: bold;
     display: block !important;  
     
     /* Margen superior para bajar el título */
-    margin-top: 40px; 
+    margin-top: 20px; 
     text-align: center; 
     
     /* Espacio que queda entre el título y el bloque de botones */
@@ -2030,8 +2221,8 @@ font-weight: bold;
 .sidebar-menu {
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Controla la separación entre cada botón */
-    margin-top: 70px; /* Controla qué tan abajo empieza el bloque respecto al título */
+    gap: 20px; /* Controla la separación entre cada botón */
+    margin-top: 30px; /* Controla qué tan abajo empieza el bloque respecto al título */
 }
 
 /* Botones del Menú */
@@ -2039,7 +2230,7 @@ font-weight: bold;
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 25px; /* Padding aumentado para hacer los botones más grandes */
+    padding: 15px; /* Padding reducido de 25px */
     background-color: #FDF4E7; /* Fondo claro del botón interactivo de la imagen */
     border: 0.5px solid #E6D2B5;
     color: #5C2D1B;
@@ -2074,16 +2265,25 @@ font-weight: bold;
         display: flex;
         flex-direction: column;
         width: 100%;
+        position: relative !important;
     }
 
+    /* Cancela el pseudo-elemento del desktop */
+    .account-container::before {
+        display: none !important;
+    }
+
+    /* CLAVE: cancela todo el fixed del desktop */
     .account-container .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto; 
-        left: auto;
-        top: auto; 
-        padding: 20px;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        left: auto !important;
+        top: auto !important;
+        padding: 20px !important;
         box-sizing: border-box;
+        background-color: #F7E3C3 !important;
+        overflow-y: visible !important;
     }
 
     .account-container .sidebar h2 {
@@ -2125,7 +2325,7 @@ font-weight: bold;
     }
 
     .account-container .main-content {
-        margin-left: 0; 
+        margin-left: 0 !important; 
         width: 100%;
         padding: 30px 20px;
         box-sizing: border-box;

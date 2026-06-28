@@ -572,6 +572,46 @@ main {
     font-size: 1.2rem;
 }
 
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.cerrar-sesion-link {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--texto-principal-cafe-oscuro) !important;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  white-space: nowrap;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cerrar-sesion-link:hover {
+  color: var(--cafe-medio) !important;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.cerrar-sesion-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--cafe-medio);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.cerrar-sesion-link:hover::after {
+  width: 60%;
+}
   /* ==========================================================================
    OFFCANVAS: PANEL LATERAL DEL CARRITO
    ========================================================================== */

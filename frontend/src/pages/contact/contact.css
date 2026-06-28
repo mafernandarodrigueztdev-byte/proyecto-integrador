@@ -109,7 +109,6 @@ main {
     width: 60%;
 }
 
-
 /*==========================================================================
     ICONOS
 ==========================================================================*/
@@ -214,271 +213,37 @@ main {
 }
 
 
-/*==========================================================================
-    RESPONSIVE
-==========================================================================*/
-
-
-/* Tablets grandes */
-
-@media (max-width:1200px){
-
-    .navbar{
-        font-size: 1.45rem;
-    }
-
-    .navbar .container{
-        min-height: 80px;
-    }
-
-    .navbar-logo{
-        width: 80px;
-    }
-
-    .navbar-nav{
-        gap: 8px;
-    }
-
-}
-
-
-/* Tablets */
-
-@media (max-width:992px){
-
-    .navbar{
-        padding: .75rem 0;
-    }
-
-    .navbar .container{
-        min-height: auto;
-        align-items: flex-start;
-    }
-
-    .navbar-collapse{
-        transition:.3s ease;
-        margin-top: 1rem;
-        text-align: center;
-        transition:.3s ease;
-
-    }
-
-    .navbar-nav{
-        width: 100%;
-        gap: 0;
-        align-items: center;
-    }
-
-    .nav-item{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .nav-link{
-          border-radius:8px;
-    }
-
-    .nav-link::after{
-        display: none;
-    }
-
-    .nav-icon-item{
-        margin-left: 0;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .navbar-icon{
-        width: 38px;
-        height: 38px;
-    }
-
-}
-
-
-/* Celulares grandes */
-
-@media (max-width:768px){
-
-    .navbar{
-        font-size: 1.2rem;
-    }
-
-    .navbar-logo{
-        width: 70px;
-    }
-
-    .navbar-icon{
-        width: 34px;
-        height: 34px;
-    }
-
-    .nav-link{
-        padding: .8rem 0;
-    }
-
-}
-
-
-/* Celulares */
-
-@media (max-width:576px){
-
-    .navbar{
-        padding: .5rem 0;
-        font-size: 1.05rem;
-    }
-
-    .navbar-logo{
-        width: 60px;
-    }
-
-    .navbar-icon{
-        width: 30px;
-        height: 30px;
-    }
-
-    .nav-link{
-        padding: .75rem 0;
-    }
-
-}
-
-
-/* Galaxy Fold */
-
-@media (max-width:320px){
-
-    .navbar{
-        font-size: .95rem;
-    }
-
-    .navbar-logo{
-        width: 50px;
-    }
-
-    .navbar-icon{
-        width: 26px;
-        height: 26px;
-    }
-
-    .nav-link{
-        padding: .6rem 0;
-        font-size: .95rem;
-    }
-
-}
-
-/* ==========================================================================
-   PANTALLAS MUY GRANDES
-   Monitores 2K y 4K
-   ========================================================================== */
-
-@media (min-width:1400px){
-
-    .navbar{
-        font-size:1.15rem;
-    }
-
-    .navbar-logo{
-        width:95px;
-    }
-
-    .navbar-nav{
-        gap:16px;
-    }
-
-    .navbar-icon{
-        width:44px;
-        height:44px;
-    }
-
-}
-
-
-/* ==========================================================================
-   LAPTOPS
-   1024px - 1399px
-   ========================================================================== */
-
-@media (min-width:1024px) and (max-width:1399px){
-
-    .navbar-nav{
-        gap:12px;
-    }
-
-}
-
-
-/* ==========================================================================
-   TABLETS HORIZONTALES
-   ========================================================================== */
-
-@media (max-width:900px){
-
-    .navbar-logo{
-
-        width:65px;
-
-    }
-
-    .navbar{
-
-        font-size:1.05rem;
-
-    }
-
-    .navbar-icon{
-
-        width:32px;
-        height:32px;
-
-    }
-
-}
-
-@media (max-width:280px){
-
-    .navbar-logo{
-
-        width:42px;
-
-    }
-
-    .navbar{
-
-        font-size:.85rem;
-
-    }
-
-    .navbar-icon{
-
-        width:24px;
-        height:24px;
-
-    }
-
-}
-
-@media (max-height:500px) and (orientation:landscape){
-
-    .navbar-collapse{
-        transition:.3s ease;
-        max-height:70vh;
-        overflow-y:auto;
-
-    }
-
-}
-
+/* ============================================================================
+   ACCESIBILIDAD
+   Aplica globalmente: navbar, cards de contacto, y cualquier otro elemento
+   interactivo del sitio.
+   ============================================================================ */
+
+/* --- Foco visible al navegar con teclado ----------------------------------- */
 .nav-link:focus-visible,
-.nav-icon-link:focus-visible{
+.nav-icon-link:focus-visible,
+.btn-buscar:focus-visible{
 
     outline:2px solid var(--cafe-medio);
     outline-offset:2px;
-
 }
+
+/* --- Respeta la preferencia de movimiento reducido del usuario ------------ */
+@media (prefers-reduced-motion: reduce){
+
+    .navbar,
+    .navbar-logo,
+    .navbar-icon,
+    .navbar-nav,
+    .nav-link,
+    .navbar-collapse,
+    .nav-icon-link,
+    .pixel-member{
+        transition:none !important;
+        animation:none !important;
+    }
+}
+
 
 /*==========================================================================
     ESTILOS DEL MENÚ DESPLEGABLE (DROPDOWN)
@@ -597,192 +362,290 @@ main {
 }
 
 
+/*=========================================================
+                CONTACT PAGE
+=========================================================*/
+
+.contact-page{
+    width: min(1500px, 100%);
+    margin: 50px auto;
+    padding: 0 40px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* antes: 1fr 580px */
+
+    align-items: stretch;              /* antes: start */
+    gap: 50px;
+}
+
+.contact-card{
+    background:#fffdf9;
+    border:2px solid #b1774c;
+    border-radius:14px;
+    padding:50px 45px;
+    width: 100%;
+    max-width: 580px;                  /* antes: 430px — ESTE es el cambio clave */
+    margin: 0 auto;
+    height: 100%;                      /* antes: auto */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    box-shadow:
+        0 0 0 4px rgba(177, 119, 76, 0.15),
+        0 8px 24px rgba(177, 119, 76, 0.25),
+        inset 0 0 0 1px rgba(255,255,255,.35);
+}
+
+.contact-card .card-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+    max-width: 340px;
+    margin: 0 auto 18px;
+
+    /* Degradado idéntico a tu referencia */
+    background: linear-gradient(to bottom, #4B1D13 30%, #a4613b 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important; 
+
+    /* ¡Aquí está la magia! Cambiamos el segundo valor a 7px para bajar la sombra */
+     color: var(--boton-principal-acento-fuerte);
+     text-align: center;
+     letter-spacing: 2px;
+      /* ¡Aquí está la magia! Cambiamos el segundo valor a 5px para bajar la sombra */
+      /* text-shadow: x y ... ... */
+     text-shadow: 0px 5px 5px rgba(160, 101, 61, 1.0);
+}
+
+.contact-card-body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    text-align:center;
+}
+
+.contact-card .contact-card-body p.card-description{
+    max-width:340px;
+    margin:0 auto;
+    font-size: 1rem;
+    line-height:1.5;
+    color: black;
+    font-weight:500;
+    text-align:center;
+}
+
+/* --- Estilos base para pantallas grandes --- */
+.aside-img {
+    width: 100%;
+    /* Aumentamos el límite de tamaño (antes era 260px) */
+    max-width: 320px; 
+    height: auto;
+    object-fit: contain;
+    margin-top: 10px;
+    transition: .3s ease;
+}
+
+/*=========================================================
+            COLUMNA IZQUIERDA
+=========================================================*/
+
+.container-img{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+/*=========================================================
+            COLUMNA DERECHA
+=========================================================*/
+
+.contact-form-section{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+
 /* ==========================================================================
-   ? SECCIÓN: FORMULARIO DE CONTACTO - MAFER
+   SECCIÓN: FORMULARIO DE CONTACTO - MAFER
    Esta sección contiene únicamente los estilos del formulario.
    ========================================================================== */
 
 /* Card que contiene el formulario */
-.contact-form-card {
-  /* Limita el ancho máximo de la card para que no se estire demasiado */
-  width: min(100%, 620px);
-/*!Added*/
-  margin: 0 auto;
-  height: 100%;
+.contact-form-card{
+    width:100%;
+    max-width:580px;
+    margin:0 auto;
+    height:100%;
 
-  /* Color de fondo cálido de acuerdo con la paleta del proyecto */
-  background-color: var(--beige-calido-degradado);
+    background-color: var(--beige-calido-degradado);
+    border: 1px solid rgba(82, 31, 18, 0.12);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 8px 18px rgba(82, 31, 18, 0.08);
 
-  /* Borde sutil para separar visualmente la card del fondo */
-  border: 1px solid rgba(82, 31, 18, 0.12);
-
-  /* Bordes redondeados para una apariencia más suave */
-  border-radius: 14px;
-
-  /* Espaciado interno de la card */
-  /*! padding: 28px 24px 24px; */
-  padding: 24px;
-
-  /* Sombra ligera para dar profundidad */
-  box-shadow: 0 8px 18px rgba(82, 31, 18, 0.08);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Título del formulario */
 .contact-form-card h1 {
-  /* Color principal de texto de la marca */
-  color: var(--texto-principal-cafe-oscuro);
+    /* Color principal de texto de la marca */
+    color: var(--texto-principal-cafe-oscuro);
 
-  /* Tipografía editorial usada en el proyecto */
-  font-family: "Cormorant Garamond", serif;
+    /* Tipografía editorial usada en el proyecto */
+    font-family: "Cormorant Garamond", serif;
 
-  /* Tamaño del título */
-  font-size: 2.2rem;
+    /* Tamaño del título */
+    font-size: 2.2rem;
 
-  /* Grosor del texto */
-  font-weight: 700;
+    /* Grosor del texto */
+    font-weight: 700;
 
-  /* Centra el título */
-  text-align: center;
+    /* Centra el título */
+    text-align: center;
 
-  /* Separación inferior entre el título y los campos */
-  margin-bottom: 24px;
+    /* Separación inferior entre el título y los campos */
+    margin-bottom: 24px;
 }
 
 /* Formulario */
 .contact-form {
-  /* Acomoda los campos de forma vertical */
-  display: flex;
-  flex-direction: column;
+    /* Acomoda los campos de forma vertical */
+    display: flex;
+    flex-direction: column;
 
-  /* Espacio entre cada campo */
-  gap: 18px;
+    /* Espacio entre cada campo */
+    gap:22px;
 }
 
 /* Grupo de cada campo: label + input/textarea */
 .form-group {
-  width: 100%;
+    width: 100%;
 }
 
 /* Label visible encima de cada campo */
 .form-group label {
-  display: block;
-  position: static;
-  color: var(--texto-principal-cafe-oscuro);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 6px;
+    display: block;
+    position: static;
+    color: var(--texto-principal-cafe-oscuro);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 /* Estilos generales para inputs y textarea */
 .form-group input,
 .form-group textarea {
-  /* Ocupan todo el ancho disponible */
-  width: 100%;
+    /* Ocupan todo el ancho disponible */
+    width: 100%;
 
-  /* Borde tenue con tono café */
-  border: 1px solid rgba(82, 31, 18, 0.18);
+    /* Borde tenue con tono café */
+    border: 1px solid rgba(82, 31, 18, 0.18);
 
-  /* Fondo crema para mantener coherencia visual */
-  background-color: var(--fondo-principal-crema);
+    /* Fondo crema para mantener coherencia visual */
+    background-color: var(--fondo-principal-crema);
 
-  /* Color del texto escrito por el usuario */
-  color: var(--texto-principal-cafe-oscuro);
+    /* Color del texto escrito por el usuario */
+    color: var(--texto-principal-cafe-oscuro);
 
-  /* Tipografía del proyecto */
-  font-family: "Cormorant Garamond", serif;
+    /* Tipografía del proyecto */
+    font-family: "Cormorant Garamond", serif;
 
-  /* Tamaño del texto dentro de los campos */
-  font-size: 1.15rem;
+    /* Tamaño del texto dentro de los campos */
+    font-size: 1.15rem;
 
-  /* Espaciado interno */
-  /*! padding: 14px 16px; */
-  padding: 10px 14px;
+    /* Espaciado interno */
+    padding: 10px 14px;
 
-  /* Quita el borde azul por defecto del navegador */
-  outline: none;
+    /* Quita el borde azul por defecto del navegador */
+    outline: none;
 
-  /* Transición suave para el enfoque */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Transición suave para el enfoque */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Altura de los campos de texto cortos */
 .form-group input {
-  min-height: 58px;
+    min-height: 58px;
 }
 
 /* Altura del área de mensaje */
 .form-group textarea {
-  min-height: 220px;
+    min-height:180px;
 
-  /* Permite que el usuario cambie la altura solo verticalmente */
-  resize: vertical;
+    /* Permite que el usuario cambie la altura solo verticalmente */
+    resize: vertical;
 }
 
 /* Color de los placeholders */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(82, 31, 18, 0.35);
+    color: rgba(82, 31, 18, 0.35);
 }
 
 /* Estado cuando el usuario selecciona un campo */
 .form-group input:focus,
 .form-group textarea:focus {
-  /* Borde más fuerte al estar activo */
-  border-color: var(--texto-principal-cafe-oscuro);
+    /* Borde más fuerte al estar activo */
+    border-color: var(--texto-principal-cafe-oscuro);
 
-  /* Sombra ligera para indicar foco */
-  box-shadow: 0 0 0 3px rgba(82, 31, 18, 0.08);
+    /* Sombra ligera para indicar foco */
+    box-shadow: 0 0 0 3px rgba(82, 31, 18, 0.08);
 }
 
 /* Contenedor del botón */
-.form-button-container {
-  /* Alinea el botón a la derecha en desktop */
-  display: flex;
-  justify-content: flex-end;
+.form-button-container{
+    display:flex;
+    justify-content:center;
+    margin-top:10px;
 }
 
 /* Botón de envío */
 .contact-button {
-  /* Color principal del botón */
-  background-color: var(--boton-principal-acento-fuerte);
+    /* Color principal del botón */
+    background-color: var(--boton-principal-acento-fuerte);
 
-  /* Color del texto del botón */
-  color: var(--fondo-principal-crema);
+    /* Color del texto del botón */
+    color: var(--fondo-principal-crema);
 
-  /* Quita borde por defecto */
-  border: none;
+    /* Quita borde por defecto */
+    border: none;
 
-  /* Bordes ligeramente redondeados */
-  border-radius: 6px;
+    /* Bordes ligeramente redondeados */
+    border-radius: 6px;
 
-  /* Tamaño interno del botón */
-  padding: 10px 38px;
+    /* Tamaño interno del botón */
+    padding:14px 48px;
 
-  /* Tipografía del proyecto */
-  font-family: "Cormorant Garamond", serif;
+    /* Tipografía del proyecto */
+    font-family: "Cormorant Garamond", serif;
 
-  /* Tamaño y peso del texto */
-  font-size: 1.15rem;
-  font-weight: 700;
+    /* Tamaño y peso del texto */
+    font-size: 1.15rem;
+    font-weight: 700;
 
-  /* Cambia el cursor para indicar interacción */
-  cursor: pointer;
+    /* Cambia el cursor para indicar interacción */
+    cursor: pointer;
 
-  /* Animación suave al pasar el cursor */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Animación suave al pasar el cursor */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* Hover del botón */
 .contact-button:hover {
-  /* Usa un café más oscuro de la paleta */
-  background-color: var(--texto-principal-cafe-oscuro);
+    /* Usa un café más oscuro de la paleta */
+    background-color: var(--texto-principal-cafe-oscuro);
 
-  /* Eleva ligeramente el botón */
-  transform: translateY(-2px);
+    /* Eleva ligeramente el botón */
+    transform: translateY(-2px);
 }
-
-
 
 
 /* ==========================================================================
@@ -800,9 +663,9 @@ main {
   max-width: 1800px;
   margin: 3px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 10px;
-  padding: 0 20px;
+  grid-template-columns: 1fr 0.55fr 1.7fr;
+  gap: 24px;
+  padding: 0 40px;
   align-items: center;
 }
 
@@ -843,23 +706,12 @@ main {
   color: black;
 }
 
-/* Ajuste de columnas desktop*/
-.footer-container {
-  max-width: 1800px;
-  margin: 3px auto;
-  display: grid;
-  grid-template-columns: 1fr 0.55fr 1.7fr;
-  gap: 24px;
-  padding: 0 40px;
-  align-items: center;
-}
-
 /* --- COLUMNA 2: EXPLORA (NAVEGACIÓN) --- */
 .footer-section h3 {
   color: #4a3319;
   font-size: 1.3rem;
   font-weight: 900;
- margin-bottom: 10px;
+  margin-bottom: 10px;
   margin-left: 30px;
 }
 
@@ -913,9 +765,8 @@ main {
 .pixel-section {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-end;
     gap: 4px;
     padding-right: 0;
 }
@@ -941,297 +792,369 @@ main {
     border-radius: 999px;
 }
 
-   .pixel-section {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 0;
-}
-
 .pixel-message {
-  text-align: right;
-  color: var(--texto-principal-cafe-oscuro);
-  display: none; /* Para que los sprites usen todo el espacio */
+    text-align: right;
+    color: var(--texto-principal-cafe-oscuro);
+    display: none; /* Para que los sprites usen todo el espacio */
 }
 
 .pixel-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--cafe-medio);
-  margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cafe-medio);
+    margin: 0;
 }
 
 .pixel-description {
-  font-size: 0.95rem;
-  color: var(--texto-principal-cafe-oscuro);
-  margin: 0;
-  max-width: 360px;
-  line-height: 1.1rem;
+    font-size: 0.95rem;
+    color: var(--texto-principal-cafe-oscuro);
+    margin: 0;
+    max-width: 360px;
+    line-height: 1.1rem;
 }
 
 .pixel-team {
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: nowrap; /* CLAVE: evita que se bajen */
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: nowrap; /* CLAVE: evita que se bajen */
 }
 
 /* Base de cada sprite */
 .pixel-member {
-  --sprite-size: clamp(58px, 4vw, 82px);
+    --sprite-size: clamp(58px, 4vw, 82px);
 
-  width: var(--sprite-size);
-  height: var(--sprite-size);
-  background-image: var(--sprite);
-  background-repeat: no-repeat;
-  background-size: calc(var(--sprite-size) * var(--frames)) var(--sprite-size);
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  animation: pixel-animation var(--speed, 1s) steps(var(--frames)) infinite;
-  transform-origin: bottom center;
-  transition: transform 0.25s ease;
-  flex: 0 0 var(--sprite-size);
+    width: var(--sprite-size);
+    height: var(--sprite-size);
+    background-image: var(--sprite);
+    background-repeat: no-repeat;
+    background-size: calc(var(--sprite-size) * var(--frames)) var(--sprite-size);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    animation: pixel-animation var(--speed, 1s) steps(var(--frames)) infinite;
+    transform-origin: bottom center;
+    transition: transform 0.25s ease;
+    flex: 0 0 var(--sprite-size);
 }
 
 .pixel-member:hover {
-  transform: translateY(-6px) scale(1.08);
+    transform: translateY(-6px) scale(1.08);
 }
 
 @keyframes pixel-animation {
-  from {
-    background-position-x: 0;
-  }
+    from {
+        background-position-x: 0;
+    }
 
-  to {
-    background-position-x: calc(var(--sprite-size) * var(--frames) * -1);
-  }
+    to {
+        background-position-x: calc(var(--sprite-size) * var(--frames) * -1);
+    }
 }
 
 /*Ajuste de cada integrante*/
 .pixel-mafer {
-  --sprite: url("../../assets/sprites/maf1-9.png.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 1s;
+    --sprite: url("../../assets/sprites/maf1-9.png.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 1s;
 }
 
 .pixel-ilse {
-  --sprite: url("../../assets/sprites/adr1.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 1.05s;
+    --sprite: url("../../assets/sprites/adr1.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 1.05s;
 }
 
 .pixel-rodrigo {
-  --sprite: url("../../assets/sprites/rod1.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 0.95s;
+    --sprite: url("../../assets/sprites/rod1.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 0.95s;
 }
 
 .pixel-israel {
-  --sprite: url("../../assets/sprites/isr1.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 1.1s;
+    --sprite: url("../../assets/sprites/isr1.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 1.1s;
 }
 
 .pixel-miguel {
-  --sprite: url("../../assets/sprites/mig1.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 1s;
+    --sprite: url("../../assets/sprites/mig1.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 1s;
 }
 
 .pixel-carlos {
-  --sprite: url("../../assets/sprites/car1.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 0.98s;
+    --sprite: url("../../assets/sprites/car1.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 0.98s;
 }
 
 .pixel-tonantzin {
-  --sprite: url("../../assets/sprites/ton1.png");
-  --frame-width: 96px;
-  --frame-height: 96px;
-  --sheet-width: 864px;
-  --frames: 9;
-  --speed: 1.08s;
+    --sprite: url("../../assets/sprites/ton1.png");
+    --frame-width: 96px;
+    --frame-height: 96px;
+    --sheet-width: 864px;
+    --frames: 9;
+    --speed: 1.08s;
 }
-
-
-
-
-
 
 
 /* ==========================================================================
-   AJUSTES RESPONSIVOS (Pantallas Móviles)
+   BLOQUE RESPONSIVE OPTIMIZADO
+   Breakpoints unificados:
+   ≤390 | 391–600 | 601–767 | 768–899 | 900–1023 | 1024–1199 | 1200–1439 | ≥1440
    ========================================================================== */
 
-@media (max-width: 1030px) {
-  .navbar {
-    padding: 8px 0;
-  }
 
-  .navbar-logo {
-    width: 95px;
-    max-width: 95px;
-  }
+/* ============================
+   ≥1440px (monitores grandes)
+   ============================ */
+@media (min-width:1440px){
 
-  .nav-link {
-    font-size: 1.4rem;
-  }
+    .navbar{ font-size:1.3rem; }
+
+    .navbar .container{
+        min-height:110px;
+        max-width:1700px;
+    }
+
+    .navbar-logo{ width:110px; }
+
+    .navbar-nav{ gap:22px; }
+
+    .navbar-icon{ width:48px; height:48px; }
+
+    .search-form input{ width:220px; }
 }
 
 
-@media (max-width: 991px) {
-  .navbar {
-    padding: 0.4rem 1rem;
-  }
+/* ============================
+   1200–1439px (laptops)
+   ============================ */
+@media (min-width:1200px) and (max-width:1439px){
 
-  .navbar .container {
-    min-height: 90px;
-    max-width: 100%;
-  }
+    .navbar{ font-size:1.1rem; }
 
-  .navbar-logo {
-    width: 95px;
-    max-width: 95px;
-  }
+    .navbar-nav{ gap:14px; }
 
-  .navbar-toggler {
-    border: none;
-    padding: 0.25rem;
-  }
-
-  .navbar-toggler:focus {
-    box-shadow: none;
-  }
-
-  .navbar-collapse {
-    background-color: var(--beige-calido-degradado);
-    padding: 1rem 0;
-    text-align: center;
-  }
-
-  .navbar-nav {
-    gap: 0.4rem;
-  }
-
-  .nav-link {
-    font-size: 1.4rem;
-    padding: 0.4rem 0;
-  }
-
-  .nav-link:hover {
-    transform: none;
-  }
-
-  .navbar-icon {
-    width: 36px;
-    height: 36px;
-  }
-
-
-
-  .contact-page {
-    grid-template-columns: 1fr;
-    padding: 2rem 1rem;
-    gap: 2rem;
-  }
-
-  .contact-form-section {
-    justify-content: center;
-  }
-
-  .contact-form-title {
-    font-size: 1.9rem;
-  }
-  
-  
-  .footer-container {
-    grid-template-columns: 1fr; /* Cambia a una sola columna vertical */
-    text-align: center;
-    gap: 25px;
-  }
-
-  /* Centra contenidos en celulares y remueve el margen izquierdo */
-  .logo-section {
-    align-items: center;
-    justify-content: center;
-    margin-left: 0;
-  }
-
-  /*Responsive de los 8bit*/
-  .pixel-section {
-        align-items: center;
-        gap: 8px;
-    }
-
-    .pixel-interaction-title {
-        font-size: 1.25rem;
-        margin-bottom: 4px;
-    }
-
-    .pixel-interaction-title::after {
-        width: 75px;
-    }
-  
-  .pixel-section {
-    align-items: center;
-    text-align: center;
-    padding-right: 0;
-    gap: 10px;
-  }
-
-  .pixel-message {
-    text-align: center;
-  }
-
-  .pixel-description {
-    max-width: 280px;
-    font-size: 0.85rem;
-  }
-
-  .pixel-team {
-    justify-content: center;
-    gap: 4px;
-  }
-
-  .pixel-member {
-    transform: scale(0.75);
-    margin: -10px;
-  }
-
-  .pixel-member:hover {
-    transform: scale(0.8) translateY(-4px);
-  }
+    .navbar-logo{ width:88px; }
 }
 
 
-@media (max-width: 576px) {
-  .navbar .container {
-    min-height: 78px;
-  }
+/* ============================
+   1024–1199px (tablets landscape / laptops chicas)
+   ============================ */
+@media (min-width:1024px) and (max-width:1199px){
 
-  .navbar-logo {
-    width: 78px;
-    max-width: 78px;
-  }
+    .navbar{ font-size:1rem; }
+
+    .navbar .container{ min-height:80px; }
+
+    .navbar-logo{ width:80px; }
+
+    .navbar-icon{ width:38px; height:38px; }
+
+    .search-form input{ width:150px; }
+}
+
+
+/* ============================
+   900–1023px (tablets grandes)
+   ============================ */
+@media (min-width:900px) and (max-width:1023px){
+
+    .navbar{ font-size:1.05rem; }
+
+    .navbar-logo{ width:75px; }
+
+    .navbar-icon{ width:34px; height:34px; }
+
+    .navbar-nav{ gap:8px; }
+}
+
+
+/* ============================
+   768–899px (tablets estándar)
+   ============================ */
+@media (min-width:768px) and (max-width:899px){
+
+    .navbar-logo{ width:70px; }
+
+    .navbar-icon{ width:34px; height:34px; }
+
+    .nav-link{ font-size:1.2rem; }
+}
+
+
+/* ============================
+   601–767px (phablets / fold landscape)
+   ============================ */
+@media (min-width:601px) and (max-width:767px){
+
+    .navbar{ font-size:1.2rem; }
+
+    .navbar-logo{ width:70px; }
+
+    .navbar-icon{ width:34px; height:34px; }
+
+    .nav-link{ font-size:1.2rem; }
+}
+
+
+/* ============================
+   391–600px (celulares grandes)
+   ============================ */
+@media (min-width:391px) and (max-width:600px){
+
+    .navbar{ font-size:1.05rem; }
+
+    .navbar-logo{ width:60px; }
+
+    .navbar-icon{ width:30px; height:30px; }
+
+    .nav-link{ font-size:1.1rem; }
+}
+
+
+/* ============================
+   ≤390px (celulares pequeños)
+   ============================ */
+@media (max-width:390px){
+
+    .navbar{ font-size:1rem; }
+
+    .navbar-logo{ width:54px; }
+
+    .navbar-icon{ width:28px; height:28px; }
+
+    .nav-link{ font-size:.95rem; }
+}
+
+
+/* ============================
+   LANDSCAPE / ALTURA BAJA
+   ============================ */
+@media (max-height:500px) and (orientation:landscape){
+
+    .navbar-collapse{ max-height:70vh; overflow-y:auto; }
+
+    .navbar .container{ min-height:60px; }
+
+    .navbar-logo{ width:50px; }
+
+    .navbar-icon{ width:26px; height:26px; }
+}
+
+
+/* ============================
+   REDUCED MOTION
+   ============================ */
+@media (prefers-reduced-motion: reduce){
+
+    .navbar,
+    .navbar-logo,
+    .navbar-icon,
+    .navbar-nav,
+    .nav-link,
+    .navbar-collapse,
+    .nav-icon-link{
+        transition:none !important;
+        animation:none !important;
+    }
+}
+
+
+/* ============================
+   RETINA
+   ============================ */
+@media (-webkit-min-device-pixel-ratio:2), (min-resolution:192dpi){
+
+    .navbar-icon,
+    .navbar-logo{
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+
+/* ============================
+   CONTACT PAGE RESPONSIVE (UNIFICADO)
+   ============================ */
+
+@media (max-width:992px){
+
+    .contact-page{
+        grid-template-columns:1fr;
+        gap:40px;
+        padding:30px 20px;
+    }
+
+    .contact-card,
+    .contact-form-card{
+        max-width:580px;
+        width:100%;
+        margin:0 auto;
+        height:auto;
+    }
+}
+
+/* --- Adaptación para pantallas medianas (ej. tablets) --- */
+@media (max-width: 600px) {
+    .contact-page { padding: 20px 15px; }
+    .contact-card { padding: 35px 28px; }
+    .contact-form-card { padding: 24px; }
+    .contact-card h1 { font-size: 1.6rem; }
+    
+    /* Aumentamos el tamaño aquí también (antes era 200px) */
+    .aside-img { max-width: 240px; } 
+}
+
+/* --- Adaptación para pantallas pequeñas (ej. celulares) --- */
+@media (max-width: 400px) {
+    .contact-card { padding: 28px 20px; }
+    .contact-card h1 { font-size: 1.4rem; }
+    
+    /* Aumentamos el tamaño para celulares (antes era 170px) */
+    .aside-img { max-width: 190px; } 
+}
+
+
+/* ============================
+   FOOTER RESPONSIVE
+   ============================ */
+
+@media (max-width:991px){
+
+    .footer-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .logo-section{
+        align-items:center;
+        margin-left:0;
+    }
+
+    .pixel-team{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
 }
